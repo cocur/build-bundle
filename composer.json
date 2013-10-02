@@ -1,0 +1,22 @@
+{
+    "name":         "braincrafted/static-site-bundle",
+    "description":  "BcStaticSiteBundle",
+    "keywords":     [ "static site" ],
+    "type":         "symfony-bundle",
+    "license":      "MIT",
+    "authors":      [
+        {
+            "name":     "Florian Eckerstorfer",
+            "email":    "florian@eckerstorfer.co",
+            "homepage": "http://florianeckerstorfer.com"
+        }
+    ],
+    "require":      {
+        "php":             ">=5.4",
+        "symfony/symfony": "2.3.*"
+    },
+    "autoload": {
+        "psr-0": { "Bc\\Bundle\\StaticSiteBundle": "" }
+    },
+    "target-dir": "Bc/Bundle/StaticSiteBundle"
+}
