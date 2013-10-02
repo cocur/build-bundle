@@ -65,7 +65,7 @@ Currently this bundle contains one command to render a page to the `build_direct
 
 The HTML code will be saved in the directory configured with `bc_static_site.build_directory`.
 
-***Note:** BcStaticSiteBundle currently only handles controllers without parameters.*
+_**Note:** BcStaticSiteBundle currently only handles controllers without parameters._
 
 License
 -------
