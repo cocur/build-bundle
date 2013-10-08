@@ -10,9 +10,11 @@
 
 namespace Bc\Bundle\StaticSiteBundle\Renderer;
 
-use Symfony\Component\Routing\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\Router;
+use Bc\Bundle\StaticSiteBundle\Exception\RouteNotFoundException;
 
 /**
  * RouteRenderer renders a page based on the given route.
@@ -28,6 +30,9 @@ class RouteRenderer
     /** @var Kernel */
     private $kernel;
 
+    /** @var Router */
+    private $router;
+
     /** @var string */
     private $buildDirectory;
 
@@ -39,10 +44,26 @@ class RouteRenderer
      *
      * @codeCoverageIgnore
      */
-    public function __construct(Kernel $kernel, $buildDirectory)
+    public function __construct(Kernel $kernel, Router $router, $buildDirectory)
     {
         $this->kernel = $kernel;
+        $this->router = $router;
         $this->buildDirectory = $buildDirectory;
+    }
+
+    /**
+     * Renders the page with the route that matches the given name.
+     *
+     * @param string $name Name of a route
+     */
+    public function renderByName($name)
+    {
+        $route = $this->getRoute($name);
+        if (null === $route) {
+            throw new RouteNotFoundException(sprintf('There is no route "%s".', $name));
+        }
+
+        return $this->render($route);
     }
 
     /**
@@ -60,6 +81,18 @@ class RouteRenderer
         $this->kernel->shutdown();
 
         file_put_contents(sprintf('%s/%s', $this->buildDirectory, $route->getPattern()), $content);
+    }
+
+    /**
+     * Returns the route that matches the given route name.
+     *
+     * @param string $route Name of the route
+     *
+     * @return Route
+     */
+    protected function getRoute($name)
+    {
+        return $this->router->getRouteCollection()->get($name);
     }
 
     /**
