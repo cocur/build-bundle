@@ -61,9 +61,17 @@ Currently there is one configuration option, `bc_static_site.build_directory`.
 Usage
 -----
 
-Currently this bundle contains one command to render a page to the `build_directory` based on its controller name.
+The bundle contains a set of different commands to build pages. First of all, it is possible to build a single page based on the name of the controller:
 
     php app/console bc:static-site:render-controller AcmeDemoBundle:Default:index
+
+It is also possible to build a page based on the name of its route:
+
+    php app/console bc:static-site:render-route acme_demo_default_index
+
+If you want to build all pages where a route exists, this is also possible. Internal routes of Symfony2 (starting with `_`) are excluded:
+
+    php app/console bc:static-site:render-routes
 
 The HTML code will be saved in the directory configured with `bc_static_site.build_directory`.
 
