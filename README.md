@@ -3,6 +3,8 @@ BcStaticSiteBundle
 
 Bundle to render static sites from Symfony2. *Early development release.*
 
+[![Build Status](https://travis-ci.org/braincrafted/static-site-bundle.png?branch=master)](https://travis-ci.org/braincrafted/static-site-bundle)
+
 
 Author
 ------
