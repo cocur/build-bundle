@@ -10,6 +10,8 @@
 
         <parameter key="bc_static_site.renderer.route.class">Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer</parameter>
 
+        <parameter key="bc_static_site.renderer.routes.class">Bc\Bundle\StaticSiteBundle\Renderer\RoutesRenderer</parameter>
+
     </parameters>
 
     <services>
@@ -24,6 +26,11 @@
             <argument type="service" id="kernel" />
             <argument type="service" id="router" />
             <argument>%bc_static_site.build_directory%</argument>
+        </service>
+
+        <service id="bc_static_site.renderer.routes" class="%bc_static_site.renderer.routes.class%">
+            <argument type="service" id="bc_static_site.renderer.route" />
+            <argument type="service" id="router" />
         </service>
 
     </services>
