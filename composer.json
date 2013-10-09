@@ -13,10 +13,11 @@
     ],
     "require":      {
         "php":             ">=5.4",
-        "symfony/symfony": "2.3.*"
+        "symfony/symfony": "~2.4"
     },
     "autoload": {
         "psr-0": { "Bc\\Bundle\\StaticSiteBundle": "" }
     },
-    "target-dir": "Bc/Bundle/StaticSiteBundle"
+    "target-dir": "Bc/Bundle/StaticSiteBundle",
+    "minimum-stability": "beta"
 }

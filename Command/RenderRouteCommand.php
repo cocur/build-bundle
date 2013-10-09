@@ -10,11 +10,13 @@
 
 namespace Bc\Bundle\StaticSiteBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+
+use Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer;
 
 /**
  * RenderRouteCommand
@@ -25,8 +27,22 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @copyright  2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  */
-class RenderRouteCommand extends ContainerAwareCommand
+class RenderRouteCommand extends Command
 {
+    /** @var RouteRenderer */
+    private $renderer;
+
+    /**
+     * Constructor.
+     *
+     * @param RouteRenderer $renderer Route renderer
+     */
+    public function __construct(RouteRenderer $renderer)
+    {
+        $this->renderer = $renderer;
+        parent::__construct();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -43,10 +59,8 @@ class RenderRouteCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $renderer = $this->getContainer()->get('bc_static_site.renderer.route');
-
         try {
-            $renderer->renderByName($input->getArgument('route'));
+            $this->renderer->renderByName($input->getArgument('route'));
         } catch (RouteNotFoundException $e) {
             $output->writeln(sprintf('<error>%s</error>', $e->getMessage()));
         }

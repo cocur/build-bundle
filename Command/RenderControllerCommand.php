@@ -10,11 +10,13 @@
 
 namespace Bc\Bundle\StaticSiteBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+
+use Bc\Bundle\StaticSiteBundle\Renderer\ControllerRenderer;
 
 /**
  * RenderControllerCommand
@@ -25,8 +27,22 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @copyright  2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
  */
-class RenderControllerCommand extends ContainerAwareCommand
+class RenderControllerCommand extends Command
 {
+    /** @var ControllerRenderer */
+    private $renderer;
+
+    /**
+     * Constructor.
+     *
+     * @param ControllerRenderer $renderer Controller renderer
+     */
+    public function __construct(ControllerRenderer $renderer)
+    {
+        $this->renderer = $renderer;
+        parent::__construct();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -43,10 +59,8 @@ class RenderControllerCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $renderer = $this->getContainer()->get('bc_static_site.renderer.controller');
-
         try {
-            $renderer->render($input->getArgument('controller'));
+            $this->renderer->render($input->getArgument('controller'));
         } catch (ControllerNotFoundException $e) {
             $output->writeln(sprintf('<error>%s</error>', $e->getMessage()));
         } catch (RouteNotFoundException $e) {

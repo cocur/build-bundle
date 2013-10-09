@@ -34,8 +34,12 @@ class BcStaticSiteExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
+        $loader = new Loader\XmlFileLoader(
+            $container,
+            new FileLocator(__DIR__.'/../Resources/config/services')
+        );
+        $loader->load('command.xml');
+        $loader->load('renderer.xml');
 
         if (!isset($config['build_directory'])) {
             throw new \InvalidArgumentException('The option "bc_static_site.build_directory must be set.');
