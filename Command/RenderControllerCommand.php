@@ -26,6 +26,8 @@ use Bc\Bundle\StaticSiteBundle\Renderer\ControllerRenderer;
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
+ *
+ * @codeCoverageIgnore
  */
 class RenderControllerCommand extends Command
 {

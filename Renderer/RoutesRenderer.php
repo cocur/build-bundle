@@ -34,6 +34,8 @@ class RoutesRenderer
      *
      * @param RouteRenderer $routeRenderer Route renderer
      * @param Router        $router        Router
+     *
+     * @codeCoverageIgnore
      */
     public function __construct(RouteRenderer $routeRenderer, Router $router)
     {

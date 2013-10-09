@@ -26,6 +26,8 @@ use Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer;
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
+ *
+ * @codeCoverageIgnore
  */
 class RenderRouteCommand extends Command
 {
