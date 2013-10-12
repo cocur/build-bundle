@@ -25,7 +25,7 @@
         <service id="bc_static_site.renderer.route" class="%bc_static_site.renderer.route.class%">
             <argument type="service" id="kernel" />
             <argument type="service" id="router" />
-            <argument>%bc_static_site.build_directory%</argument>
+            <argument type="service" id="bc_static_site.writer.filesystem" />
         </service>
 
         <service id="bc_static_site.renderer.routes" class="%bc_static_site.renderer.routes.class%">

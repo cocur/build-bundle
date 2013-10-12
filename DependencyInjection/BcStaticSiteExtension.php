@@ -42,6 +42,7 @@ class BcStaticSiteExtension extends Extension
         );
         $loader->load('command.xml');
         $loader->load('renderer.xml');
+        $loader->load('writer.xml');
 
         if (!isset($config['build_directory'])) {
             throw new \InvalidArgumentException('The option "bc_static_site.build_directory must be set.');

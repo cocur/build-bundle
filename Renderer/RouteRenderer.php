@@ -14,7 +14,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\Router;
+
 use Bc\Bundle\StaticSiteBundle\Exception\RouteNotFoundException;
+use Bc\Bundle\StaticSiteBundle\Writer\WriterInterface;
 
 /**
  * RouteRenderer renders a page based on the given route.
@@ -33,8 +35,8 @@ class RouteRenderer
     /** @var Router */
     private $router;
 
-    /** @var string */
-    private $buildDirectory;
+    /** @var WriterInterface */
+    private $writer;
 
     /**
      * Constructor.
@@ -44,11 +46,11 @@ class RouteRenderer
      *
      * @codeCoverageIgnore
      */
-    public function __construct(Kernel $kernel, Router $router, $buildDirectory)
+    public function __construct(Kernel $kernel, Router $router, WriterInterface $writer)
     {
         $this->kernel = $kernel;
         $this->router = $router;
-        $this->buildDirectory = $buildDirectory;
+        $this->writer = $writer;
     }
 
     /**
@@ -80,7 +82,7 @@ class RouteRenderer
         $this->kernel->terminate($request, $response);
         $this->kernel->shutdown();
 
-        file_put_contents(sprintf('%s/%s', $this->buildDirectory, $route->getPattern()), $content);
+        $this->writer->write($route->getPattern(), $content);
     }
 
     /**
