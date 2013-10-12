@@ -56,10 +56,12 @@ class FilesystemWriter implements WriterInterface
     public function write($name, $content)
     {
         $name = $this->getRealName($name);
-        $directory = sprintf('%s/%s', $this->buildDirectory, substr($name, 0, strrpos($name, '/')));
+        $directory = sprintf('%s%s', $this->buildDirectory, substr($name, 0, strrpos($name, '/')));
         $name = substr($name, strrpos($name, '/'));
 
-        $this->filesystem->mkdir($directory);
+        if (false === file_exists($directory)) {
+            $this->filesystem->mkdir($directory);
+        }
 
         file_put_contents(sprintf('%s/%s', $directory, $name), $content);
     }
