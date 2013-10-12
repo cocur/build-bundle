@@ -29,16 +29,9 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
     {
         $this->kernel = m::mock('Symfony\Component\HttpKernel\Kernel');
         $this->router = m::mock('Symfony\Component\Routing\Router');
-        $this->buildDirectory = __DIR__.'/build';
+        $this->writer = m::mock('Bc\Bundle\StaticSiteBundle\Writer\WriterInterface');
 
-        @mkdir($this->buildDirectory);
-
-        $this->renderer = new RouteRenderer($this->kernel, $this->router, $this->buildDirectory);
-    }
-
-    public function tearDown()
-    {
-        @unlink($this->buildDirectory.'/index.html');
+        $this->renderer = new RouteRenderer($this->kernel, $this->router, $this->writer);
     }
 
     /**
@@ -62,9 +55,9 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
         $this->kernel->shouldReceive('terminate')->with(m::any(), $response)->once();
         $this->kernel->shouldReceive('shutdown')->once();
 
-        $this->renderer->render($route);
+        $this->writer->shouldReceive('write')->with('/index.html', 'Foobar!')->once();
 
-        $this->assertEquals('Foobar!', file_get_contents($this->buildDirectory.'/index.html'));
+        $this->renderer->render($route);
     }
 
     /**
@@ -92,9 +85,9 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
         $this->kernel->shouldReceive('terminate')->with(m::any(), $response)->once();
         $this->kernel->shouldReceive('shutdown')->once();
 
-        $this->renderer->renderByName('index_route');
+        $this->writer->shouldReceive('write')->with('/index.html', 'Foobar!')->once();
 
-        $this->assertEquals('Foobar!', file_get_contents($this->buildDirectory.'/index.html'));
+        $this->renderer->renderByName('index_route');
     }
 
     /**
