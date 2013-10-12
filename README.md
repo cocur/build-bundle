@@ -61,7 +61,11 @@ Currently there is one configuration option, `bc_static_site.build_directory`.
 Usage
 -----
 
-The bundle contains a set of different commands to build pages. First of all, it is possible to build a single page based on the name of the controller:
+The build command is the main command offered by BcStaticSiteBundle. It builds all pages and dumps the assets into the build directory.
+
+    php app/console bc:static-site:build
+
+The bundle also contains a set of different commands to build pages. First of all, it is possible to build a single page based on the name of the controller:
 
     php app/console bc:static-site:render-controller AcmeDemoBundle:Default:index
 

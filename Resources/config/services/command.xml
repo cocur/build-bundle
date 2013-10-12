@@ -10,6 +10,8 @@
         <parameter key="bc_static_site.command.render_route.class">Bc\Bundle\StaticSiteBundle\Command\RenderRouteCommand</parameter>
 
         <parameter key="bc_static_site.command.render_routes.class">Bc\Bundle\StaticSiteBundle\Command\RenderRoutesCommand</parameter>
+
+        <parameter key="bc_static_site.command.build.class">Bc\Bundle\StaticSiteBundle\Command\BuildCommand</parameter>
     </parameters>
 
     <services>
@@ -26,6 +28,12 @@
 
         <service id="bc_static_site.command.render_routes" class="%bc_static_site.command.render_routes.class%">
             <argument type="service" id="bc_static_site.renderer.routes" />
+            <tag name="console.command" />
+        </service>
+
+        <service id="bc_static_site.command.build" class="%bc_static_site.command.build.class%">
+            <argument type="service" id="bc_static_site.renderer.routes" />
+            <argument>%bc_static_site.build_directory%</argument>
             <tag name="console.command" />
         </service>
 
