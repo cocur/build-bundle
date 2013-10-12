@@ -10,7 +10,9 @@
 
     <services>
         <service id="bc_static_site.writer.filesystem" class="%bc_static_site.writer.filesystem.class%">
+            <argument type="service" id="filesystem" />
             <argument>%bc_static_site.build_directory%</argument>
+            <argument>%bc_static_site.index_name%</argument>
         </service>
     </services>
 

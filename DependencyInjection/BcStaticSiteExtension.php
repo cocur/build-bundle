@@ -48,5 +48,10 @@ class BcStaticSiteExtension extends Extension
             throw new \InvalidArgumentException('The option "bc_static_site.build_directory must be set.');
         }
         $container->setParameter('bc_static_site.build_directory', $config['build_directory']);
+
+        if (!isset($config['index_name'])) {
+            throw new \InvalidArgumentException('The option "bc_static_site.index_name must be set.');
+        }
+        $container->setParameter('bc_static_site.index_name', $config['index_name']);
     }
 }
