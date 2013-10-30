@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of BcStaticSiteBundle.
+ * This file is part of BraincraftedStaticSiteBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -8,17 +8,17 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Bc\Bundle\StaticSiteBundle\Renderer;
+namespace Braincrafted\Bundle\StaticSiteBundle\Renderer;
 
 use Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser;
 use Symfony\Component\Routing\Router;
-use Bc\Bundle\StaticSiteBundle\Exception\RouteNotFoundException;
-use Bc\Bundle\StaticSiteBundle\Exception\ControllerNotFoundException;
+use Braincrafted\Bundle\StaticSiteBundle\Exception\RouteNotFoundException;
+use Braincrafted\Bundle\StaticSiteBundle\Exception\ControllerNotFoundException;
 
 /**
  * ControllerRenderer renders a page based on the given name of a controller.
  *
- * @package    BcStaticSiteBundle
+ * @package    BraincraftedStaticSiteBundle
  * @subpackage Renderer
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer

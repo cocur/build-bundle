@@ -5,35 +5,35 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="bc_static_site.command.render_controller.class">Bc\Bundle\StaticSiteBundle\Command\RenderControllerCommand</parameter>
+        <parameter key="braincrafted_static_site.command.render_controller.class">Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand</parameter>
 
-        <parameter key="bc_static_site.command.render_route.class">Bc\Bundle\StaticSiteBundle\Command\RenderRouteCommand</parameter>
+        <parameter key="braincrafted_static_site.command.render_route.class">Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand</parameter>
 
-        <parameter key="bc_static_site.command.render_routes.class">Bc\Bundle\StaticSiteBundle\Command\RenderRoutesCommand</parameter>
+        <parameter key="braincrafted_static_site.command.render_routes.class">Braincrafted\Bundle\StaticSiteBundle\Command\RenderRoutesCommand</parameter>
 
-        <parameter key="bc_static_site.command.build.class">Bc\Bundle\StaticSiteBundle\Command\BuildCommand</parameter>
+        <parameter key="braincrafted_static_site.command.build.class">Braincrafted\Bundle\StaticSiteBundle\Command\BuildCommand</parameter>
     </parameters>
 
     <services>
 
-        <service id="bc_static_site.command.render_controller" class="%bc_static_site.command.render_controller.class%">
-            <argument type="service" id="bc_static_site.renderer.controller" />
+        <service id="braincrafted_static_site.command.render_controller" class="%braincrafted_static_site.command.render_controller.class%">
+            <argument type="service" id="braincrafted_static_site.renderer.controller" />
             <tag name="console.command" />
         </service>
 
-        <service id="bc_static_site.command.render_route" class="%bc_static_site.command.render_route.class%">
-            <argument type="service" id="bc_static_site.renderer.route" />
+        <service id="braincrafted_static_site.command.render_route" class="%braincrafted_static_site.command.render_route.class%">
+            <argument type="service" id="braincrafted_static_site.renderer.route" />
             <tag name="console.command" />
         </service>
 
-        <service id="bc_static_site.command.render_routes" class="%bc_static_site.command.render_routes.class%">
-            <argument type="service" id="bc_static_site.renderer.routes" />
+        <service id="braincrafted_static_site.command.render_routes" class="%braincrafted_static_site.command.render_routes.class%">
+            <argument type="service" id="braincrafted_static_site.renderer.routes" />
             <tag name="console.command" />
         </service>
 
-        <service id="bc_static_site.command.build" class="%bc_static_site.command.build.class%">
-            <argument type="service" id="bc_static_site.renderer.routes" />
-            <argument>%bc_static_site.build_directory%</argument>
+        <service id="braincrafted_static_site.command.build" class="%braincrafted_static_site.command.build.class%">
+            <argument type="service" id="braincrafted_static_site.renderer.routes" />
+            <argument>%braincrafted_static_site.build_directory%</argument>
             <tag name="console.command" />
         </service>
 

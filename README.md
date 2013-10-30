@@ -1,4 +1,4 @@
-BcStaticSiteBundle
+BraincraftedStaticSiteBundle
 ==================
 
 Bundle to render static sites from Symfony2. *Early development release.*
@@ -15,13 +15,13 @@ Author
 Motivation
 ----------
 
-The documentation for [BcBootstrapBundle](https://github.com/braincrafted/bootstrap-bundle) is a Symfony2 project, since it is also used to test and demonstrate the bundles features. However, I no longer wanted to maintain (and pay for) another Symfony2 project on my server and instead move it to Github Pages. BcStaticSiteBundle creates static HTML pages from Symfony2 controllers, but currently not more.
+The documentation for [BcBootstrapBundle](https://github.com/braincrafted/bootstrap-bundle) is a Symfony2 project, since it is also used to test and demonstrate the bundles features. However, I no longer wanted to maintain (and pay for) another Symfony2 project on my server and instead move it to Github Pages. BraincraftedStaticSiteBundle creates static HTML pages from Symfony2 controllers, but currently not more.
 
 
 Installation
 ------------
 
-You can install BcStaticSiteBundle using [Composer](http://getcomposer.org). Add to your `composer.json`
+You can install BraincraftedStaticSiteBundle using [Composer](http://getcomposer.org). Add to your `composer.json`
 
     {
         "requiere": {
@@ -39,7 +39,7 @@ Of course, you also need to add the bundle to your `AppKernel.php`:
         {
             $bundles = array(
                 // ...
-                new Bc\Bundle\StaticSiteBundle\BcStaticSiteBundle(),
+                new Braincrafted\Bundle\StaticSiteBundle\BraincraftedStaticSiteBundle(),
             );
 
             // ...
@@ -51,35 +51,42 @@ Of course, you also need to add the bundle to your `AppKernel.php`:
     }
 
 
-Currently there is one configuration option, `bc_static_site.build_directory`.
+Configuration
+-------------
+
+- `braincrafted_static_site.build_directory`: The directory where the built site is stored
+- `braincrafted_static_site.index_name`: The the route doesn't contain a file name, this is appended to the route.
+
+The default configuration looks like this:
 
     # app/config/config.yml
-    bc_static_site:
+    braincrafted_static_site:
         build_directory: %kernel.root_dir%/../build/site
+        index_name: index.html
 
 
 Usage
 -----
 
-The build command is the main command offered by BcStaticSiteBundle. It builds all pages and dumps the assets into the build directory.
+The build command is the main command offered by BraincraftedStaticSiteBundle. It builds all pages and dumps the assets into the build directory.
 
-    php app/console bc:static-site:build
+    php app/console braincrafted:static-site:build
 
 The bundle also contains a set of different commands to build pages. First of all, it is possible to build a single page based on the name of the controller:
 
-    php app/console bc:static-site:render-controller AcmeDemoBundle:Default:index
+    php app/console braincrafted:static-site:render-controller AcmeDemoBundle:Default:index
 
 It is also possible to build a page based on the name of its route:
 
-    php app/console bc:static-site:render-route acme_demo_default_index
+    php app/console braincrafted:static-site:render-route acme_demo_default_index
 
 If you want to build all pages where a route exists, this is also possible. Internal routes of Symfony2 (starting with `_`) are excluded:
 
-    php app/console bc:static-site:render-routes
+    php app/console braincrafted:static-site:render-routes
 
-The HTML code will be saved in the directory configured with `bc_static_site.build_directory`.
+The HTML code will be saved in the directory configured with `braincrafted_static_site.build_directory`.
 
-_**Note:** BcStaticSiteBundle currently only handles controllers without parameters._
+_**Note:** BraincraftedStaticSiteBundle currently only handles controllers without parameters._
 
 License
 -------

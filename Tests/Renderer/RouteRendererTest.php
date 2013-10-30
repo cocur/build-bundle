@@ -1,10 +1,10 @@
 <?php
 
-namespace Bc\Bundle\StaticSiteBundle\Tests\Renderer;
+namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Renderer;
 
 use \Mockery as m;
 
-use Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer;
+use Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer;
 
 /**
  * RouteRendererTest
@@ -29,7 +29,7 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
     {
         $this->kernel = m::mock('Symfony\Component\HttpKernel\Kernel');
         $this->router = m::mock('Symfony\Component\Routing\Router');
-        $this->writer = m::mock('Bc\Bundle\StaticSiteBundle\Writer\WriterInterface');
+        $this->writer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Writer\WriterInterface');
 
         $this->renderer = new RouteRenderer($this->kernel, $this->router, $this->writer);
     }
@@ -40,8 +40,8 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
      * The render() method creates a request based on the given route and lets the kernel handle the request. The
      * response is saved to disk.
      *
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer::render()
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer::buildRequest()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::render()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::buildRequest()
      */
     public function testRender()
     {
@@ -63,10 +63,10 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests the renderByName() method.
      *
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer::renderByName()
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer::render()
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer::buildRequest()
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer::getRoute()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::renderByName()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::render()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::buildRequest()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::getRoute()
      */
     public function testRenderByName()
     {
@@ -93,9 +93,9 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests the renderByName() method, but the route is not found.
      *
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer::renderByName()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::renderByName()
      *
-     * @expectedException Bc\Bundle\StaticSiteBundle\Exception\RouteNotFoundException
+     * @expectedException Braincrafted\Bundle\StaticSiteBundle\Exception\RouteNotFoundException
      */
     public function testRenderByNameRouteNotFound()
     {

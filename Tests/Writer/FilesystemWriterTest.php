@@ -1,10 +1,10 @@
 <?php
 
-namespace Bc\Bundle\StaticSiteBundle\Tests\Writer;
+namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Writer;
 
 use \Mockery as m;
 
-use Bc\Bundle\StaticSiteBundle\Writer\FilesystemWriter;
+use Braincrafted\Bundle\StaticSiteBundle\Writer\FilesystemWriter;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
@@ -36,8 +36,8 @@ class FilesystemWriterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\StaticSiteBundle\Writer\FilesystemWriter::write()
-     * @covers Bc\Bundle\StaticSiteBundle\Writer\FilesystemWriter::getRealName()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Writer\FilesystemWriter::write()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Writer\FilesystemWriter::getRealName()
      */
     public function testWrite()
     {
@@ -47,8 +47,8 @@ class FilesystemWriterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Bc\Bundle\StaticSiteBundle\Writer\FilesystemWriter::write()
-     * @covers Bc\Bundle\StaticSiteBundle\Writer\FilesystemWriter::getRealName()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Writer\FilesystemWriter::write()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Writer\FilesystemWriter::getRealName()
      */
     public function testWriteWithDirectory()
     {

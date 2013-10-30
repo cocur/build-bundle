@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of BcStaticSiteBundle.
+ * This file is part of BraincraftedStaticSiteBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -8,14 +8,14 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Bc\Bundle\StaticSiteBundle\Renderer;
+namespace Braincrafted\Bundle\StaticSiteBundle\Renderer;
 
 use Symfony\Component\Routing\Router;
 
 /**
  * RoutesRenderer renders all routes into pages.
  *
- * @package    BcStaticSiteBundle
+ * @package    BraincraftedStaticSiteBundle
  * @subpackage Renderer
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer

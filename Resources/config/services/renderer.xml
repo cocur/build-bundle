@@ -6,30 +6,30 @@
 
     <parameters>
 
-        <parameter key="bc_static_site.renderer.controller.class">Bc\Bundle\StaticSiteBundle\Renderer\ControllerRenderer</parameter>
+        <parameter key="braincrafted_static_site.renderer.controller.class">Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer</parameter>
 
-        <parameter key="bc_static_site.renderer.route.class">Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer</parameter>
+        <parameter key="braincrafted_static_site.renderer.route.class">Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer</parameter>
 
-        <parameter key="bc_static_site.renderer.routes.class">Bc\Bundle\StaticSiteBundle\Renderer\RoutesRenderer</parameter>
+        <parameter key="braincrafted_static_site.renderer.routes.class">Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer</parameter>
 
     </parameters>
 
     <services>
 
-        <service id="bc_static_site.renderer.controller" class="%bc_static_site.renderer.controller.class%">
-            <argument type="service" id="bc_static_site.renderer.route" />
+        <service id="braincrafted_static_site.renderer.controller" class="%braincrafted_static_site.renderer.controller.class%">
+            <argument type="service" id="braincrafted_static_site.renderer.route" />
             <argument type="service" id="controller_name_converter" />
             <argument type="service" id="router" />
         </service>
 
-        <service id="bc_static_site.renderer.route" class="%bc_static_site.renderer.route.class%">
+        <service id="braincrafted_static_site.renderer.route" class="%braincrafted_static_site.renderer.route.class%">
             <argument type="service" id="kernel" />
             <argument type="service" id="router" />
-            <argument type="service" id="bc_static_site.writer.filesystem" />
+            <argument type="service" id="braincrafted_static_site.writer.filesystem" />
         </service>
 
-        <service id="bc_static_site.renderer.routes" class="%bc_static_site.renderer.routes.class%">
-            <argument type="service" id="bc_static_site.renderer.route" />
+        <service id="braincrafted_static_site.renderer.routes" class="%braincrafted_static_site.renderer.routes.class%">
+            <argument type="service" id="braincrafted_static_site.renderer.route" />
             <argument type="service" id="router" />
         </service>
 

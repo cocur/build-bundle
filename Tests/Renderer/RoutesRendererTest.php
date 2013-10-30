@@ -1,10 +1,10 @@
 <?php
 
-namespace Bc\Bundle\StaticSiteBundle\Tests\Renderer;
+namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Renderer;
 
 use \Mockery as m;
 
-use Bc\Bundle\StaticSiteBundle\Renderer\RoutesRenderer;
+use Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer;
 
 /**
  * RoutesRendererTest
@@ -16,7 +16,7 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
     /** @var RoutesRenderer */
     private $renderer;
 
-    /** @var Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer */
+    /** @var Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer */
     private $routeRenderer;
 
     /** @var Symfony\Component\Routing\Router */
@@ -24,7 +24,7 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->routeRenderer = m::mock('Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer');
+        $this->routeRenderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer');
         $this->router = m::mock('Symfony\Component\Routing\Router');
 
         $this->renderer = new RoutesRenderer($this->routeRenderer, $this->router);
@@ -36,7 +36,7 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
      * Route collection returns two routes, one public and one private (prefixed with "_"), renderer
      * should only render the public route.
      *
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::render()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::render()
      */
     public function testRender()
     {

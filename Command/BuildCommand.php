@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of BcStaticSiteBundle.
+ * This file is part of BraincraftedStaticSiteBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -8,7 +8,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Bc\Bundle\StaticSiteBundle\Command;
+namespace Braincrafted\Bundle\StaticSiteBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -17,12 +17,12 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 
-use Bc\Bundle\StaticSiteBundle\Renderer\RoutesRenderer;
+use Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer;
 
 /**
  * BuildCommand
  *
- * @package    BcStaticSiteBundle
+ * @package    BraincraftedStaticSiteBundle
  * @subpackage Command
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -56,7 +56,7 @@ class BuildCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('bc:static-site:build')
+            ->setName('braincrafted:static-site:build')
             ->setDescription('Builds the static site.');
     }
 

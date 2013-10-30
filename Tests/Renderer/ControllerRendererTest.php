@@ -1,10 +1,10 @@
 <?php
 
-namespace Bc\Bundle\StaticSiteBundle\Tests\Renderer;
+namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Renderer;
 
 use \Mockery as m;
 
-use Bc\Bundle\StaticSiteBundle\Renderer\ControllerRenderer;
+use Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer;
 
 /**
  * ControllerRendererTest
@@ -16,7 +16,7 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
     /** @var ControllerRenderer */
     private $renderer;
 
-    /** @var Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer */
+    /** @var Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer */
     private $routeRenderer;
 
     /** @var Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser */
@@ -27,7 +27,7 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->routeRenderer = m::mock('Bc\Bundle\StaticSiteBundle\Renderer\RouteRenderer');
+        $this->routeRenderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer');
         $this->nameParser = m::mock('Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser');
         $this->router = m::mock('Symfony\Component\Routing\Router');
 
@@ -40,9 +40,9 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
      * The given controller exists and there is also a route for the controller. Thus, the render() method of the
      * RouteRenderer should be called.
      *
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::render()
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getControllerName()
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getRoute()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::render()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getControllerName()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getRoute()
      */
     public function testRender()
     {
@@ -71,10 +71,10 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests the render() method when the controller does not exist.
      *
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::render()
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getControllerName()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::render()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getControllerName()
      *
-     * @expectedException Bc\Bundle\StaticSiteBundle\Exception\ControllerNotFoundException
+     * @expectedException Braincrafted\Bundle\StaticSiteBundle\Exception\ControllerNotFoundException
      */
     public function testRenderControllerDoesNotExist()
     {
@@ -86,11 +86,11 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests the render() method when the route does not exist.
      *
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::render()
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getControllerName()
-     * @covers Bc\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getRoute()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::render()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getControllerName()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getRoute()
      *
-     * @expectedException Bc\Bundle\StaticSiteBundle\Exception\RouteNotFoundException
+     * @expectedException Braincrafted\Bundle\StaticSiteBundle\Exception\RouteNotFoundException
      */
     public function testRenderRouteDoesNotExist()
     {

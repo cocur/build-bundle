@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of BcStaticSiteBundle.
+ * This file is part of BraincraftedStaticSiteBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -8,12 +8,12 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Bc\Bundle\StaticSiteBundle\Writer;
+namespace Braincrafted\Bundle\StaticSiteBundle\Writer;
 
 /**
  * Interfaces for classes that write pages.
  *
- * @package    BcStaticSiteBundle
+ * @package    BraincraftedStaticSiteBundle
  * @subpackage Writer
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer

@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of BcStaticSiteBundle.
+ * This file is part of BraincraftedStaticSiteBundleBraincraftedStaticSiteBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -8,18 +8,18 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Bc\Bundle\StaticSiteBundle;
+namespace Braincrafted\Bundle\StaticSiteBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * BcStaticSiteBundle
+ * BraincraftedStaticSiteBundle
  *
- * @package   BcStaticSiteBundle
+ * @package   BraincraftedStaticSiteBundle
  * @author    Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright 2013 Florian Eckerstorfer
  * @license   http://opensource.org/licenses/MIT The MIT License
  */
-class BcStaticSiteBundle extends Bundle
+class BraincraftedStaticSiteBundle extends Bundle
 {
 }

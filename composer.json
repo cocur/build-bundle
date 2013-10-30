@@ -1,6 +1,6 @@
 {
     "name":         "braincrafted/static-site-bundle",
-    "description":  "BcStaticSiteBundle",
+    "description":  "BraincraftedStaticSiteBundle",
     "keywords":     [ "static site" ],
     "type":         "symfony-bundle",
     "license":      "MIT",
@@ -20,8 +20,8 @@
         "mockery/mockery": "0.8.*"
     },
     "autoload": {
-        "psr-0": { "Bc\\Bundle\\StaticSiteBundle": "" }
+        "psr-0": { "Braincrafted\\Bundle\\StaticSiteBundle": "" }
     },
-    "target-dir": "Bc/Bundle/StaticSiteBundle",
+    "target-dir": "Braincrafted/Bundle/StaticSiteBundle",
     "minimum-stability": "beta"
 }
