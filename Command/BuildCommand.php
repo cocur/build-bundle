@@ -106,8 +106,8 @@ class BuildCommand extends Command
     {
         $command = $this->getApplication()->find('assetic:dump');
         $arguments = array(
-            $this->buildDirectory,
-            '--env' => $input->getOption('env')
+            'write_to' => $this->buildDirectory,
+            '--env'    => $input->getOption('env')
         );
         $input = new ArrayInput($arguments);
         $returnCode = $command->run($input, $output);
