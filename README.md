@@ -88,6 +88,12 @@ The HTML code will be saved in the directory configured with `braincrafted_stati
 
 _**Note:** BraincraftedStaticSiteBundle currently only handles controllers without parameters._
 
+When you call one of these commands BraincraftedStaticSiteBundle uses the Symfony2 kernel to simulate a request to a page. The kernel is booted in the same environment as the command. If you want to build the pages with production code, you need to build them in the <code>prod</code> environment.
+
+    php app/console braincrafted:static-site:build -e prod
+
+If <code>braincrafted:static-site:build</code> is called in the prod environment, the cache is cleared before the rendering.
+
 License
 -------
 

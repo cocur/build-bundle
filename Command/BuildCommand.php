@@ -11,12 +11,11 @@
 namespace Braincrafted\Bundle\StaticSiteBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Console\Input\ArrayInput;
 
 use Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer;
 
@@ -74,6 +73,12 @@ class BuildCommand extends Command
         $this->executeAsseticDump($input, $output);
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return void
+     */
     protected function executeCacheClear(InputInterface $input, OutputInterface $output)
     {
         $command = $this->getApplication()->find('cache:clear');
@@ -91,6 +96,12 @@ class BuildCommand extends Command
         }
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return void
+     */
     protected function executeAsseticDump(InputInterface $input, OutputInterface $output)
     {
         $command = $this->getApplication()->find('assetic:dump');
