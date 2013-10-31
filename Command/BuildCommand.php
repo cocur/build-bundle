@@ -16,6 +16,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Console\Input\ArrayInput;
 
 use Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer;
 
@@ -55,8 +56,7 @@ class BuildCommand extends Command
      */
     protected function configure()
     {
-        $this
-            ->setName('braincrafted:static-site:build')
+        $this->setName('braincrafted:static-site:build')
             ->setDescription('Builds the static site.');
     }
 
@@ -65,17 +65,43 @@ class BuildCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if ('prod' === $input->getOption('env')) {
+            $this->executeCacheClear($input, $output);
+        }
         $counter = $this->renderer->render();
-        $output->writeln(sprintf('Rendered <info>%s</info> routes.', $counter));
+        $output->writeln(sprintf("Rendered <info>%s</info> routes.\n", $counter));
 
-        $process = new Process(sprintf('php app/console assetic:dump %s', $this->buildDirectory));
-        $process->run(function ($type, $buffer) use ($input, $output) {
-            if (true === $output->isVerbose()) {
-                $output->writeln(sprintf('<comment>%s</comment>', $buffer));
-            }
-        });
+        $this->executeAsseticDump($input, $output);
+    }
 
-        if ($process->isSuccessful()) {
+    protected function executeCacheClear(InputInterface $input, OutputInterface $output)
+    {
+        $command = $this->getApplication()->find('cache:clear');
+        $arguments = array(
+            '--env' => 'prod',
+            ''
+        );
+        $input = new ArrayInput($arguments);
+        $returnCode = $command->run($input, $output);
+
+        if (0 === $returnCode) {
+            $output->writeln("<info>Cleared cache.</info>\n");
+        } else {
+            $output->writeln("<error>Error clearing cache.</error>\n");
+        }
+    }
+
+    protected function executeAsseticDump(InputInterface $input, OutputInterface $output)
+    {
+        $command = $this->getApplication()->find('assetic:dump');
+        $arguments = array(
+            $this->buildDirectory,
+            '--env' => $input->getOption('env')
+        );
+        $input = new ArrayInput($arguments);
+        $returnCode = $command->run($input, $output);
+
+        if (0 === $returnCode) {
             $output->writeln('<info>Dumped assets into build directory.</info>');
         } else {
             $output->writeln('<error>Erroring dumping assets into build directory.</error>');
