@@ -17,6 +17,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer;
+use Braincrafted\Bundle\StaticSiteBundle\Exception\RouteNotFoundException;
 
 /**
  * RenderRouteCommand
