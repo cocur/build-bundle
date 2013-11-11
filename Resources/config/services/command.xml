@@ -12,6 +12,8 @@
         <parameter key="braincrafted_static_site.command.render_routes.class">Braincrafted\Bundle\StaticSiteBundle\Command\RenderRoutesCommand</parameter>
 
         <parameter key="braincrafted_static_site.command.build.class">Braincrafted\Bundle\StaticSiteBundle\Command\BuildCommand</parameter>
+
+        <parameter key="braincrafted_static_site.command.clean.class">Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand</parameter>
     </parameters>
 
     <services>
@@ -33,6 +35,11 @@
 
         <service id="braincrafted_static_site.command.build" class="%braincrafted_static_site.command.build.class%">
             <argument type="service" id="braincrafted_static_site.renderer.routes" />
+            <argument>%braincrafted_static_site.build_directory%</argument>
+            <tag name="console.command" />
+        </service>
+
+        <service id="braincrafted_static_site.command.clean" class="%braincrafted_static_site.command.clean.class%">
             <argument>%braincrafted_static_site.build_directory%</argument>
             <tag name="console.command" />
         </service>

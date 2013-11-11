@@ -26,8 +26,6 @@ use Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer;
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
- *
- * @codeCoverageIgnore
  */
 class RenderRoutesCommand extends Command
 {
