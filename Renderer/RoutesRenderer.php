@@ -40,7 +40,21 @@ class RoutesRenderer
     public function __construct(RouteRenderer $routeRenderer, Router $router)
     {
         $this->routeRenderer = $routeRenderer;
-        $this->router = $router;
+        $this->router        = $router;
+    }
+
+    /**
+     * Sets the base URL.
+     *
+     * @param string $baseUrl Base URL for rendering the routes.
+     *
+     * @return RoutesRenderer
+     */
+    public function setBaseUrl($baseUrl)
+    {
+        $this->routeRenderer->setBaseUrl($baseUrl);
+
+        return $this;
     }
 
     /**

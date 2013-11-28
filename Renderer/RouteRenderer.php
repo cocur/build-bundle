@@ -38,19 +38,41 @@ class RouteRenderer
     /** @var WriterInterface */
     private $writer;
 
+    /** @var string */
+    private $baseUrl;
+
     /**
      * Constructor.
      *
-     * @param Kernel $kernel
-     * @param string $buildDirectory
+     * @param Kernel          $kernel
+     * @param Router          $router
+     * @param WriterInterface $writer
+     * @param string          $baseUrl
      *
      * @codeCoverageIgnore
      */
-    public function __construct(Kernel $kernel, Router $router, WriterInterface $writer)
+    public function __construct(Kernel $kernel, Router $router, WriterInterface $writer, $baseUrl = null)
     {
         $this->kernel = $kernel;
         $this->router = $router;
         $this->writer = $writer;
+
+        $this->setBaseUrl($baseUrl);
+    }
+
+    /**
+     * Sets the base URL.
+     *
+     * @param string $baseUrl Base URL.
+     *
+     * @return RouteRenderer
+     */
+    public function setBaseUrl($baseUrl)
+    {
+        $this->baseUrl = '/'.trim(trim($baseUrl), '/');
+        $this->router->getContext()->setBaseUrl($this->baseUrl);
+
+        return $this;
     }
 
     /**
@@ -75,6 +97,7 @@ class RouteRenderer
      */
     public function render(Route $route)
     {
+        $route->setPath($this->baseUrl.$route->getPath());
         $request = $this->buildRequest($route);
 
         $response = $this->kernel->handle($request);
@@ -114,7 +137,9 @@ class RouteRenderer
             [], // Files
             [
                 'REQUEST_URI' => $route->getPattern(),
-                'DOCUMENT_URI' => $route->getPattern()
+                'DOCUMENT_URI' => $route->getPattern(),
+                'SCRIPT_FILENAME' => realpath($this->kernel->getRootDir().'/../web').$this->baseUrl.'/app.php',
+                'SCRIPT_NAME' => $this->baseUrl.'/app.php'
             ], // Server
             null // Content
         );

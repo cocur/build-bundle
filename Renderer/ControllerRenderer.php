@@ -52,6 +52,20 @@ class ControllerRenderer
         $this->nameParser = $nameParser;
     }
 
+    /*
+     * Sets the base URL.
+     * 
+     * @param string $baseUrl Base URL.
+     * 
+     * @return ControllerRenderer
+     */
+    public function setBaseUrl($baseUrl)
+    {
+        $this->routeRenderer->setBaseUrl($baseUrl);
+
+        return $this;
+    }
+
     /**
      * Renders the page with the given controller name.
      *

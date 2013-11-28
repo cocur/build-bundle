@@ -50,7 +50,8 @@ class RenderRoutesCommand extends Command
     {
         $this
             ->setName('braincrafted:static-site:render-routes')
-            ->setDescription('Renders the HTML of all routes');
+            ->setDescription('Renders the HTML of all routes')
+            ->addOption('base-url', null, InputOption::VALUE_REQUIRED, 'Base URL', null);
     }
 
     /**
@@ -58,6 +59,10 @@ class RenderRoutesCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if ($input->getOption('base-url')) {
+            $this->renderer->setBaseUrl($input->getOption('base-url'));
+        }
+
         $counter = $this->renderer->render();
         $output->writeln(sprintf('Rendered <info>%s</info> routes.', $counter));
     }

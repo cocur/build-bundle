@@ -40,9 +40,9 @@ class BraincraftedStaticSiteExtension extends Extension
             $container,
             new FileLocator(__DIR__.'/../Resources/config/services')
         );
-        $loader->load('command.xml');
-        $loader->load('renderer.xml');
-        $loader->load('writer.xml');
+        foreach ([ 'command', 'renderer', 'writer' ] as $key) {
+            $loader->load($key.'.xml');
+        }
 
         if (!isset($config['build_directory'])) {
             throw new \InvalidArgumentException('The option "braincrafted_static_site.build_directory must be set.');
@@ -53,5 +53,7 @@ class BraincraftedStaticSiteExtension extends Extension
             throw new \InvalidArgumentException('The option "braincrafted_static_site.index_name must be set.');
         }
         $container->setParameter('braincrafted_static_site.index_name', $config['index_name']);
+
+        $container->setParameter('braincrafted_static_site.base_url', $config['base_url']);
     }
 }

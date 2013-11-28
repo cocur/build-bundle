@@ -53,7 +53,8 @@ class RenderControllerCommand extends Command
         $this
             ->setName('braincrafted:static-site:render-controller')
             ->setDescription('Renders the HTML of the given controller')
-            ->addArgument('controller', InputArgument::REQUIRED, 'Name of the controller to render.');
+            ->addArgument('controller', InputArgument::REQUIRED, 'Name of the controller to render.')
+            ->addOption('base-url', null, InputOption::VALUE_REQUIRED, 'Base URL.');
     }
 
     /**
@@ -61,6 +62,10 @@ class RenderControllerCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if ($input->getOption('base-url')) {
+            $this->renderer->setBaseUrl($input->getOption('base-url'));
+        }
+        
         try {
             $this->renderer->render($input->getArgument('controller'));
         } catch (ControllerNotFoundException $e) {

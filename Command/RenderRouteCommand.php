@@ -52,7 +52,8 @@ class RenderRouteCommand extends Command
         $this
             ->setName('braincrafted:static-site:render-route')
             ->setDescription('Renders the HTML of the given route')
-            ->addArgument('route', InputArgument::REQUIRED, 'Name of the route to render.');
+            ->addArgument('route', InputArgument::REQUIRED, 'Name of the route to render.')
+            ->addOption('base-url', null, InputOption::VALUE_REQUIRED, 'Base URL.');
     }
 
     /**
@@ -60,6 +61,10 @@ class RenderRouteCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if ($input->getOption('base-url')) {
+            $this->renderer->setBaseUrl($input->getOption('base-url'));
+        }
+
         try {
             $this->renderer->renderByName($input->getArgument('route'));
         } catch (RouteNotFoundException $e) {

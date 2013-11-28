@@ -26,6 +26,7 @@
             <argument type="service" id="kernel" />
             <argument type="service" id="router" />
             <argument type="service" id="braincrafted_static_site.writer.filesystem" />
+            <argument>%braincrafted_static_site.base_url%</argument>
         </service>
 
         <service id="braincrafted_static_site.renderer.routes" class="%braincrafted_static_site.renderer.routes.class%">

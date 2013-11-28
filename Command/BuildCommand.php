@@ -43,8 +43,9 @@ class BuildCommand extends Command
      */
     public function __construct(RoutesRenderer $renderer, $buildDirectory)
     {
-        $this->renderer = $renderer;
+        $this->renderer       = $renderer;
         $this->buildDirectory = $buildDirectory;
+
         parent::__construct();
     }
 
@@ -53,8 +54,10 @@ class BuildCommand extends Command
      */
     protected function configure()
     {
-        $this->setName('braincrafted:static-site:build')
-            ->setDescription('Builds the static site.');
+        $this
+            ->setName('braincrafted:static-site:build')
+            ->setDescription('Builds the static site.')
+            ->addOption('base-url', null, InputOption::VALUE_REQUIRED, 'Base URL', null);
     }
 
     /**
@@ -65,6 +68,11 @@ class BuildCommand extends Command
         if ('prod' === $input->getOption('env')) {
             $this->executeCacheClear($input, $output);
         }
+
+        if ($input->getOption('base-url')) {
+            $this->renderer->setBaseUrl($input->getOption('base-url'));
+        }
+
         $counter = $this->renderer->render();
         $output->writeln(sprintf("Rendered <info>%s</info> routes.\n", $counter));
 
@@ -104,7 +112,7 @@ class BuildCommand extends Command
     {
         $command = $this->getApplication()->find('assetic:dump');
         $arguments = array(
-            'write_to' => $this->buildDirectory,
+            'write_to' => $this->buildDirectory.$input->getOption('base-url'),
             '--env'    => $input->getOption('env')
         );
         $input = new ArrayInput($arguments);
