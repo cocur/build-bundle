@@ -50,7 +50,8 @@ class RenderRouteCommandTest extends \PHPUnit_Framework_TestCase
     public function testExecute()
     {
         $renderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer');
-        $renderer->shouldReceive('renderByName')->with('foobar');
+        $renderer->shouldReceive('setBaseUrl')->with('/base')->once();
+        $renderer->shouldReceive('renderByName')->with('foobar')->once();
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -58,7 +59,11 @@ class RenderRouteCommandTest extends \PHPUnit_Framework_TestCase
 
         $command = $application->find('braincrafted:static-site:render-route');
         $commandTester = new CommandTester($command);
-        $commandTester->execute([ 'command' => $command->getName(), 'route' => 'foobar' ]);
+        $commandTester->execute([
+            'command'    => $command->getName(),
+            'route'      => 'foobar',
+            '--base-url' => '/base'
+        ]);
     }
 
     /**

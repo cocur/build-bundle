@@ -31,6 +31,16 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::setBaseUrl()
+     */
+    public function testSetBaseUrl()
+    {
+        $this->routeRenderer->shouldReceive('setBaseUrl')->with('/my')->once();
+        
+        $this->renderer->setBaseUrl('/my');
+    }
+
+    /**
      * Tests the render() method.
      *
      * Route collection returns two routes, one public and one private (prefixed with "_"), renderer

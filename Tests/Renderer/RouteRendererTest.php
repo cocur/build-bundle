@@ -27,11 +27,26 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $context = m::mock('Symfony\Component\Routing\RequestContext');
+        $context->shouldReceive('setBaseUrl');
+
         $this->kernel = m::mock('Symfony\Component\HttpKernel\Kernel');
+        $this->kernel->shouldReceive('getRootDir')->andReturn('/');
         $this->router = m::mock('Symfony\Component\Routing\Router');
+        $this->router->shouldReceive('getContext')->andReturn($context);
         $this->writer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Writer\WriterInterface');
 
         $this->renderer = new RouteRenderer($this->kernel, $this->router, $this->writer);
+    }
+
+    /**
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::setBaseUrl()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::getBaseUrl()
+     */
+    public function testSetBaseUrlGetBaseUrl()
+    {
+        $this->renderer->setBaseUrl('my/');
+        $this->assertEquals('/my', $this->renderer->getBaseUrl());
     }
 
     /**
@@ -46,7 +61,8 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
     public function testRender()
     {
         $route = m::mock('Symfony\Component\Routing\Route');
-        $route->shouldReceive('getPattern')->times(3)->andReturn('/index.html');
+        $route->shouldReceive('setPath')->once();
+        $route->shouldReceive('getPath')->times(4)->andReturn('/index.html');
 
         $response = m::mock('Symfony\Component\HttpFoundation\Response');
         $response->shouldReceive('getContent')->once()->andReturn('Foobar!');
@@ -71,7 +87,8 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
     public function testRenderByName()
     {
         $route = m::mock('Symfony\Component\Routing\Route');
-        $route->shouldReceive('getPattern')->times(3)->andReturn('/index.html');
+        $route->shouldReceive('setPath')->once();
+        $route->shouldReceive('getPath')->times(4)->andReturn('/index.html');
 
         $routeCollection = m::mock('Symfony\Component\Routing\RouteCollection');
         $routeCollection->shouldReceive('get')->with('index_route')->once()->andReturn($route);

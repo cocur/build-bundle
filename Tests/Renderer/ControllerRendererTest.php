@@ -35,6 +35,16 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::setBaseUrl()
+     */
+    public function testSetBaseUrl()
+    {
+        $this->routeRenderer->shouldReceive('setBaseUrl')->with('/my')->once();
+        
+        $this->renderer->setBaseUrl('/my');
+    }
+
+    /**
      * Tests the render() method.
      *
      * The given controller exists and there is also a route for the controller. Thus, the render() method of the

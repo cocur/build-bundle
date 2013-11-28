@@ -50,7 +50,8 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
     public function testExecute()
     {
         $renderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer');
-        $renderer->shouldReceive('render')->with('foobar');
+        $renderer->shouldReceive('setBaseUrl')->with('/base')->once();
+        $renderer->shouldReceive('render')->with('foobar')->once();
 
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -58,7 +59,11 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
 
         $command = $application->find('braincrafted:static-site:render-controller');
         $commandTester = new CommandTester($command);
-        $commandTester->execute([ 'command' => $command->getName(), 'controller' => 'foobar' ]);
+        $commandTester->execute([
+            'command'    => $command->getName(),
+            'controller' => 'foobar',
+            '--base-url' => '/base'
+        ]);
     }
 
     /**

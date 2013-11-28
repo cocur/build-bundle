@@ -76,6 +76,16 @@ class RouteRenderer
     }
 
     /**
+     * Returns the base URL.
+     *
+     * @return string Base URL.
+     */
+    public function getBaseUrl()
+    {
+        return $this->baseUrl;
+    }
+
+    /**
      * Renders the page with the route that matches the given name.
      *
      * @param string $name Name of a route
@@ -105,7 +115,7 @@ class RouteRenderer
         $this->kernel->terminate($request, $response);
         $this->kernel->shutdown();
 
-        $this->writer->write($route->getPattern(), $content);
+        $this->writer->write($route->getPath(), $content);
     }
 
     /**
@@ -136,8 +146,8 @@ class RouteRenderer
             [], // Cookies
             [], // Files
             [
-                'REQUEST_URI' => $route->getPattern(),
-                'DOCUMENT_URI' => $route->getPattern(),
+                'REQUEST_URI' => $route->getPath(),
+                'DOCUMENT_URI' => $route->getPath(),
                 'SCRIPT_FILENAME' => realpath($this->kernel->getRootDir().'/../web').$this->baseUrl.'/app.php',
                 'SCRIPT_NAME' => $this->baseUrl.'/app.php'
             ], // Server
