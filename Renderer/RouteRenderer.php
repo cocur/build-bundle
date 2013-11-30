@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of BraincraftedStaticSiteBundle.
  *
@@ -17,6 +18,7 @@ use Symfony\Component\Routing\Router;
 
 use Braincrafted\Bundle\StaticSiteBundle\Exception\RouteNotFoundException;
 use Braincrafted\Bundle\StaticSiteBundle\Writer\WriterInterface;
+use Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorCollection;
 
 /**
  * RouteRenderer renders a page based on the given route.
@@ -38,6 +40,9 @@ class RouteRenderer
     /** @var WriterInterface */
     private $writer;
 
+    /** @var GeneratorCollection */
+    private $generatorCollection;
+
     /** @var string */
     private $baseUrl;
 
@@ -51,11 +56,17 @@ class RouteRenderer
      *
      * @codeCoverageIgnore
      */
-    public function __construct(Kernel $kernel, Router $router, WriterInterface $writer, $baseUrl = null)
-    {
-        $this->kernel = $kernel;
-        $this->router = $router;
-        $this->writer = $writer;
+    public function __construct(
+        Kernel $kernel,
+        Router $router,
+        WriterInterface $writer,
+        GeneratorCollection $generatorCollection,
+        $baseUrl = null
+    ) {
+        $this->kernel              = $kernel;
+        $this->router              = $router;
+        $this->writer              = $writer;
+        $this->generatorCollection = $generatorCollection;
 
         $this->setBaseUrl($baseUrl);
     }
@@ -97,25 +108,51 @@ class RouteRenderer
             throw new RouteNotFoundException(sprintf('There is no route "%s".', $name));
         }
 
-        return $this->render($route);
+        return $this->render($route, $name);
     }
 
     /**
      * Renders the page with the given route.
      *
-     * @param Route $route
+     * @param Route  $route
+     * @param string $name
+     *
+     * @return void
      */
-    public function render(Route $route)
+    public function render(Route $route, $name = null)
     {
         $route->setPath($this->baseUrl.$route->getPath());
-        $request = $this->buildRequest($route);
+
+        if (false === $this->generatorCollection->has($route->getPath())) {
+            $parameters = [ [] ];
+        } else {
+            $parameters = $this->generatorCollection->get($route->getPath())->generate();
+        }
+
+        foreach ($parameters as $parameter) {
+            $this->renderWithParameters($route, $name, $parameter);
+        }
+    }
+
+    /**
+     * Renders the given route with the given parameter.
+     *
+     * @param Route  $route     Route.
+     * @param string $name      Name of the route.
+     * @param array  $parameter Parameters.
+     *
+     * @return void
+     */
+    protected function renderWithParameters(Route $route, $name, array $parameter)
+    {
+        $request = $this->buildRequest($route, $name, $parameter);
 
         $response = $this->kernel->handle($request);
         $content = $response->getContent();
         $this->kernel->terminate($request, $response);
         $this->kernel->shutdown();
 
-        $this->writer->write($route->getPath(), $content);
+        $this->writer->write($this->router->generate($name, $parameter), $content);
     }
 
     /**
@@ -133,12 +170,16 @@ class RouteRenderer
     /**
      * Builds a new request object based on the given route.
      *
-     * @param Route $route
+     * @param Route  $route      Route.
+     * @param string $name       Name of the route.
+     * @param array  $parameters Parameters of the request
      *
      * @return Request
      */
-    protected function buildRequest(Route $route)
+    protected function buildRequest(Route $route, $name, array $parameters)
     {
+        $uri = $this->router->generate($name, $parameters);
+
         return new Request(
             [], // GET
             [], // POST
@@ -146,10 +187,10 @@ class RouteRenderer
             [], // Cookies
             [], // Files
             [
-                'REQUEST_URI' => $route->getPath(),
-                'DOCUMENT_URI' => $route->getPath(),
+                'REQUEST_URI'     => $uri,
+                'DOCUMENT_URI'    => $uri,
                 'SCRIPT_FILENAME' => realpath($this->kernel->getRootDir().'/../web').$this->baseUrl.'/app.php',
-                'SCRIPT_NAME' => $this->baseUrl.'/app.php'
+                'SCRIPT_NAME'     => $this->baseUrl.'/app.php'
             ], // Server
             null // Content
         );
