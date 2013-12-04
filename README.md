@@ -258,7 +258,7 @@ StaticSiteBundle will render the following pages:
 Usage
 -----
 
-The build command is the main command offered by BraincraftedStaticSiteBundle. It builds all pages and dumps the assets
+The build command is the main command offered by BraincraftedStaticSiteBundle. It renders all pages and dumps the assets
 into the build directory.
 
 ```bash
@@ -266,7 +266,7 @@ $ php app/console braincrafted:static-site:build
 ```
 
 The bundle also contains a set of different commands to build pages. First of all, it is possible to build a single page
-based on the name of the controller:
+based on the name of a controller and an action:
 
 ```bash
 $ php app/console braincrafted:static-site:render-controller AcmeDemoBundle:Default:index
@@ -278,8 +278,9 @@ It is also possible to build a page based on the name of its route:
 $ php app/console braincrafted:static-site:render-route acme_demo_default_index
 ```
 
-If you want to build all pages where a route exists, this is also possible. Internal routes of Symfony2 (starting with
-`_`) are excluded:
+You can also render all routes. This command is used internally by the `build` command to render the site, however,
+assets are not dumped into the build directory by the `render-routes` command. Internal routes of Symfony2 (starting
+with `_`) are excluded:
 
 ```bash
 $ php app/console braincrafted:static-site:render-routes
