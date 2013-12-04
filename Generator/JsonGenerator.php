@@ -15,7 +15,7 @@ use Braincrafted\Bundle\StaticSiteBundle\Exception\FileNotFoundException;
 use Braincrafted\Json\Json;
 
 /**
- * FileGenerator
+ * JsonGenerator
  *
  * @package    BraincraftedStaticSiteBundle
  * @subpackage Generator
@@ -51,16 +51,6 @@ class JsonGenerator implements GeneratorInterface
     public function getFilename()
     {
         return $this->filename;
-    }
-
-    /**
-     * Returns the parameter.
-     *
-     * @return string Name of the parameter defined in the file.
-     */
-    public function getParameter()
-    {
-        return $this->parameter;
     }
 
     /**
