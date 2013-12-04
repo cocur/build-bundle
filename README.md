@@ -67,6 +67,7 @@ braincrafted_static_site:
     build_directory: "%kernel.root_dir%/../build/site"
     base_url: ''
     index_name: index.html
+    generators: ~
 ```
 
 ### Generators
@@ -74,12 +75,12 @@ braincrafted_static_site:
 If an action requires parameters you can use generators to load the parameters from various sources. The bundle comes
 with four default generators:
 
-- File generator: Every line in a file is a parameter; can only be used with actions that require a single parameter
-- Directory generator: The name of every file or directory in a given directory is a parameter; can only be used with
+- **File generator**: Every line in a file is a parameter; can only be used with actions that require a single parameter
+- **Directory generator**: The name of every file or directory in a given directory is a parameter; can only be used with
     actions that require a single parameter
-- JSON generator: A file that contains an array of objects; each object represents the parameters for an action; can be
+- **JSON generator**: A file that contains an array of objects; each object represents the parameters for an action; can be
     used with actions that require multiple parameters
-- CSV generator: A file where each row contains the parameters of an action; must contain a header row that includes the
+- **CSV generator**: A file where each row contains the parameters of an action; must contain a header row that includes the
     parameter names; can be used for actions that require multiple parameters
 
 Generators can be configured in your apps `config.yml` on a per-route basis.
