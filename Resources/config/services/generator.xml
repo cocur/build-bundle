@@ -10,6 +10,7 @@
         <parameter key="braincrafted_static_site.file_generator.class">Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator</parameter>
         <parameter key="braincrafted_static_site.json_generator.class">Braincrafted\Bundle\StaticSiteBundle\Generator\JsonGenerator</parameter>
         <parameter key="braincrafted_static_site.csv_generator.class">Braincrafted\Bundle\StaticSiteBundle\Generator\CSVGenerator</parameter>
+        <parameter key="braincrafted_static_site.directory_generator.class">Braincrafted\Bundle\StaticSiteBundle\Generator\DirectoryGenerator</parameter>
 
     </parameters>
 
@@ -23,6 +24,9 @@
             <argument />
         </service>
         <service id="braincrafted_static_site.csv_generator" class="%braincrafted_static_site.csv_generator.class%" abstract="true">
+            <argument />
+        </service>
+        <service id="braincrafted_static_site.directory_generator" class="%braincrafted_static_site.directory_generator.class%" abstract="true">
             <argument />
         </service>
 
