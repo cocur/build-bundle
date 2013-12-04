@@ -21,9 +21,13 @@ use Braincrafted\Bundle\StaticSiteBundle\Exception\FileNotFoundException;
  *
  * Generates parameters based on the front-matter of each file in a directory.
  *
- * **Required parameters:**
+ * **Required options:**
  *
  * - `filename`
+ *
+ * **Optional options:**
+ *
+ * - `parameters`
  *
  * @package    BraincraftedStaticSiteBundle
  * @subpackage Generator
@@ -33,8 +37,16 @@ use Braincrafted\Bundle\StaticSiteBundle\Exception\FileNotFoundException;
 */
 class FrontMatterGenerator implements GeneratorInterface
 {
+    /** @var array */
+    private $default = [
+        'parameters' => null
+    ];
+
     /** @var string */
     private $directoryName;
+
+    /** @var array */
+    private $parameters;
 
     /**
      * Constructor.
@@ -49,7 +61,9 @@ class FrontMatterGenerator implements GeneratorInterface
             throw new \InvalidArgumentException('The option "directory_name" must be set for a FrontMatterGenerator.');
         }
 
+        $options = array_merge($this->default, $options);
         $this->directoryName = $options['directory_name'];
+        $this->parameters    = $options['parameters'];
     }
 
     /**
@@ -60,6 +74,16 @@ class FrontMatterGenerator implements GeneratorInterface
     public function getDirectoryName()
     {
         return $this->directoryName;
+    }
+
+    /**
+     * Returns the list of parameters.
+     *
+     * @return string[] List of parameters.
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
     }
 
     /**
@@ -77,8 +101,14 @@ class FrontMatterGenerator implements GeneratorInterface
         $parameters = [];
 
         foreach ($finder as $file) {
-            $yaml = $this->getFrontMatter($file);
-            $parameters[] = Yaml::parse($yaml);
+            $yaml = Yaml::parse($this->getFrontMatter($file));
+            $parameter = [];
+            foreach ($yaml as $key => $value) {
+                if (null === $this->parameters || true === in_array($key, $this->parameters)) {
+                    $parameter[$key] = $value;
+                }
+            }
+            $parameters[] = $parameter;
         }
 
         return $parameters;

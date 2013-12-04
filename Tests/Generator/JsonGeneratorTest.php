@@ -43,11 +43,13 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
      *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\JsonGenerator::__construct()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\JsonGenerator::getFilename()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\JsonGenerator::getParameters()
      */
     public function constructorShouldSetFilename()
     {
-        $generator = new JsonGenerator([ 'filename' => 'file.json' ]);
+        $generator = new JsonGenerator([ 'filename' => 'file.json', 'parameters' => [ 'foo' ] ]);
         $this->assertEquals('file.json', $generator->getFilename());
+        $this->assertEquals([ 'foo' ], $generator->getParameters());
     }
 
     /**
@@ -83,6 +85,31 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('param1b', $parameters[0]['b']);
         $this->assertEquals('param2a', $parameters[1]['a']);
         $this->assertEquals('param2b', $parameters[1]['b']);
+    }
+
+    /**
+     * @test
+     *
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\JsonGenerator::generate()
+     */
+    public function generateShouldReturnListOfParametersThatMatchParameters()
+    {
+        $file = vfsStream::newFile('parameters.json')->at(vfsStreamWrapper::getRoot());
+        $generator = new JsonGenerator(
+            [ 'filename' => vfsStream::url('data/parameters.json'), 'parameters' => [ 'a' ] ]
+        );
+        $file->setContent(json_encode([
+            [ 'a' => 'param1a', 'b' => 'param1b' ],
+            [ 'a' => 'param2a', 'b' => 'param2b' ]
+        ]));
+
+        $parameters = $generator->generate();
+
+        $this->assertCount(2, $parameters);
+        $this->assertCount(1, $parameters[0]);
+        $this->assertCount(1, $parameters[1]);
+        $this->assertEquals('param1a', $parameters[0]['a']);
+        $this->assertEquals('param2a', $parameters[1]['a']);
     }
 
     /**

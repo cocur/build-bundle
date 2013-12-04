@@ -43,11 +43,13 @@ class FrontMatterGeneratorTest extends \PHPUnit_Framework_TestCase
      *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FrontMatterGenerator::__construct()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FrontMatterGenerator::getDirectoryName()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FrontMatterGenerator::getParameters()
      */
     public function constructorShouldSetFilenameAndParameter()
     {
-        $generator = new FrontMatterGenerator([ 'directory_name' => 'files' ]);
+        $generator = new FrontMatterGenerator([ 'directory_name' => 'files', 'parameters' => [ 'foo' ] ]);
         $this->assertEquals('files', $generator->getDirectoryName());
+        $this->assertEquals([ 'foo' ], $generator->getParameters());
     }
 
     /**
@@ -91,6 +93,37 @@ class FrontMatterGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('param1b', $parameters[0]['b']);
         $this->assertEquals('param2a', $parameters[1]['a']);
         $this->assertEquals('param2b', $parameters[1]['b']);
+    }
+
+    /**
+     * @test
+     *
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FrontMatterGenerator::generate()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FrontMatterGenerator::getFrontMatter()
+     */
+    public function generateShouldReturnListOfParametersThatAreConfigured()
+    {
+        $root = vfsStreamWrapper::getRoot();
+        $dir = new vfsStreamDirectory('data');
+        $root->addChild($dir);
+        $file1 = vfsStream::newFile('file1.txt');
+        $file1->setContent("---\na: param1a\nb: param1b\n---\nbla");
+        $file2 = vfsStream::newFile('file2.txt');
+        $file2->setContent("---\na: param2a\nb: param2b\n---\nfoo");
+        $dir->addChild($file1);
+        $dir->addChild($file2);
+
+        $generator = new FrontMatterGenerator([ 'directory_name' => $dir->url(), 'parameters' => [ 'a' ] ]);
+
+        $parameters = $generator->generate();
+
+        $this->assertCount(2, $parameters);
+        $this->assertCount(1, $parameters[0]);
+        $this->assertCount(1, $parameters[1]);
+        $this->assertEquals('param1a', $parameters[0]['a']);
+        $this->assertFalse(isset($parameters[0]['b']));
+        $this->assertEquals('param2a', $parameters[1]['a']);
+        $this->assertFalse(isset($parameters[1]['b']));
     }
 
     /**

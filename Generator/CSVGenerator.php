@@ -28,6 +28,7 @@ use Braincrafted\Json\Json;
  * - `delimiter` (default value: `,`)
  * - `enclosure` (default value: `"`)
  * - `escape` (default value: `\`)
+ * - `parameters` (default value: `null`)
  *
  * @package    BraincraftedStaticSiteBundle
  * @subpackage Generator
@@ -39,13 +40,26 @@ class CSVGenerator implements GeneratorInterface
 {
     /** @var array */
     private $default = [
-        'delimiter' => ',',
-        'enclosure' => '"',
-        'escape'    => '\\'
+        'delimiter'  => ',',
+        'enclosure'  => '"',
+        'escape'     => '\\',
+        'parameters' => null
     ];
 
     /** @var string */
     private $filename;
+
+    /** @var string */
+    private $delimiter;
+
+    /** @var string */
+    private $enclosure;
+
+    /** @var string */
+    private $escape;
+
+    /** @var array */
+    private $parameters;
 
     /**
      * Constructor.
@@ -61,10 +75,11 @@ class CSVGenerator implements GeneratorInterface
         }
 
         $options = array_merge($this->default, $options);
-        $this->filename  = $options['filename'];
-        $this->delimiter = $options['delimiter'];
-        $this->enclosure = $options['enclosure'];
-        $this->escape    = $options['escape'];
+        $this->filename   = $options['filename'];
+        $this->delimiter  = $options['delimiter'];
+        $this->enclosure  = $options['enclosure'];
+        $this->escape     = $options['escape'];
+        $this->parameters = $options['parameters'];
     }
 
     /**
@@ -108,6 +123,16 @@ class CSVGenerator implements GeneratorInterface
     }
 
     /**
+     * Returns the list of parameters.
+     *
+     * @return string[] List of parameters.
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @throws FileNotFoundException if the file does not exist.
@@ -129,7 +154,9 @@ class CSVGenerator implements GeneratorInterface
         while ($values = $this->getCsv($handle)) {
             $parameter = [];
             foreach ($values as $index => $value) {
-                $parameter[$header[$index]] = $value;
+                if (null === $this->parameters || true === in_array($header[$index], $this->parameters)) {
+                    $parameter[$header[$index]] = $value;
+                }
             }
             $parameters[] = $parameter;
         }

@@ -19,9 +19,13 @@ use Braincrafted\Json\Json;
  *
  * Generates parameters based on a JSON file.
  *
- * **Required parameters:**
+ * **Required options:**
  *
  * - `filename`
+ *
+ * **Optional options:**
+ *
+ * - `parameters`
  *
  * @package    BraincraftedStaticSiteBundle
  * @subpackage Generator
@@ -31,8 +35,16 @@ use Braincrafted\Json\Json;
 */
 class JsonGenerator implements GeneratorInterface
 {
+    /** @var array */
+    private $default = [
+        'parameters' => null
+    ];
+
     /** @var string */
     private $filename;
+
+    /** @var array */
+    private $parameters;
 
     /**
      * Constructor.
@@ -47,7 +59,9 @@ class JsonGenerator implements GeneratorInterface
             throw new \InvalidArgumentException('The option "filename" must be set for a JsonGenerator.');
         }
 
-        $this->filename  = $options['filename'];
+        $options = array_merge($this->default, $options);
+        $this->filename   = $options['filename'];
+        $this->parameters = $options['parameters'];
     }
 
     /**
@@ -58,6 +72,16 @@ class JsonGenerator implements GeneratorInterface
     public function getFilename()
     {
         return $this->filename;
+    }
+
+    /**
+     * Returns the list of parameters.
+     *
+     * @return string[] List of parameters.
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
     }
 
     /**
@@ -77,6 +101,19 @@ class JsonGenerator implements GeneratorInterface
             throw new \RuntimeException(sprintf('Could not open file "%s".', $this->filename));
         }
 
-        return Json::decode($content, true);
+        $json = Json::decode($content, true);
+        $parameters = [];
+
+        for ($i = 0; $i < count($json); $i++) {
+            $parameter = [];
+            foreach ($json[$i] as $key => $value) {
+                if (null === $this->parameters || true === in_array($key, $this->parameters)) {
+                    $parameter[$key] = $value;
+                }
+            }
+            $parameters[] = $parameter;
+        }
+
+        return $parameters;
     }
 }

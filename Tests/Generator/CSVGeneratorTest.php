@@ -46,20 +46,23 @@ class CSVGeneratorTest extends \PHPUnit_Framework_TestCase
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\CSVGenerator::getDelimiter()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\CSVGenerator::getEnclosure()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\CSVGenerator::getEscape()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\CSVGenerator::getParameters()
      */
     public function constructorShouldSetFilename()
     {
         $generator = new CSVGenerator([
-            'filename'  => 'file.csv',
-            'delimiter' => ';',
-            'enclosure' => '\'',
-            'escape'    => '\\'
+            'filename'   => 'file.csv',
+            'delimiter'  => ';',
+            'enclosure'  => '\'',
+            'escape'     => '\\',
+            'parameters' => [ 'foo' ]
         ]);
 
         $this->assertEquals('file.csv', $generator->getFilename());
         $this->assertEquals(';', $generator->getDelimiter());
         $this->assertEquals('\'', $generator->getEnclosure());
         $this->assertEquals('\\', $generator->getEscape());
+        $this->assertEquals([ 'foo' ], $generator->getParameters());
     }
 
     /**
@@ -93,6 +96,29 @@ class CSVGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('param1b', $parameters[0]['b']);
         $this->assertEquals('param2a', $parameters[1]['a']);
         $this->assertEquals('param2b', $parameters[1]['b']);
+    }
+
+    /**
+     * @test
+     *
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\CSVGenerator::generate()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\CSVGenerator::getCsv()
+     */
+    public function generateShouldReturnListOfParametersThatMatchParameters()
+    {
+        $file = vfsStream::newFile('parameters.csv')->at(vfsStreamWrapper::getRoot());
+        $generator = new CSVGenerator(
+            [ 'filename' => vfsStream::url('data/parameters.csv'), 'parameters' => [ 'a' ] ]
+        );
+        $file->setContent("\"a\",\"b\"\n\"param1a\",\"param1b\"\n\"param2a\",\"param2b\"\n");
+
+        $parameters = $generator->generate();
+
+        $this->assertCount(2, $parameters);
+        $this->assertCount(1, $parameters[0]);
+        $this->assertCount(1, $parameters[1]);
+        $this->assertEquals('param1a', $parameters[0]['a']);
+        $this->assertEquals('param2a', $parameters[1]['a']);
     }
 
     /**

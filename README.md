@@ -184,6 +184,10 @@ Parameters are generated from a JSON file.
 
 - `filename`
 
+**Optional options:**
+
+- `parameters`: Only use these parameters to generate pages
+
 Let's consider a route `acme_demo_categorypage` with the path `/page/{category}/{page}`. We require two parameters
 `category` and `page` that we want to generate from a JSON file called `data.json`.
 
@@ -227,6 +231,7 @@ Parameters are generated from a CSV file.
 - `delimiter` (default value is `,`)
 - `enclosure` (default value is `"`)
 - `escape` (default value is `\`)
+- `parameters`: Only use these parameters to generate pages
 
 Now we want to render the route `acme_demo_person` with the pattern `/person/{name}/{age}/{city}` using a CSV file
 `persons.csv`.
@@ -263,6 +268,10 @@ Parameters are generated from a YAML file.
 **Required options:**
 
 - `filename`
+
+**Optional options:**
+
+- `parameters`: Only use these parameters to generate pages
 
 If we want to render the route `acme_demo_person` with the pattern `/person/{name}/{age}/{city}` we can also use a YAML
 file `persons.yaml`.
@@ -304,6 +313,10 @@ Parameters are generated from the front-matter of files in a directory.
 **Required options:**
 
 - `directory_name`
+
+**Optional options:**
+
+- `parameters`: Only use these parameters to generate pages
 
 In this example we have a route `acme_demo_article` with the path `/article/{category}/{slug}` and we want to render
 the page for every file in a directory.
