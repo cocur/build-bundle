@@ -47,7 +47,7 @@ class DirectoryGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function constructorShouldSetFilenameAndParameter()
     {
-        $generator = new DirectoryGenerator([ 'directoryName' => 'files', 'parameter' => 'name' ]);
+        $generator = new DirectoryGenerator([ 'directory_name' => 'files', 'parameter' => 'name' ]);
         $this->assertEquals('files', $generator->getDirectoryName());
         $this->assertEquals('name', $generator->getParameter());
     }
@@ -73,7 +73,7 @@ class DirectoryGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function constructorShouldThrowExceptionIfNoParameter()
     {
-        new DirectoryGenerator([ 'directoryName' => 'files' ]);
+        new DirectoryGenerator([ 'directory_name' => 'files' ]);
     }
 
     /**
@@ -90,7 +90,7 @@ class DirectoryGeneratorTest extends \PHPUnit_Framework_TestCase
         $dir->addChild(vfsStream::newFile('param2.txt'));
         $dir->addChild(vfsStream::newFile('param3.txt'));
 
-        $generator = new DirectoryGenerator([ 'directoryName' => $dir->url(), 'parameter' => 'var' ]);
+        $generator = new DirectoryGenerator([ 'directory_name' => $dir->url(), 'parameter' => 'var' ]);
 
         $parameters = $generator->generate();
 
@@ -109,7 +109,9 @@ class DirectoryGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function generateShouldThrowExceptionIfFileNotFound()
     {
-        $generator = new DirectoryGenerator([ 'directoryName' => vfsStream::url('data/invalid'), 'parameter' => 'var' ]);
+        $generator = new DirectoryGenerator(
+            ['directory_name' => vfsStream::url('data/invalid'), 'parameter' => 'var' ]
+        );
 
         $generator->generate();
     }

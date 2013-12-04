@@ -35,19 +35,18 @@ class DirectoryGenerator implements GeneratorInterface
     /**
      * Constructor.
      *
-     * @param string $directoryName Name of the directory.
-     * @param string $parameter     Name of the parameter defined in the file.
+     * @param array $options
      */
     public function __construct(array $options = array())
     {
-        if (false === isset($options['directoryName'])) {
-            throw new \InvalidArgumentException('The option "directoryName" must be set for a DirectoryGenerator.');
+        if (false === isset($options['directory_name'])) {
+            throw new \InvalidArgumentException('The option "directory_name" must be set for a DirectoryGenerator.');
         }
         if (false === isset($options['parameter'])) {
             throw new \InvalidArgumentException('The option "parameter" must be set for a DirectoryGenerator.');
         }
 
-        $this->directoryName  = $options['directoryName'];
+        $this->directoryName  = $options['directory_name'];
         $this->parameter = $options['parameter'];
     }
 
