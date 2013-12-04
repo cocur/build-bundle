@@ -244,21 +244,29 @@ Usage
 The build command is the main command offered by BraincraftedStaticSiteBundle. It builds all pages and dumps the assets
 into the build directory.
 
-    php app/console braincrafted:static-site:build
+```bash
+$ php app/console braincrafted:static-site:build
+```
 
 The bundle also contains a set of different commands to build pages. First of all, it is possible to build a single page
 based on the name of the controller:
 
-    php app/console braincrafted:static-site:render-controller AcmeDemoBundle:Default:index
+```bash
+$ php app/console braincrafted:static-site:render-controller AcmeDemoBundle:Default:index
+```
 
 It is also possible to build a page based on the name of its route:
 
-    php app/console braincrafted:static-site:render-route acme_demo_default_index
+```bash
+$ php app/console braincrafted:static-site:render-route acme_demo_default_index
+```
 
 If you want to build all pages where a route exists, this is also possible. Internal routes of Symfony2 (starting with
 `_`) are excluded:
 
-    php app/console braincrafted:static-site:render-routes
+```bash
+$ php app/console braincrafted:static-site:render-routes
+```
 
 The HTML code will be saved in the directory configured with `braincrafted_static_site.build_directory`.
 
@@ -269,7 +277,9 @@ When you call one of these commands BraincraftedStaticSiteBundle uses the Symfon
 page. The kernel is booted in the same environment as the command. If you want to build the pages for production, you
 need to build them in the <code>prod</code> environment.
 
-    php app/console braincrafted:static-site:build -e prod
+```bash
+$ php app/console braincrafted:static-site:build -e prod
+```
 
 If <code>braincrafted:static-site:build</code> is called in the prod environment the cache is cleared before the
 rendering.
