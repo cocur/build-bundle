@@ -86,6 +86,8 @@ Generators can be configured in your apps `config.yml` on a per-route basis.
 
 #### File Generator
 
+Parameters are generated from a file.
+
 **Required options:**
 
 - `filename`
@@ -121,6 +123,8 @@ StaticSiteBundle will render the following pages:
 
 #### Directory Generator
 
+Parameters are generated from the names of files in a directory.
+
 **Required options:**
 
 - `directoryName`
@@ -154,6 +158,8 @@ StaticSiteBundle will render the following pages:
 - `article/2013-12-04-static-site-bundle-0-1`
 
 #### JSON Generator
+
+Parameters are generated from a JSON file.
 
 **Required options:**
 
@@ -191,6 +197,8 @@ StaticSiteBundle will render the following pages:
 
 #### CSV Generator
 
+Parameters are generated from a CSV file.
+
 **Required options:**
 
 - `filename`
@@ -213,7 +221,7 @@ braincrafted_static_site:
             route: acme_demo_person
             generator: braincrafted_static_site.csv_generator
             options:
-                filename: %kernel.root_dir%/../persons.csv
+                filename: "%kernel.root_dir%/../persons.csv"
 ```
 
 The CSV file has to contain three columns and a header row containing `name`, `age` and `city`.
