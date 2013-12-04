@@ -64,7 +64,7 @@ The default configuration looks like this:
 ```yaml
 # app/config/config.yml
 braincrafted_static_site:
-    build_directory: %kernel.root_dir%/../build/site
+    build_directory: "%kernel.root_dir%/../build/site"
     base_url: ''
     index_name: index.html
 ```
@@ -103,17 +103,15 @@ braincrafted_static_site:
             route: acme_demo_page
             generator: braincrafted_static_site.file_generator
             options:
-                filename: %kernel.root_dir%/../data.txt
+                filename: "%kernel.root_dir%/../data.txt"
                 parameter: page
 ```
 
 We require now the `data.txt` file that contains one parameter per line.
 
-```txt
-products
-about
-contact
-```
+    products
+    about
+    contact
 
 StaticSiteBundle will render the following pages:
 
@@ -140,7 +138,7 @@ braincrafted_static_site:
             route: acme_demo_article
             generator: braincrafted_static_site.directory_generator
             options:
-                directory_name: %kernel.root_dir%/../articles
+                directory_name: "%kernel.root_dir%/../articles"
                 parameter: slug
 ```
 
@@ -173,7 +171,7 @@ braincrafted_static_site:
             route: acme_demo_categorypage
             generator: braincrafted_static_site.json_generator
             options:
-                filename: %kernel.root_dir%/../data.json
+                filename: "%kernel.root_dir%/../data.json"
 ```
 
 The JSON file `data.json` has to contain an array where each element is an object with a `category` and a `page`
@@ -181,8 +179,8 @@ property:
 
 ```json
 [
-    { 'category': 'foo', 'page': 'bar' },
-    { 'category': 'foo', 'page': 'baz' }
+    { "category": "foo", "page": "bar" },
+    { "category": "foo", "page": "baz" }
 ]
 ```
 
