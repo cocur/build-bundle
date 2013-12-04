@@ -26,42 +26,46 @@ class GeneratorCollection
     private $generators = [];
 
     /**
-     * Adds a genearator for the given path to the collection.
+     * Adds a genearator for the given route to the collection.
+     *
      * @param GeneratorInterface $generator Generator.
-     * @param string             $path      Path to use the generator for.
+     * @param string             $route     Name of the route the generator is used for.
+     * @param array              $options   Options
+     *
+     * @return GeneratorCollection
      */
-    public function add(GeneratorInterface $generator, $path)
+    public function add(GeneratorInterface $generator, $route)
     {
-        $this->generators[$path] = $generator;
+        $this->generators[$route] = $generator;
 
         return $this;
     }
 
     /**
-     * Returns if there exists a generator for the given path.
+     * Returns if there exists a generator for the given route.
      *
-     * @param string $path Path.
+     * @param string $route Name of a route.
      *
      * @return boolean `true` if a generator exists, `false` if not.
      */
-    public function has($path)
+    public function has($route)
     {
-        return isset($this->generators[$path]);
+        return isset($this->generators[$route]);
     }
 
     /**
-     * Returns the generator for the given path or `null` if no generator exists.
+     * Returns the generator for the given route or `null` if no generator exists.
      *
-     * @param string $path Path.
+     * @param string $route Name of a route.
      *
-     * @return GeneratorInterface Generator for the given path or `null` if no generator exists.
+     * @return GeneratorInterface Generator for the given route or `null` if no generator exists.
      */
-    public function get($path)
+    public function get($route)
     {
-        if (false === $this->has($path)) {
+        if (false === $this->has($route)) {
             return null;
         }
 
-        return $this->generators[$path];
+        return $this->generators[$route];
     }
 }

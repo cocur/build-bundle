@@ -27,22 +27,32 @@ class FileGenerator implements GeneratorInterface
     /** @var string */
     private $filename;
 
+    /** @var string */
+    private $parameter;
+
     /**
      * Constructor.
      *
      * @param string $filename  Filename.
-     * @param string $parameter Name of the parameter to use the file content for.
+     * @param string $parameter Name of the parameter defined in the file.
      */
-    public function __construct($filename, $parameter)
+    public function __construct(array $options = array())
     {
-        $this->filename  = $filename;
-        $this->parameter = $parameter;
+        if (false === isset($options['filename'])) {
+            throw new \InvalidArgumentException('The option "filename" must be set for a FileGenerator.');
+        }
+        if (false === isset($options['parameter'])) {
+            throw new \InvalidArgumentException('The option "parameter" must be set for a FileGenerator.');
+        }
+
+        $this->filename  = $options['filename'];
+        $this->parameter = $options['parameter'];
     }
 
     /**
      * Returns the filename.
      *
-     * @return string Filename
+     * @return string Filename.
      */
     public function getFilename()
     {
@@ -50,9 +60,9 @@ class FileGenerator implements GeneratorInterface
     }
 
     /**
-     * Returns the parameter the file content is used for.
+     * Returns the parameter.
      *
-     * @return string Name of the parameter.
+     * @return string Name of the parameter defined in the file.
      */
     public function getParameter()
     {

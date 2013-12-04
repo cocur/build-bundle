@@ -31,16 +31,27 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('braincrafted_static_site');
+        $builder = new TreeBuilder();
 
-        $rootNode
+        $builder->root('braincrafted_static_site')
             ->children()
                 ->scalarNode('build_directory')->defaultValue('%kernel.root_dir%/../build')->end()
                 ->scalarNode('base_url')->defaultValue('')->end()
                 ->scalarNode('index_name')->defaultValue('index.html')->end()
+
+                ->arrayNode('generators')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('route')->end()
+                            ->scalarNode('generator')->end()
+                            ->arrayNode('options')
+                                ->prototype('scalar')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end();
 
-        return $treeBuilder;
+        return $builder;
     }
 }

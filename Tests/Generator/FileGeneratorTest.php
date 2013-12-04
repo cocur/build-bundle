@@ -39,24 +39,46 @@ class FileGeneratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::__construct()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::getFilename()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::getParameter()
      */
-    public function testGetFilenameGetParameterConstruct()
+    public function constructorShouldSetFilenameAndParameter()
     {
-        $generator = new FileGenerator('file.txt', 'name');
+        $generator = new FileGenerator([ 'filename' => 'file.txt', 'parameter' => 'name' ]);
         $this->assertEquals('file.txt', $generator->getFilename());
         $this->assertEquals('name', $generator->getParameter());
     }
 
     /**
+     * @test
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::__construct()
+     * @expectedException \InvalidArgumentException
+     */
+    public function constructorShouldThrowExceptionIfNoFilename()
+    {
+        new FileGenerator([ 'parameter' => 'name' ]);
+    }
+
+    /**
+     * @test
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::__construct()
+     * @expectedException \InvalidArgumentException
+     */
+    public function constructorShouldThrowExceptionIfNoParameter()
+    {
+        new FileGenerator([ 'filename' => 'file.txt' ]);
+    }
+
+    /**
+     * @test
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::generate()
      */
-    public function testGenerate()
+    public function generateShouldReturnListOfParameters()
     {
         $file = vfsStream::newFile('parameters.txt')->at(vfsStreamWrapper::getRoot());
-        $generator = new FileGenerator(vfsStream::url('data/parameters.txt'), 'var');
+        $generator = new FileGenerator([ 'filename' => vfsStream::url('data/parameters.txt'), 'parameter' => 'var' ]);
         $file->setContent("param1\nparam2\nparam3\n");
 
         $parameters = $generator->generate();
@@ -68,12 +90,13 @@ class FileGeneratorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::generate()
      * @expectedException Braincrafted\Bundle\StaticSiteBundle\Exception\FileNotFoundException
      */
-    public function testGenerateFileNotFound()
+    public function generateShouldThrowExceptionIfFileNotFound()
     {
-        $generator = new FileGenerator(vfsStream::url('data/parameters.txt'), 'var');
+        $generator = new FileGenerator([ 'filename' => vfsStream::url('data/parameters.txt'), 'parameter' => 'var' ]);
 
         $generator->generate();
     }

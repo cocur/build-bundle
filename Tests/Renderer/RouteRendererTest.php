@@ -80,11 +80,10 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
      */
     public function testRender()
     {
-        $this->generatorCollection->shouldReceive('has')->once()->andReturn(false);
-        $this->router->shouldReceive('generate')->with('index', [])->twice()->andReturn('/index.html');
+        $this->generatorCollection->shouldReceive('has')->never()->andReturn(false);
+        $this->router->shouldReceive('generate')->never();
 
         $route = m::mock('Symfony\Component\Routing\Route');
-        $route->shouldReceive('setPath')->once();
         $route->shouldReceive('getPath')->times(2)->andReturn('/index.html');
 
         $response = m::mock('Symfony\Component\HttpFoundation\Response');
@@ -96,7 +95,7 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
 
         $this->writer->shouldReceive('write')->with('/index.html', 'Foobar!')->once();
 
-        $this->renderer->render($route, 'index');
+        $this->renderer->render($route);
     }
 
     /**
@@ -114,15 +113,13 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
         $generator = m::mock('Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorInterface');
         $generator->shouldReceive('generate')->once()->andReturn([ [ 'var' => 'foo' ], [ 'var' => 'bar' ] ]);
 
-        $this->generatorCollection->shouldReceive('has')->with('/index/{var}.html')->once()->andReturn(true);
-        $this->generatorCollection->shouldReceive('get')->with('/index/{var}.html')->once()->andReturn($generator);
+        $this->generatorCollection->shouldReceive('has')->with('index')->once()->andReturn(true);
+        $this->generatorCollection->shouldReceive('get')->with('index')->once()->andReturn($generator);
 
         $this->router->shouldReceive('generate')->with('index', [ 'var' => 'foo' ])->twice()->andReturn('/index/foo.html');
         $this->router->shouldReceive('generate')->with('index', [ 'var' => 'bar' ])->twice()->andReturn('/index/bar.html');
 
         $route = m::mock('Symfony\Component\Routing\Route');
-        $route->shouldReceive('setPath')->once();
-        $route->shouldReceive('getPath')->times(3)->andReturn('/index/{var}.html');
 
         $response = m::mock('Symfony\Component\HttpFoundation\Response');
         $response->shouldReceive('getContent')->twice()->andReturn('Foobar!');
@@ -148,13 +145,11 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderByName()
     {
-        $this->generatorCollection->shouldReceive('has')->with('/index.html')->once()->andReturn(false);
+        $this->generatorCollection->shouldReceive('has')->with('index_route')->once()->andReturn(false);
 
         $this->router->shouldReceive('generate')->with('index_route', [])->twice()->andReturn('/index.html');
 
         $route = m::mock('Symfony\Component\Routing\Route');
-        $route->shouldReceive('setPath')->once();
-        $route->shouldReceive('getPath')->twice()->andReturn('/index.html');
 
         $routeCollection = m::mock('Symfony\Component\Routing\RouteCollection');
         $routeCollection->shouldReceive('get')->with('index_route')->once()->andReturn($route);

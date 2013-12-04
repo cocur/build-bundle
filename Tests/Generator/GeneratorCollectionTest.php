@@ -40,9 +40,9 @@ class GeneratorCollectionTest extends \PHPUnit_Framework_TestCase
     public function testAddHasGet()
     {
         $generator = m::mock('Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorInterface');
-        $this->collection->add($generator, '/foo/{var}');
-        $this->assertTrue($this->collection->has('/foo/{var}'));
-        $this->assertEquals($generator, $this->collection->get('/foo/{var}'));
+        $this->collection->add($generator, 'foo');
+        $this->assertTrue($this->collection->has('foo'));
+        $this->assertEquals($generator, $this->collection->get('foo'));
     }
 
     /**
@@ -50,6 +50,6 @@ class GeneratorCollectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetNoGenerator()
     {
-        $this->assertNull($this->collection->get('/invalid'));
+        $this->assertNull($this->collection->get('invalid'));
     }
 }

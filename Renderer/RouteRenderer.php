@@ -49,10 +49,11 @@ class RouteRenderer
     /**
      * Constructor.
      *
-     * @param Kernel          $kernel
-     * @param Router          $router
-     * @param WriterInterface $writer
-     * @param string          $baseUrl
+     * @param Kernel              $kernel
+     * @param Router              $router
+     * @param WriterInterface     $writer
+     * @param GeneratorCollection $generatorCollection
+     * @param string              $baseUrl
      *
      * @codeCoverageIgnore
      */
@@ -100,6 +101,8 @@ class RouteRenderer
      * Renders the page with the route that matches the given name.
      *
      * @param string $name Name of a route
+     *
+     * @return void
      */
     public function renderByName($name)
     {
@@ -108,25 +111,23 @@ class RouteRenderer
             throw new RouteNotFoundException(sprintf('There is no route "%s".', $name));
         }
 
-        return $this->render($route, $name);
+        $this->render($route, $name);
     }
 
     /**
      * Renders the page with the given route.
      *
-     * @param Route  $route
-     * @param string $name
+     * @param Route  $route Route object.
+     * @param string $name  Name of the route; the default value is `null`.
      *
      * @return void
      */
     public function render(Route $route, $name = null)
     {
-        $route->setPath($this->baseUrl.$route->getPath());
-
-        if (false === $this->generatorCollection->has($route->getPath())) {
-            $parameters = [ [] ];
+        if (null !== $name && true === $this->generatorCollection->has($name)) {
+            $parameters = $this->generatorCollection->get($name)->generate();
         } else {
-            $parameters = $this->generatorCollection->get($route->getPath())->generate();
+            $parameters = [ [] ];
         }
 
         foreach ($parameters as $parameter) {
@@ -138,12 +139,12 @@ class RouteRenderer
      * Renders the given route with the given parameter.
      *
      * @param Route  $route     Route.
-     * @param string $name      Name of the route.
-     * @param array  $parameter Parameters.
+     * @param string $name      Name of the route; the default value is `null`.
+     * @param array  $parameter Array of parameters; the default value is an empty array.
      *
      * @return void
      */
-    protected function renderWithParameters(Route $route, $name, array $parameter)
+    protected function renderWithParameters(Route $route, $name = null, array $parameter = array())
     {
         $request = $this->buildRequest($route, $name, $parameter);
 
@@ -152,7 +153,13 @@ class RouteRenderer
         $this->kernel->terminate($request, $response);
         $this->kernel->shutdown();
 
-        $this->writer->write($this->router->generate($name, $parameter), $content);
+        if (null !== $name) {
+            $filename = $this->router->generate($name, $parameter);
+        } else {
+            $filename = $route->getPath();
+        }
+
+        $this->writer->write($filename, $content);
     }
 
     /**
@@ -176,9 +183,13 @@ class RouteRenderer
      *
      * @return Request
      */
-    protected function buildRequest(Route $route, $name, array $parameters)
+    protected function buildRequest(Route $route, $name = null, array $parameters = array())
     {
-        $uri = $this->router->generate($name, $parameters);
+        if (null !== $name) {
+            $uri = $this->router->generate($name, $parameters);
+        } else {
+            $uri = $route->getPath();
+        }
 
         return new Request(
             [], // GET
