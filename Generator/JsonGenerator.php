@@ -15,7 +15,13 @@ use Braincrafted\Bundle\StaticSiteBundle\Exception\FileNotFoundException;
 use Braincrafted\Json\Json;
 
 /**
- * JsonGenerator
+ * JsonGenerator.
+ *
+ * Generates parameters based on a JSON file.
+ *
+ * **Required parameters:**
+ *
+ * - `filename`
  *
  * @package    BraincraftedStaticSiteBundle
  * @subpackage Generator
@@ -31,13 +37,14 @@ class JsonGenerator implements GeneratorInterface
     /**
      * Constructor.
      *
-     * @param string $filename  Filename.
-     * @param string $parameter Name of the parameter defined in the file.
+     * @param array $options Options array.
+     *
+     * @throws \InvalidArgumentException if the option `filename` is missing.
      */
     public function __construct(array $options = array())
     {
         if (false === isset($options['filename'])) {
-            throw new \InvalidArgumentException('The option "filename" must be set for a FileGenerator.');
+            throw new \InvalidArgumentException('The option "filename" must be set for a JsonGenerator.');
         }
 
         $this->filename  = $options['filename'];

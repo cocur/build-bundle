@@ -14,7 +14,14 @@ namespace Braincrafted\Bundle\StaticSiteBundle\Generator;
 use Braincrafted\Bundle\StaticSiteBundle\Exception\FileNotFoundException;
 
 /**
- * FileGenerator
+ * FileGenerator.
+ *
+ * Generates parameters based on a file.
+ *
+ * **Required options:**
+ *
+ * - `filename`
+ * - `parameter`
  *
  * @package    BraincraftedStaticSiteBundle
  * @subpackage Generator
@@ -33,8 +40,10 @@ class FileGenerator implements GeneratorInterface
     /**
      * Constructor.
      *
-     * @param string $filename  Filename.
-     * @param string $parameter Name of the parameter defined in the file.
+     * @param array $options Options array.
+     *
+     * @throws \InvalidArgumentException if the option `filename` is missing.
+     * @throws \InvalidArgumentException if the option `parameter` is missing.
      */
     public function __construct(array $options = array())
     {

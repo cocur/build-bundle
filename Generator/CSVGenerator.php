@@ -15,7 +15,19 @@ use Braincrafted\Bundle\StaticSiteBundle\Exception\FileNotFoundException;
 use Braincrafted\Json\Json;
 
 /**
- * CSVGenerator
+ * CSVGenerator.
+ *
+ * Generates parameters based on a CSV file.
+ *
+ * **Required parameters:**
+ *
+ * - `filename`
+ *
+ * **Optional parameters:**
+ *
+ * - `delimiter` (default value: `,`)
+ * - `enclosure` (default value: `"`)
+ * - `escape` (default value: `\`)
  *
  * @package    BraincraftedStaticSiteBundle
  * @subpackage Generator
@@ -38,13 +50,14 @@ class CSVGenerator implements GeneratorInterface
     /**
      * Constructor.
      *
-     * @param string $filename  Filename.
-     * @param string $parameter Name of the parameter defined in the file.
+     * @param array $options Options array
+     *
+     * @throws \InvalidArgumentException when the option `filename` is missing.
      */
     public function __construct(array $options = array())
     {
         if (false === isset($options['filename'])) {
-            throw new \InvalidArgumentException('The option "filename" must be set for a FileGenerator.');
+            throw new \InvalidArgumentException('The option "filename" must be set for a CSVGenerator.');
         }
 
         $options = array_merge($this->default, $options);
@@ -111,9 +124,9 @@ class CSVGenerator implements GeneratorInterface
             throw new \RuntimeException(sprintf('Could not open file "%s".', $this->filename));
         }
 
-        $header = $this->getCSV($handle);
+        $header = $this->getCsv($handle);
         $parameters = [];
-        while ($values = $this->getCSV($handle)) {
+        while ($values = $this->getCsv($handle)) {
             $parameter = [];
             foreach ($values as $index => $value) {
                 $parameter[$header[$index]] = $value;
@@ -131,7 +144,7 @@ class CSVGenerator implements GeneratorInterface
      *
      * @return string[] Array of columns.
      */
-    protected function getCSV($handle)
+    protected function getCsv($handle)
     {
         return fgetcsv($handle, 0, $this->delimiter, $this->enclosure, $this->escape);
     }

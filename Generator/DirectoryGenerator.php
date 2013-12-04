@@ -16,7 +16,14 @@ use Symfony\Component\Finder\Finder;
 use Braincrafted\Bundle\StaticSiteBundle\Exception\FileNotFoundException;
 
 /**
- * DirectoryGenerator
+ * DirectoryGenerator.
+ *
+ * Generates parameters based on the filenames in a diretory.
+ *
+ * **Required parameters:**
+ *
+ * - `filename`
+ * - `parameter`
  *
  * @package    BraincraftedStaticSiteBundle
  * @subpackage Generator
@@ -35,7 +42,10 @@ class DirectoryGenerator implements GeneratorInterface
     /**
      * Constructor.
      *
-     * @param array $options
+     * @param array $options Options array
+     *
+     * @throws \InvalidArgumentException if the option `directory_name` is missing.
+     * @throws \InvalidArgumentException if the option `parameter` is missing.
      */
     public function __construct(array $options = array())
     {
@@ -51,9 +61,9 @@ class DirectoryGenerator implements GeneratorInterface
     }
 
     /**
-     * Returns the directoryName.
+     * Returns the name of the directory.
      *
-     * @return string Filename.
+     * @return string Name of the directory.
      */
     public function getDirectoryName()
     {
@@ -63,7 +73,7 @@ class DirectoryGenerator implements GeneratorInterface
     /**
      * Returns the parameter.
      *
-     * @return string Name of the parameter defined in the file.
+     * @return string Name of the parameter defined in the directory.
      */
     public function getParameter()
     {
@@ -73,8 +83,7 @@ class DirectoryGenerator implements GeneratorInterface
     /**
      * {@inheritDoc}
      *
-     * @throws FileNotFoundException if the file does not exist.
-     * @throws \RuntimeException if the file could not be opened.
+     * @throws FileNotFoundException if the directory does not exist.
      */
     public function generate()
     {

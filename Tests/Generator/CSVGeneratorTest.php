@@ -78,7 +78,7 @@ class CSVGeneratorTest extends \PHPUnit_Framework_TestCase
      * @test
      *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\CSVGenerator::generate()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\CSVGenerator::getCSV()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\CSVGenerator::getCsv()
      */
     public function generateShouldReturnListOfParameters()
     {
