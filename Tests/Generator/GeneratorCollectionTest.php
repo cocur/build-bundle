@@ -33,11 +33,13 @@ class GeneratorCollectionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorCollection::add()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorCollection::get()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorCollection::has()
      */
-    public function testAddHasGet()
+    public function addShouldAddGeneratorToCollection()
     {
         $generator = m::mock('Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorInterface');
         $this->collection->add($generator, 'foo');
@@ -46,9 +48,11 @@ class GeneratorCollectionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorCollection::get()
      */
-    public function testGetNoGenerator()
+    public function getShouldReturnNullIfGeneratorNotFound()
     {
         $this->assertNull($this->collection->get('invalid'));
     }

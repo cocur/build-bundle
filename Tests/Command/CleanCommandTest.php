@@ -65,12 +65,13 @@ class CleanCommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::__construct()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::configure()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::execute()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::cleanDirectory()
      */
-    public function testExecute()
+    public function executeShouldRunCommand()
     {
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);
@@ -88,12 +89,13 @@ class CleanCommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::__construct()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::configure()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::execute()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::cleanDirectory()
      */
-    public function testExecuteVerbose()
+    public function executeShouldOutputDetailedInformationInVerboseMode()
     {
         // mock the Kernel or create one depending on your needs
         $application = new Application($this->kernel);

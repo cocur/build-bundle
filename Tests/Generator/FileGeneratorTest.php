@@ -40,6 +40,7 @@ class FileGeneratorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::__construct()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::getFilename()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::getParameter()
@@ -53,7 +54,9 @@ class FileGeneratorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::__construct()
+     *
      * @expectedException \InvalidArgumentException
      */
     public function constructorShouldThrowExceptionIfNoFilename()
@@ -63,7 +66,9 @@ class FileGeneratorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::__construct()
+     *
      * @expectedException \InvalidArgumentException
      */
     public function constructorShouldThrowExceptionIfNoParameter()
@@ -73,6 +78,7 @@ class FileGeneratorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::generate()
      */
     public function generateShouldReturnListOfParameters()
@@ -91,7 +97,9 @@ class FileGeneratorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator::generate()
+     *
      * @expectedException Braincrafted\Bundle\StaticSiteBundle\Exception\FileNotFoundException
      */
     public function generateShouldThrowExceptionIfFileNotFound()

@@ -43,11 +43,13 @@ class RenderRouteCommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand::__construct()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand::configure()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand::execute()
      */
-    public function testExecute()
+    public function executeShouldRunCommand()
     {
         $renderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer');
         $renderer->shouldReceive('setBaseUrl')->with('/base')->once();
@@ -67,11 +69,13 @@ class RenderRouteCommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand::__construct()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand::configure()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand::execute()
      */
-    public function testExecuteRouteNotFound()
+    public function executeShouldOutputErrorIfRouteNotFound()
     {
         $exception = new \Braincrafted\Bundle\StaticSiteBundle\Exception\RouteNotFoundException(
             'There is no route "foobar"'

@@ -35,12 +35,14 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::setBaseUrl()
      */
-    public function testSetBaseUrl()
+    public function setBaseUrlShouldSetBaseUrl()
     {
         $this->routeRenderer->shouldReceive('setBaseUrl')->with('/my')->once();
-        
+
         $this->renderer->setBaseUrl('/my');
     }
 
@@ -50,11 +52,13 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
      * The given controller exists and there is also a route for the controller. Thus, the render() method of the
      * RouteRenderer should be called.
      *
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::render()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getControllerName()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getRoute()
      */
-    public function testRender()
+    public function renderShouldRenderController()
     {
         $this->nameParser
             ->shouldReceive('parse')
@@ -81,12 +85,14 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests the render() method when the controller does not exist.
      *
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::render()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getControllerName()
      *
      * @expectedException Braincrafted\Bundle\StaticSiteBundle\Exception\ControllerNotFoundException
      */
-    public function testRenderControllerDoesNotExist()
+    public function renderShouldThrowExceptionIfControllerNotFound()
     {
         $this->nameParser->shouldReceive('parse')->once()->andThrow(new \Exception);
 
@@ -96,13 +102,15 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests the render() method when the route does not exist.
      *
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::render()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getControllerName()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getRoute()
      *
      * @expectedException Braincrafted\Bundle\StaticSiteBundle\Exception\RouteNotFoundException
      */
-    public function testRenderRouteDoesNotExist()
+    public function renderShouldThrowExceptionIfRouteNotFound()
     {
         $this->nameParser
             ->shouldReceive('parse')

@@ -36,10 +36,12 @@ class FilesystemWriterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Writer\FilesystemWriter::write()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Writer\FilesystemWriter::getRealName()
      */
-    public function testWrite()
+    public function writeShouldWriteFileToDisk()
     {
         $this->writer->write('/index.html', 'Foobar');
 
@@ -47,10 +49,12 @@ class FilesystemWriterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Writer\FilesystemWriter::write()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Writer\FilesystemWriter::getRealName()
      */
-    public function testWriteWithDirectory()
+    public function writeShouldWriteIfFileIsInDirectory()
     {
         $this->writer->write('/foo', 'Foobar');
 

@@ -43,11 +43,13 @@ class RenderRoutesCommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRoutesCommand::__construct()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRoutesCommand::configure()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRoutesCommand::execute()
      */
-    public function testExecute()
+    public function executeShouldRunCommand()
     {
         $renderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer');
         $renderer->shouldReceive('setBaseUrl')->with('/base')->once();

@@ -31,12 +31,14 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::setBaseUrl()
      */
-    public function testSetBaseUrl()
+    public function setBaseUrlShouldPropagateBaseUrlToRouteRenderer()
     {
         $this->routeRenderer->shouldReceive('setBaseUrl')->with('/my')->once();
-        
+
         $this->renderer->setBaseUrl('/my');
     }
 
@@ -46,9 +48,11 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
      * Route collection returns two routes, one public and one private (prefixed with "_"), renderer
      * should only render the public route.
      *
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::render()
      */
-    public function testRender()
+    public function renderShouldRenderRoutes()
     {
         $route = m::mock('Symfony\Component\Routing\Route');
 

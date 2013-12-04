@@ -43,11 +43,13 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::__construct()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::configure()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::execute()
      */
-    public function testExecute()
+    public function executeShouldRunCommand()
     {
         $renderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer');
         $renderer->shouldReceive('setBaseUrl')->with('/base')->once();
@@ -67,11 +69,13 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::__construct()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::configure()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::execute()
      */
-    public function testExecuteControllerNotFound()
+    public function executeShouldOutputErrorIfControllerNotFound()
     {
         $exception = new \Braincrafted\Bundle\StaticSiteBundle\Exception\ControllerNotFoundException(
             'Could not find controller "foobar"'
@@ -94,11 +98,13 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::__construct()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::configure()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::execute()
      */
-    public function testExecuteRouteNotFound()
+    public function executeShouldOutputErrorIfRouteNotFound()
     {
         $exception = new \Braincrafted\Bundle\StaticSiteBundle\Exception\RouteNotFoundException(
             'Could not find route for controller "foobar"'

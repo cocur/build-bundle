@@ -59,10 +59,12 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::setBaseUrl()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::getBaseUrl()
      */
-    public function testSetBaseUrlGetBaseUrl()
+    public function setBaseUrlShouldSetBaseUrl()
     {
         $this->renderer->setBaseUrl('my/');
         $this->assertEquals('/my', $this->renderer->getBaseUrl());
@@ -74,11 +76,13 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
      * The render() method creates a request based on the given route and lets the kernel handle the request. The
      * response is saved to disk.
      *
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::render()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::renderWithParameters()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::buildRequest()
      */
-    public function testRender()
+    public function renderShouldRenderRoute()
     {
         $this->generatorCollection->shouldReceive('has')->never()->andReturn(false);
         $this->router->shouldReceive('generate')->never();
@@ -104,11 +108,13 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
      * The render() method creates a request based on the given route and lets the kernel handle the request. The
      * response is saved to disk. A generator is used to generate multiple responses.
      *
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::render()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::renderWithParameters()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::buildRequest()
      */
-    public function testRenderWithGenerator()
+    public function renderShouldRenderRouteWithGenerator()
     {
         $generator = m::mock('Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorInterface');
         $generator->shouldReceive('generate')->once()->andReturn([ [ 'var' => 'foo' ], [ 'var' => 'bar' ] ]);
@@ -137,13 +143,15 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests the renderByName() method.
      *
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::renderByName()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::render()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::renderWithParameters()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::buildRequest()
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::getRoute()
      */
-    public function testRenderByName()
+    public function renderByNameShouldRenderRouteByName()
     {
         $this->generatorCollection->shouldReceive('has')->with('index_route')->once()->andReturn(false);
 
@@ -171,11 +179,13 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests the renderByName() method, but the route is not found.
      *
+     * @test
+     *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer::renderByName()
      *
      * @expectedException Braincrafted\Bundle\StaticSiteBundle\Exception\RouteNotFoundException
      */
-    public function testRenderByNameRouteNotFound()
+    public function renderByNameShouldThrowExceptionIfRouteNotFound()
     {
         $route = m::mock('Symfony\Component\Routing\Route');
 
