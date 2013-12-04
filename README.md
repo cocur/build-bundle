@@ -1,9 +1,25 @@
 BraincraftedStaticSiteBundle
-==================
+============================
 
 Static site generator bundle for Symfony2. *Early development release.*
 
 [![Build Status](https://travis-ci.org/braincrafted/static-site-bundle.png?branch=master)](https://travis-ci.org/braincrafted/static-site-bundle)
+
+
+Table of Contents
+-----------------
+
+1. [Motivation](#motivation)
+1. [Installation](#installation)
+1. [Configuration](#configuration)
+    1. [Generators](#generators)
+        1. [File Generator](#file-generator)
+        1. [Directory Generator](#directory-generator)
+        1. [JSON Generator](#json-generator)
+        1. [CSV Generator](#csv-generator)
+1. [Usage](#usage)
+1. [Author](#author)
+1. [License](#license)
 
 
 Motivation
@@ -271,8 +287,8 @@ $ php app/console braincrafted:static-site:render-routes
 
 The HTML code will be saved in the directory configured with `braincrafted_static_site.build_directory`.
 
-_**Note:** BraincraftedStaticSiteBundle currently only handles actions with parameters when using the `render_route`
-command._
+_**Note:** BraincraftedStaticSiteBundle can handle actions with parameters when a generator is configured for these
+routes._
 
 When you call one of these commands BraincraftedStaticSiteBundle uses the Symfony2 kernel to simulate a request to a
 page. The kernel is booted in the same environment as the command. If you want to build the pages for production, you
