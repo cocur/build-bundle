@@ -3,9 +3,12 @@
 namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Writer;
 
 use \Mockery as m;
+use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamWrapper;
+use org\bovigo\vfs\vfsStreamDirectory;
+use Symfony\Component\Filesystem\Filesystem;
 
 use Braincrafted\Bundle\StaticSiteBundle\Writer\FilesystemWriter;
-use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * FilesystemWriterTest
@@ -22,9 +25,13 @@ class FilesystemWriterTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->filesystem = new Filesystem;
-        $this->buildDirectory = __DIR__.'/build';
+        $buildDir = new vfsStreamDirectory('build');
+        $this->buildDirectory = $buildDir->url();
 
+        vfsStreamWrapper::register();
+        vfsStreamWrapper::setRoot($buildDir);
+
+        $this->filesystem = new Filesystem();
         $this->filesystem->mkdir($this->buildDirectory);
 
         $this->writer = new FilesystemWriter($this->filesystem, $this->buildDirectory, 'index.html');
@@ -32,7 +39,6 @@ class FilesystemWriterTest extends \PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        $this->filesystem->remove($this->buildDirectory);
     }
 
     /**
@@ -43,9 +49,11 @@ class FilesystemWriterTest extends \PHPUnit_Framework_TestCase
      */
     public function writeShouldWriteFileToDisk()
     {
+        $root = vfsStreamWrapper::getRoot();
         $this->writer->write('/index.html', 'Foobar');
 
-        $this->assertEquals('Foobar', file_get_contents($this->buildDirectory.'/index.html'));
+        $this->assertTrue($root->hasChild('index.html'));
+        $this->assertEquals('Foobar', $root->getChild('index.html')->getContent());
     }
 
     /**
@@ -56,8 +64,12 @@ class FilesystemWriterTest extends \PHPUnit_Framework_TestCase
      */
     public function writeShouldWriteIfFileIsInDirectory()
     {
+        $root = vfsStreamWrapper::getRoot();
+
         $this->writer->write('/foo', 'Foobar');
 
-        $this->assertEquals('Foobar', file_get_contents($this->buildDirectory.'/foo/index.html'));
+        $this->assertTrue($root->hasChild('foo'));
+        $this->assertTrue($root->getChild('foo')->hasChild('index.html'));
+        $this->assertEquals('Foobar', $root->getChild('foo')->getChild('index.html')->getContent());
     }
 }
