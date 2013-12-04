@@ -17,6 +17,7 @@ Table of Contents
         1. [Directory Generator](#directory-generator)
         1. [JSON Generator](#json-generator)
         1. [CSV Generator](#csv-generator)
+        1. [YAML Generator](#yaml-generator)
 1. [Usage](#usage)
 1. [Author](#author)
 1. [License](#license)
@@ -247,6 +248,47 @@ The CSV file has to contain three columns and a header row containing `name`, `a
 "name", "age", "city"
 "Florian", "27", "Vienna"
 "Daniela", "22", "Vienna"
+```
+
+StaticSiteBundle will render the following pages:
+
+- `/person/Florian/27/Vienna`
+- `/person/Daniela/22/Vienna`
+
+#### YAML Generator
+
+Parameters are generated from a YAML file.
+
+**Required options:**
+
+- `filename`
+
+If we want to render the route `acme_demo_person` with the pattern `/person/{name}/{age}/{city}` we can also use a YAML
+file `persons.yaml`.
+
+```yaml
+# app/config/config.yml
+
+braincrafted_static_site:
+    generators:
+        person:
+            route: acme_demo_person
+            generator: braincrafted_static_site.yaml_generator
+            options:
+                filename: "%kernel.root_dir%/../persons.yml"
+```
+
+The YAML file `persons.yml` has to contain a list element for every person with a named property for every parameter.
+
+```yml
+-
+    name: Florian
+    age: 27
+    city: Vienna
+-
+    name: Daniela
+    age: 22
+    city: Vienna
 ```
 
 StaticSiteBundle will render the following pages:
