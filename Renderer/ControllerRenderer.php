@@ -54,9 +54,9 @@ class ControllerRenderer
 
     /*
      * Sets the base URL.
-     * 
+     *
      * @param string $baseUrl Base URL.
-     * 
+     *
      * @return ControllerRenderer
      */
     public function setBaseUrl($baseUrl)
@@ -83,7 +83,7 @@ class ControllerRenderer
             throw new RouteNotFoundException(sprintf('Could not find route for controller "%s".', $controllerName));
         }
 
-        $this->routeRenderer->render($route);
+        $this->routeRenderer->render($route[1], $route[0]);
     }
 
     /**
@@ -112,9 +112,9 @@ class ControllerRenderer
     protected function getRoute($controller)
     {
         $routes = $this->router->getRouteCollection()->all();
-        foreach ($routes as $route) {
+        foreach ($routes as $name => $route) {
             if ($controller === $route->getDefault('_controller')) {
-                return $route;
+                return [ $name, $route ];
             }
         }
 

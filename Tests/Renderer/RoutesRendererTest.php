@@ -69,7 +69,7 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
 
         $this->routeRenderer
             ->shouldReceive('render')
-            ->with($route)
+            ->with($route, 'route1')
             ->once();
 
         $result = $this->renderer->render();

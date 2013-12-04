@@ -69,7 +69,7 @@ class RoutesRenderer
 
         foreach ($routes as $name => $route) {
             if ('_' !== substr($name, 0, 1)) {
-                $this->routeRenderer->render($route);
+                $this->routeRenderer->render($route, $name);
                 $counter += 1;
             }
         }

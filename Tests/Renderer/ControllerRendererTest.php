@@ -73,11 +73,11 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
             ->andReturn('Acme\DemoBundle\Controller\DefaultController::indexAction');
 
         $routeCollection = m::mock('Symfony\Component\Routing\RouteCollection');
-        $routeCollection->shouldReceive('all')->andReturn([ $route ]);
+        $routeCollection->shouldReceive('all')->andReturn([ 'route1' => $route ]);
 
         $this->router->shouldReceive('getRouteCollection')->once()->andReturn($routeCollection);
 
-        $this->routeRenderer->shouldReceive('render')->with($route)->once();
+        $this->routeRenderer->shouldReceive('render')->with($route, 'route1')->once();
 
         $this->renderer->render('AcmeDemoBundle:Default:index');
     }
