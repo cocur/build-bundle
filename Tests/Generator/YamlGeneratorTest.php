@@ -78,11 +78,6 @@ class YamlGeneratorTest extends \PHPUnit_Framework_TestCase
             [ 'a' => 'param2a', 'b' => 'param2b' ]
         ]));
 
-        print_r(Yaml::dump([
-            [ 'a' => 'param1a', 'b' => 'param1b' ],
-            [ 'a' => 'param2a', 'b' => 'param2b' ]
-        ]));
-
         $parameters = $generator->generate();
 
         $this->assertCount(2, $parameters);

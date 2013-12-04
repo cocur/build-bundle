@@ -18,6 +18,7 @@ Table of Contents
         1. [JSON Generator](#json-generator)
         1. [CSV Generator](#csv-generator)
         1. [YAML Generator](#yaml-generator)
+        1. [Front-matter Generator](#front-matter-generator)
 1. [Usage](#usage)
 1. [Author](#author)
 1. [License](#license)
@@ -145,7 +146,7 @@ Parameters are generated from the names of files in a directory.
 
 **Required options:**
 
-- `directoryName`
+- `directory_name`
 - `parameter`
 
 In this example we have a route `acme_demo_article` with the path `/article/{slug}` and we want to render the page for
@@ -295,6 +296,43 @@ StaticSiteBundle will render the following pages:
 
 - `/person/Florian/27/Vienna`
 - `/person/Daniela/22/Vienna`
+
+#### Front-matter Generator
+
+Parameters are generated from the front-matter of files in a directory.
+
+**Required options:**
+
+- `directory_name`
+
+In this example we have a route `acme_demo_article` with the path `/article/{category}/{slug}` and we want to render
+the page for every file in a directory.
+
+```yaml
+# app/config/config.yml
+
+braincrafted_static_site:
+    generators:
+        article:
+            route: acme_demo_article
+            generator: braincrafted_static_site.front_matter_generator
+            options:
+                directory_name: "%kernel.root_dir%/../articles"
+```
+
+For example, the file `articles/2013-12-03-bootstrap-bundle-2-0.md` could look like:
+
+```markdown
+---
+category: dev
+slug: bootstrap-bundle-2-0
+---
+This is the rest of the file. Just some text.
+```
+
+StaticSiteBundle will render the following page:
+
+- `article/dev/bootstrap-bundle-2-0`
 
 
 Usage
