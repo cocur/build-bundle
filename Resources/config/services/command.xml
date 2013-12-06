@@ -35,8 +35,11 @@
 
         <service id="braincrafted_static_site.command.build" class="%braincrafted_static_site.command.build.class%">
             <argument type="service" id="braincrafted_static_site.renderer.routes" />
-            <argument>%braincrafted_static_site.build_directory%</argument>
-            <argument>%braincrafted_static_site.base_url%</argument>
+            <argument type="collection">
+                <argument key="base_url">%braincrafted_static_site.base_url%</argument>
+                <argument key="build_directory">%braincrafted_static_site.build_directory%</argument>
+                <argument key="enable_assetic">%braincrafted_static_site.enable_assetic%</argument>
+            </argument>
             <tag name="console.command" />
         </service>
 

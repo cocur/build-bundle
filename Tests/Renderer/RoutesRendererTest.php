@@ -58,7 +58,7 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests the render() method.
+     * Tests the render() method with respect to the given list of routes.
      *
      * Route collection returns two routes, one public and one private (prefixed with "_"), renderer
      * should only render the public route.
@@ -66,6 +66,7 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
      * @test
      *
      * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::render()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::getRoutes()
      */
     public function renderShouldRenderRoutes()
     {
@@ -88,6 +89,33 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
             ->once();
 
         $result = $this->renderer->render();
+
+        $this->assertEquals(1, $result);
+    }
+
+    /**
+     * Tests the render() method.
+     *
+     * Route collection returns two routes, one public and one private (prefixed with "_"), renderer
+     * should only render the public route.
+     *
+     * @test
+     *
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::render()
+     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::getRoutes()
+     */
+    public function renderShouldRenderRoutesThatArePassedToTheConstructor()
+    {
+        $route = m::mock('Symfony\Component\Routing\Route');
+
+        $routeCollection = m::mock('Symfony\Component\Routing\RouteCollection');
+        $routeCollection->shouldReceive('get')->with('route1')->once()->andReturn($route);
+
+        $this->router->shouldReceive('getRouteCollection')->once()->andReturn($routeCollection);
+        $this->routeRenderer->shouldReceive('render')->with($route, 'route1')->once();
+
+        $renderer = new RoutesRenderer($this->routeRenderer, $this->router, [ 'route1' ]);
+        $result = $renderer->render();
 
         $this->assertEquals(1, $result);
     }

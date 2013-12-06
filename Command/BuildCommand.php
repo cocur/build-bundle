@@ -39,16 +39,27 @@ class BuildCommand extends Command
     /** @var string */
     private $baseUrl;
 
+    /** @var boolean */
+    private $enableAssetic;
+
     /**
      * Constructor.
      *
      * @param string $buildDirectory
+     * @param array  $options        Array with options; possible options: build_directory, base_url and enable_assetic.
+     *
+     * @throws \InvalidArgumentException if the option "build_directory" is missing.
      */
-    public function __construct(RoutesRenderer $renderer, $buildDirectory, $baseUrl)
+    public function __construct(RoutesRenderer $renderer, array $options)
     {
+        if (false === isset($options['build_directory'])) {
+            throw new \InvalidArgumentException('The option "build_directory" is missing.');
+        }
+
         $this->renderer       = $renderer;
-        $this->buildDirectory = $buildDirectory;
-        $this->baseUrl        = $baseUrl;
+        $this->buildDirectory = $options['build_directory'];
+        $this->baseUrl        = true === isset($options['base_url']) ? $options['base_url'] : '';
+        $this->enableAssetic  = true === isset($options['enable_assetic']) ? $options['enable_assetic'] : false;
 
         parent::__construct();
     }
@@ -69,10 +80,6 @@ class BuildCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if ('prod' === $input->getOption('env')) {
-            $this->executeCacheClear($input, $output);
-        }
-
         if ($input->getOption('base-url')) {
             $this->renderer->setBaseUrl($input->getOption('base-url'));
         }
@@ -80,7 +87,10 @@ class BuildCommand extends Command
         $counter = $this->renderer->render();
         $output->writeln(sprintf('Rendered <info>%s</info> routes.', $counter));
 
-        $this->executeAsseticDump($input, $output);
+        if (true === $this->enableAssetic) {
+            $this->executeAsseticDump($input, $output);
+        }
+        $this->executeAssetsInstall($input, $output);
     }
 
     /**
@@ -89,18 +99,23 @@ class BuildCommand extends Command
      *
      * @return void
      */
-    protected function executeCacheClear(InputInterface $input, OutputInterface $output)
+    protected function executeAssetsInstall(InputInterface $input, OutputInterface $output)
     {
-        $command = $this->getApplication()->find('cache:clear');
-        $arguments = [ '', '--env' => $input->getOption('env') ];
+        $command = $this->getApplication()->find('assets:install');
+        $arguments = [
+            'target' => sprintf('%s%s', $this->buildDirectory, $this->getBaseUrl($input)),
+            '--env'  => $input->getOption('env')
+        ];
 
         $returnCode = $this->executeCommand($command, $arguments, clone $output);
 
         if (0 === $returnCode) {
-            $output->writeln('<comment>Cleared cache.</comment>');
-        } else {
-            $output->writeln("<error>Error clearing cache.</error>\n");
+            $output->writeln('<comment>Installed assets in build directory.</comment>');
+
+            return;
         }
+
+        $output->writeln('<error>Error installing assets in build directory.</error>');
     }
 
     /**
@@ -113,8 +128,8 @@ class BuildCommand extends Command
     {
         $command = $this->getApplication()->find('assetic:dump');
         $arguments = [
-            'write_to'  => $this->buildDirectory.$this->getBaseUrl($input),
-            '--env'     => $input->getOption('env'),
+            'write_to'  => sprintf('%s%s', $this->buildDirectory, $this->getBaseUrl($input)),
+            '--env'     => $input->getOption('env')
         ];
 
         $returnCode = $this->executeCommand($command, $arguments, clone $output);
@@ -145,6 +160,11 @@ class BuildCommand extends Command
         return $command->run(new ArrayInput($arguments), $output);
     }
 
+    /**
+     * @param InputInterface $input
+     *
+     * @return string
+     */
     protected function getBaseUrl(InputInterface $input)
     {
         if ($input->getOption('base-url')) {

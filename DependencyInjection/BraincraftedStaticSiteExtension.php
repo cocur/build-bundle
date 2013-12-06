@@ -49,9 +49,13 @@ class BraincraftedStaticSiteExtension extends Extension
         $container->setParameter('braincrafted_static_site.build_directory', $config['build_directory']);
         $container->setParameter('braincrafted_static_site.index_name', $config['index_name']);
         $container->setParameter('braincrafted_static_site.base_url', $config['base_url']);
-        if (true === isset($config['generators'])) {
-            $this->buildGenerators($container, $config['generators']);
-        }
+        $container->setParameter('braincrafted_static_site.routes', $config['routes']);
+        $container->setParameter(
+            'braincrafted_static_site.enable_assetic',
+            $this->getEnableAssetic($config, $container)
+        );
+
+        $this->buildGenerators($container, $config['generators']);
     }
 
     /**
@@ -71,5 +75,19 @@ class BraincraftedStaticSiteExtension extends Extension
 
             $collection->addMethodCall('add', [ new Reference($id), $config['route'] ]);
         }
+    }
+
+    protected function getEnableAssetic(array $config, ContainerBuilder $container)
+    {
+        if (null !== $config['enable_assetic']) {
+            return $config['enable_assetic'];
+        }
+
+        $bundles = $container->getParameter('kernel.bundles');
+        if (true === isset($bundles['AsseticBundle'])) {
+            return true;
+        }
+
+        return false;
     }
 }

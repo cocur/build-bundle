@@ -30,18 +30,23 @@ class RoutesRenderer
     /** @var Router */
     private $router;
 
+    /** @var string[] */
+    private $routes;
+
     /**
      * Constructor.
      *
      * @param RouteRenderer $routeRenderer Route renderer
      * @param Router        $router        Router
+     * @param string[]      $routes        Array of routes that should be rendered
      *
      * @codeCoverageIgnore
      */
-    public function __construct(RouteRenderer $routeRenderer, Router $router)
+    public function __construct(RouteRenderer $routeRenderer, Router $router, array $routes = array())
     {
         $this->routeRenderer = $routeRenderer;
         $this->router        = $router;
+        $this->routes        = $routes;
     }
 
     /**
@@ -65,10 +70,9 @@ class RoutesRenderer
      */
     public function render()
     {
-        $routes = $this->router->getRouteCollection()->all();
         $counter = 0;
 
-        foreach ($routes as $name => $route) {
+        foreach ($this->getRoutes() as $name => $route) {
             if ('_' !== substr($name, 0, 1)) {
                 $this->routeRenderer->render($route, $name);
                 $counter += 1;
@@ -76,5 +80,24 @@ class RoutesRenderer
         }
 
         return $counter;
+    }
+
+    /**
+     * Returns the list of routes that should be rendered.
+     *
+     * @return Symfony\Component\Routing\Route[] List of routes that should be rendered.
+     */
+    protected function getRoutes()
+    {
+        if (0 === count($this->routes)) {
+            return $this->router->getRouteCollection()->all();
+        }
+
+        $routes = [];
+        foreach ($this->routes as $name) {
+            $routes[$name] = $this->router->getRouteCollection()->get($name);
+        }
+
+        return $routes;
     }
 }

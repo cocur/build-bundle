@@ -72,10 +72,13 @@ class AppKernel extends Kernel
 Configuration
 -------------
 
-- `braincrafted_static_site.build_directory`: The directory where the built site is saved.
-- `braincrafted_static_site.base_url`: The base URL of the static site. Useful when the HTML is not saved in the root
-    directory. Most commands have an option to override this on an individual basis.
-- `braincrafted_static_site.index_name`: If the route doesn't contain a file name this is appended to the route.
+- `enable_assetic`: When this option is `true` the `assetic:dump` command is executed when building the site. If the
+    option is not defined it will be activated if `AsseticBundle` is installed.
+- `build_directory`: The directory where the built site is saved.
+- `base_url`: The base URL of the static site. Useful when the HTML is not saved in the root directory. Most commands
+    have an option to override this on an individual basis.
+- `index_name`: If a route doesn't contain a filename this value is appended to the route. The default value is
+    `index.html`.
 
 The default configuration looks like this:
 

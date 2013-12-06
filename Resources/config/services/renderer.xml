@@ -33,6 +33,7 @@
         <service id="braincrafted_static_site.renderer.routes" class="%braincrafted_static_site.renderer.routes.class%">
             <argument type="service" id="braincrafted_static_site.renderer.route" />
             <argument type="service" id="router" />
+            <argument>%braincrafted_static_site.routes%</argument>
         </service>
 
     </services>
