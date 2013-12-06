@@ -6,34 +6,34 @@
 
     <parameters>
 
-        <parameter key="braincrafted_static_site.renderer.controller.class">Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer</parameter>
+        <parameter key="braincrafted_cocur.renderer.controller.class">Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer</parameter>
 
-        <parameter key="braincrafted_static_site.renderer.route.class">Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer</parameter>
+        <parameter key="braincrafted_cocur.renderer.route.class">Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer</parameter>
 
-        <parameter key="braincrafted_static_site.renderer.routes.class">Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer</parameter>
+        <parameter key="braincrafted_cocur.renderer.routes.class">Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer</parameter>
 
     </parameters>
 
     <services>
 
-        <service id="braincrafted_static_site.renderer.controller" class="%braincrafted_static_site.renderer.controller.class%">
-            <argument type="service" id="braincrafted_static_site.renderer.route" />
+        <service id="braincrafted_cocur.renderer.controller" class="%braincrafted_cocur.renderer.controller.class%">
+            <argument type="service" id="braincrafted_cocur.renderer.route" />
             <argument type="service" id="controller_name_converter" />
             <argument type="service" id="router" />
         </service>
 
-        <service id="braincrafted_static_site.renderer.route" class="%braincrafted_static_site.renderer.route.class%">
+        <service id="braincrafted_cocur.renderer.route" class="%braincrafted_cocur.renderer.route.class%">
             <argument type="service" id="kernel" />
             <argument type="service" id="router" />
-            <argument type="service" id="braincrafted_static_site.writer.filesystem" />
-            <argument type="service" id="braincrafted_static_site.generator.collection" />
-            <argument>%braincrafted_static_site.base_url%</argument>
+            <argument type="service" id="braincrafted_cocur.writer.filesystem" />
+            <argument type="service" id="braincrafted_cocur.generator.collection" />
+            <argument>%braincrafted_cocur.base_url%</argument>
         </service>
 
-        <service id="braincrafted_static_site.renderer.routes" class="%braincrafted_static_site.renderer.routes.class%">
-            <argument type="service" id="braincrafted_static_site.renderer.route" />
+        <service id="braincrafted_cocur.renderer.routes" class="%braincrafted_cocur.renderer.routes.class%">
+            <argument type="service" id="braincrafted_cocur.renderer.route" />
             <argument type="service" id="router" />
-            <argument>%braincrafted_static_site.routes%</argument>
+            <argument>%braincrafted_cocur.routes%</argument>
         </service>
 
     </services>

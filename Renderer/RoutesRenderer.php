@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,14 +9,14 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Renderer;
+namespace Braincrafted\Bundle\CocurBundle\Renderer;
 
 use Symfony\Component\Routing\Router;
 
 /**
  * RoutesRenderer renders all routes into pages.
  *
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Renderer
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer

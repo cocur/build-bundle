@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,17 +9,17 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Renderer;
+namespace Braincrafted\Bundle\CocurBundle\Tests\Renderer;
 
 use \Mockery as m;
 
-use Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer;
+use Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer;
 
 /**
  * ControllerRendererTest
  *
  * @category   Test
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Renderer
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -31,7 +31,7 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
     /** @var ControllerRenderer */
     private $renderer;
 
-    /** @var Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer */
+    /** @var Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer */
     private $routeRenderer;
 
     /** @var Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser */
@@ -42,7 +42,7 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->routeRenderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer');
+        $this->routeRenderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer');
         $this->nameParser = m::mock('Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser');
         $this->router = m::mock('Symfony\Component\Routing\Router');
 
@@ -52,7 +52,7 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::setBaseUrl()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::setBaseUrl()
      */
     public function setBaseUrlShouldSetBaseUrl()
     {
@@ -69,9 +69,9 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::render()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getControllerName()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getRoute()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::render()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::getControllerName()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::getRoute()
      */
     public function renderShouldRenderController()
     {
@@ -102,10 +102,10 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::render()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getControllerName()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::render()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::getControllerName()
      *
-     * @expectedException Braincrafted\Bundle\StaticSiteBundle\Exception\ControllerNotFoundException
+     * @expectedException Braincrafted\Bundle\CocurBundle\Exception\ControllerNotFoundException
      */
     public function renderShouldThrowExceptionIfControllerNotFound()
     {
@@ -119,11 +119,11 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::render()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getControllerName()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer::getRoute()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::render()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::getControllerName()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::getRoute()
      *
-     * @expectedException Braincrafted\Bundle\StaticSiteBundle\Exception\RouteNotFoundException
+     * @expectedException Braincrafted\Bundle\CocurBundle\Exception\RouteNotFoundException
      */
     public function renderShouldThrowExceptionIfRouteNotFound()
     {

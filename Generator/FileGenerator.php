@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Generator;
+namespace Braincrafted\Bundle\CocurBundle\Generator;
 
-use Braincrafted\Bundle\StaticSiteBundle\Exception\FileNotFoundException;
+use Braincrafted\Bundle\CocurBundle\Exception\FileNotFoundException;
 
 /**
  * FileGenerator.
@@ -23,7 +23,7 @@ use Braincrafted\Bundle\StaticSiteBundle\Exception\FileNotFoundException;
  * - `filename`
  * - `parameter`
  *
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Generator
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer

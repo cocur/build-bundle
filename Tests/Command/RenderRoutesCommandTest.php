@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,19 +9,19 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Command;
+namespace Braincrafted\Bundle\CocurBundle\Tests\Command;
 
 use \Mockery as m;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
-use Braincrafted\Bundle\StaticSiteBundle\Command\RenderRoutesCommand;
+use Braincrafted\Bundle\CocurBundle\Command\RenderRoutesCommand;
 
 /**
  * RenderRoutesCommandTest
  *
  * @category   Test
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Command
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -41,19 +41,19 @@ class RenderRoutesCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRoutesCommand::__construct()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRoutesCommand::configure()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRoutesCommand::execute()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRoutesCommand::__construct()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRoutesCommand::configure()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRoutesCommand::execute()
      */
     public function executeShouldRunCommand()
     {
-        $renderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer');
+        $renderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer');
         $renderer->shouldReceive('setBaseUrl')->with('/base')->once();
         $renderer->shouldReceive('render')->andReturn(3)->once();
 
         $this->application->add(new RenderRoutesCommand($renderer));
 
-        $command = $this->application->find('braincrafted:static-site:render-routes');
+        $command = $this->application->find('braincrafted:cocur:render-routes');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command'    => $command->getName(),

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,16 +9,16 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Generator;
+namespace Braincrafted\Bundle\CocurBundle\Tests\Generator;
 
 use \Mockery as m;
-use Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorCollection;
+use Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection;
 
 /**
  * GeneratorCollectionTest
  *
  * @category   Test
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Generator
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -35,13 +35,13 @@ class GeneratorCollectionTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorCollection::add()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorCollection::get()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorCollection::has()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection::add()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection::get()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection::has()
      */
     public function addShouldAddGeneratorToCollection()
     {
-        $generator = m::mock('Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorInterface');
+        $generator = m::mock('Braincrafted\Bundle\CocurBundle\Generator\GeneratorInterface');
         $this->collection->add($generator, 'foo');
         $this->assertTrue($this->collection->has('foo'));
         $this->assertEquals($generator, $this->collection->get('foo'));
@@ -50,7 +50,7 @@ class GeneratorCollectionTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorCollection::get()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection::get()
      */
     public function getShouldReturnNullIfGeneratorNotFound()
     {

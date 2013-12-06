@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,17 +9,17 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Renderer;
+namespace Braincrafted\Bundle\CocurBundle\Tests\Renderer;
 
 use \Mockery as m;
 
-use Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer;
+use Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer;
 
 /**
  * RoutesRendererTest
  *
  * @category   Test
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Renderer
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -31,7 +31,7 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
     /** @var RoutesRenderer */
     private $renderer;
 
-    /** @var Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer */
+    /** @var Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer */
     private $routeRenderer;
 
     /** @var Symfony\Component\Routing\Router */
@@ -39,7 +39,7 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->routeRenderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer');
+        $this->routeRenderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer');
         $this->router = m::mock('Symfony\Component\Routing\Router');
 
         $this->renderer = new RoutesRenderer($this->routeRenderer, $this->router);
@@ -48,7 +48,7 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::setBaseUrl()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer::setBaseUrl()
      */
     public function setBaseUrlShouldPropagateBaseUrlToRouteRenderer()
     {
@@ -65,8 +65,8 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::render()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::getRoutes()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer::render()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer::getRoutes()
      */
     public function renderShouldRenderRoutes()
     {
@@ -101,8 +101,8 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::render()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer::getRoutes()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer::render()
+     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer::getRoutes()
      */
     public function renderShouldRenderRoutesThatArePassedToTheConstructor()
     {

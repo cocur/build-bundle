@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,20 +9,20 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Generator;
+namespace Braincrafted\Bundle\CocurBundle\Tests\Generator;
 
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;
 use org\bovigo\vfs\vfsStreamDirectory;
 use Symfony\Component\Yaml\Yaml;
 
-use Braincrafted\Bundle\StaticSiteBundle\Generator\YamlGenerator;
+use Braincrafted\Bundle\CocurBundle\Generator\YamlGenerator;
 
 /**
  * YamlGeneratorTest
  *
  * @category   Test
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Generator
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -43,9 +43,9 @@ class YamlGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\YamlGenerator::__construct()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\YamlGenerator::getFilename()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\YamlGenerator::getParameters()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\YamlGenerator::__construct()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\YamlGenerator::getFilename()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\YamlGenerator::getParameters()
      */
     public function constructorShouldSetFilename()
     {
@@ -57,7 +57,7 @@ class YamlGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\YamlGenerator::__construct()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\YamlGenerator::__construct()
      *
      * @expectedException \InvalidArgumentException
      */
@@ -69,7 +69,7 @@ class YamlGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\YamlGenerator::generate()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\YamlGenerator::generate()
      */
     public function generateShouldReturnListOfParameters()
     {
@@ -92,7 +92,7 @@ class YamlGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\YamlGenerator::generate()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\YamlGenerator::generate()
      */
     public function generateShouldReturnListOfParametersThatMatch()
     {
@@ -117,9 +117,9 @@ class YamlGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\YamlGenerator::generate()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\YamlGenerator::generate()
      *
-     * @expectedException Braincrafted\Bundle\StaticSiteBundle\Exception\FileNotFoundException
+     * @expectedException Braincrafted\Bundle\CocurBundle\Exception\FileNotFoundException
      */
     public function generateShouldThrowExceptionIfFileNotFound()
     {

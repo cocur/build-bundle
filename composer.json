@@ -1,6 +1,6 @@
 {
-    "name":         "braincrafted/static-site-bundle",
-    "description":  "BraincraftedStaticSiteBundle",
+    "name":         "braincrafted/cocur-bundle",
+    "description":  "BraincraftedCocurBundle",
     "keywords":     [ "static site" ],
     "type":         "symfony-bundle",
     "license":      "MIT",
@@ -22,7 +22,7 @@
         "mikey179/vfsStream": "~1.2"
     },
     "autoload": {
-        "psr-0": { "Braincrafted\\Bundle\\StaticSiteBundle": "" }
+        "psr-0": { "Braincrafted\\Bundle\\CocurBundle": "" }
     },
-    "target-dir": "Braincrafted/Bundle/StaticSiteBundle"
+    "target-dir": "Braincrafted/Bundle/CocurBundle"
 }

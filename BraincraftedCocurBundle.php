@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of BraincraftedStaticSiteBundleBraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundleBraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -8,18 +8,18 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle;
+namespace Braincrafted\Bundle\CocurBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * BraincraftedStaticSiteBundle
+ * BraincraftedCocurBundle
  *
- * @package   BraincraftedStaticSiteBundle
+ * @package   BraincraftedCocurBundle
  * @author    Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright 2013 Florian Eckerstorfer
  * @license   http://opensource.org/licenses/MIT The MIT License
  */
-class BraincraftedStaticSiteBundle extends Bundle
+class BraincraftedCocurBundle extends Bundle
 {
 }

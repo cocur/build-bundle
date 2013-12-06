@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,19 +9,19 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Command;
+namespace Braincrafted\Bundle\CocurBundle\Tests\Command;
 
 use \Mockery as m;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
-use Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand;
+use Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand;
 
 /**
  * RenderRouteCommandTest
  *
  * @category   Test
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Command
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -41,19 +41,19 @@ class RenderRouteCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand::__construct()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand::configure()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand::execute()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand::__construct()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand::configure()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand::execute()
      */
     public function executeShouldRunCommand()
     {
-        $renderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer');
+        $renderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer');
         $renderer->shouldReceive('setBaseUrl')->with('/base')->once();
         $renderer->shouldReceive('renderByName')->with('foobar')->once();
 
         $this->application->add(new RenderRouteCommand($renderer));
 
-        $command = $this->application->find('braincrafted:static-site:render-route');
+        $command = $this->application->find('braincrafted:cocur:render-route');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command'    => $command->getName(),
@@ -65,16 +65,16 @@ class RenderRouteCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand::__construct()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand::configure()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand::execute()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand::__construct()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand::configure()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand::execute()
      */
     public function executeShouldOutputErrorIfRouteNotFound()
     {
-        $exception = new \Braincrafted\Bundle\StaticSiteBundle\Exception\RouteNotFoundException(
+        $exception = new \Braincrafted\Bundle\CocurBundle\Exception\RouteNotFoundException(
             'There is no route "foobar"'
         );
-        $renderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\RouteRenderer');
+        $renderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer');
         $renderer
             ->shouldReceive('renderByName')
             ->with('foobar')
@@ -82,7 +82,7 @@ class RenderRouteCommandTest extends \PHPUnit_Framework_TestCase
 
         $this->application->add(new RenderRouteCommand($renderer));
 
-        $command = $this->application->find('braincrafted:static-site:render-route');
+        $command = $this->application->find('braincrafted:cocur:render-route');
         $commandTester = new CommandTester($command);
         $commandTester->execute([ 'command' => $command->getName(), 'route' => 'foobar' ]);
 

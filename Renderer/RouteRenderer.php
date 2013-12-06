@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,21 +9,21 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Renderer;
+namespace Braincrafted\Bundle\CocurBundle\Renderer;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\Router;
 
-use Braincrafted\Bundle\StaticSiteBundle\Exception\RouteNotFoundException;
-use Braincrafted\Bundle\StaticSiteBundle\Writer\WriterInterface;
-use Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorCollection;
+use Braincrafted\Bundle\CocurBundle\Exception\RouteNotFoundException;
+use Braincrafted\Bundle\CocurBundle\Writer\WriterInterface;
+use Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection;
 
 /**
  * RouteRenderer renders a page based on the given route.
  *
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Renderer
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer

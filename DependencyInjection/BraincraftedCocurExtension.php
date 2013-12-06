@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -8,7 +8,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\DependencyInjection;
+namespace Braincrafted\Bundle\CocurBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\Loader;
 /**
  * BraincraftedStaticSiteExtension
  *
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage DependencyInjection
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -46,12 +46,12 @@ class BraincraftedStaticSiteExtension extends Extension
             $loader->load($key.'.xml');
         }
 
-        $container->setParameter('braincrafted_static_site.build_directory', $config['build_directory']);
-        $container->setParameter('braincrafted_static_site.index_name', $config['index_name']);
-        $container->setParameter('braincrafted_static_site.base_url', $config['base_url']);
-        $container->setParameter('braincrafted_static_site.routes', $config['routes']);
+        $container->setParameter('braincrafted_cocur.build_directory', $config['build_directory']);
+        $container->setParameter('braincrafted_cocur.index_name', $config['index_name']);
+        $container->setParameter('braincrafted_cocur.base_url', $config['base_url']);
+        $container->setParameter('braincrafted_cocur.routes', $config['routes']);
         $container->setParameter(
-            'braincrafted_static_site.enable_assetic',
+            'braincrafted_cocur.enable_assetic',
             $this->getEnableAssetic($config, $container)
         );
 
@@ -66,7 +66,7 @@ class BraincraftedStaticSiteExtension extends Extension
      */
     protected function buildGenerators(ContainerBuilder $container, array $generators)
     {
-        $collection = $container->getDefinition('braincrafted_static_site.generator.collection');
+        $collection = $container->getDefinition('braincrafted_cocur.generator.collection');
         foreach ($generators as $name => $config) {
             $id = sprintf('%s.%s', $config['generator'], $name);
             $container

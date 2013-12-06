@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Command;
+namespace Braincrafted\Bundle\CocurBundle\Tests\Command;
 
 use \Mockery as m;
 use org\bovigo\vfs\vfsStream;
@@ -18,13 +18,13 @@ use org\bovigo\vfs\vfsStreamDirectory;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
-use Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand;
+use Braincrafted\Bundle\CocurBundle\Command\CleanCommand;
 
 /**
  * CleanCommandTest
  *
  * @category   Test
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Command
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -56,10 +56,10 @@ class CleanCommandTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::__construct()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::configure()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::execute()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::cleanDirectory()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::__construct()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::configure()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::execute()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::cleanDirectory()
      */
     public function executeShouldRunCommand()
     {
@@ -72,7 +72,7 @@ class CleanCommandTest extends \PHPUnit_Framework_TestCase
         $this->filesystem->shouldReceive('remove')->with(sprintf('%s/bar/foo2.txt', $this->buildDir->url()))->once();
         $this->filesystem->shouldReceive('remove')->with(sprintf('%s/bar', $this->buildDir->url()))->once();
 
-        $command = $this->application->find('braincrafted:static-site:clean');
+        $command = $this->application->find('braincrafted:cocur:clean');
         $commandTester = new CommandTester($command);
         $commandTester->execute([ 'command' => $command->getName() ]);
 
@@ -81,10 +81,10 @@ class CleanCommandTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::__construct()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::configure()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::execute()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand::cleanDirectory()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::__construct()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::configure()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::execute()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::cleanDirectory()
      */
     public function executeShouldOutputDetailedInformationInVerboseMode()
     {
@@ -96,7 +96,7 @@ class CleanCommandTest extends \PHPUnit_Framework_TestCase
         $this->filesystem->shouldReceive('remove')->with(sprintf('%s/bar/foo2.txt', $this->buildDir->url()))->once();
         $this->filesystem->shouldReceive('remove')->with(sprintf('%s/bar', $this->buildDir->url()))->once();
 
-        $command = $this->application->find('braincrafted:static-site:clean');
+        $command = $this->application->find('braincrafted:cocur:clean');
         $commandTester = new CommandTester($command);
         $commandTester->execute([ 'command' => $command->getName() ], [ 'verbosity' => 2 ]);
 

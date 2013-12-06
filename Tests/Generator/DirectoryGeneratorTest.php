@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Generator;
+namespace Braincrafted\Bundle\CocurBundle\Tests\Generator;
 
-use Braincrafted\Bundle\StaticSiteBundle\Generator\DirectoryGenerator;
+use Braincrafted\Bundle\CocurBundle\Generator\DirectoryGenerator;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;
 use org\bovigo\vfs\vfsStreamDirectory;
@@ -20,7 +20,7 @@ use org\bovigo\vfs\vfsStreamDirectory;
  * DirectoryGeneratorTest
  *
  * @category   Test
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Generator
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -41,9 +41,9 @@ class DirectoryGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\DirectoryGenerator::__construct()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\DirectoryGenerator::getDirectoryName()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\DirectoryGenerator::getParameter()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\DirectoryGenerator::__construct()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\DirectoryGenerator::getDirectoryName()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\DirectoryGenerator::getParameter()
      */
     public function constructorShouldSetFilenameAndParameter()
     {
@@ -55,7 +55,7 @@ class DirectoryGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\DirectoryGenerator::__construct()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\DirectoryGenerator::__construct()
      *
      * @expectedException \InvalidArgumentException
      */
@@ -67,7 +67,7 @@ class DirectoryGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\DirectoryGenerator::__construct()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\DirectoryGenerator::__construct()
      *
      * @expectedException \InvalidArgumentException
      */
@@ -79,7 +79,7 @@ class DirectoryGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\DirectoryGenerator::generate()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\DirectoryGenerator::generate()
      */
     public function generateShouldReturnListOfParameters()
     {
@@ -103,9 +103,9 @@ class DirectoryGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Generator\DirectoryGenerator::generate()
+     * @covers Braincrafted\Bundle\CocurBundle\Generator\DirectoryGenerator::generate()
      *
-     * @expectedException Braincrafted\Bundle\StaticSiteBundle\Exception\FileNotFoundException
+     * @expectedException Braincrafted\Bundle\CocurBundle\Exception\FileNotFoundException
      */
     public function generateShouldThrowExceptionIfFileNotFound()
     {

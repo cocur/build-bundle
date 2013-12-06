@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -8,7 +8,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Command;
+namespace Braincrafted\Bundle\CocurBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,12 +16,12 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer;
+use Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer;
 
 /**
  * RenderRoutesCommand
  *
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Command
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -49,7 +49,7 @@ class RenderRoutesCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('braincrafted:static-site:render-routes')
+            ->setName('cocur:render-routes')
             ->setDescription('Renders the HTML of all routes')
             ->addOption('base-url', null, InputOption::VALUE_REQUIRED, 'Base URL', null);
     }

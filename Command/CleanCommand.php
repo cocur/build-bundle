@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Command;
+namespace Braincrafted\Bundle\CocurBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -20,12 +20,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
-use Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer;
+use Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer;
 
 /**
  * BuildCommand
  *
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Command
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -56,7 +56,7 @@ class CleanCommand extends Command
      */
     protected function configure()
     {
-        $this->setName('braincrafted:static-site:clean')
+        $this->setName('cocur:clean')
             ->setDescription('Cleans the static site.');
     }
 

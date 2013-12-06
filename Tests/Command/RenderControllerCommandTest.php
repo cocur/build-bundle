@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedStaticSiteBundle.
+ * This file is part of BraincraftedCocurBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,19 +9,19 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\StaticSiteBundle\Tests\Command;
+namespace Braincrafted\Bundle\CocurBundle\Tests\Command;
 
 use \Mockery as m;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
-use Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand;
+use Braincrafted\Bundle\CocurBundle\Command\RenderControllerCommand;
 
 /**
  * RenderControllerCommandTest
  *
  * @category   Test
- * @package    BraincraftedStaticSiteBundle
+ * @package    BraincraftedCocurBundle
  * @subpackage Command
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -41,19 +41,19 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::__construct()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::configure()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::execute()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderControllerCommand::__construct()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderControllerCommand::configure()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderControllerCommand::execute()
      */
     public function executeShouldRunCommand()
     {
-        $renderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer');
+        $renderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer');
         $renderer->shouldReceive('setBaseUrl')->with('/base')->once();
         $renderer->shouldReceive('render')->with('foobar')->once();
 
         $this->application->add(new RenderControllerCommand($renderer));
 
-        $command = $this->application->find('braincrafted:static-site:render-controller');
+        $command = $this->application->find('braincrafted:cocur:render-controller');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command'    => $command->getName(),
@@ -65,16 +65,16 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::__construct()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::configure()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::execute()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderControllerCommand::__construct()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderControllerCommand::configure()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderControllerCommand::execute()
      */
     public function executeShouldOutputErrorIfControllerNotFound()
     {
-        $exception = new \Braincrafted\Bundle\StaticSiteBundle\Exception\ControllerNotFoundException(
+        $exception = new \Braincrafted\Bundle\CocurBundle\Exception\ControllerNotFoundException(
             'Could not find controller "foobar"'
         );
-        $renderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer');
+        $renderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer');
         $renderer
             ->shouldReceive('render')
             ->with('foobar')
@@ -82,7 +82,7 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
 
         $this->application->add(new RenderControllerCommand($renderer));
 
-        $command = $this->application->find('braincrafted:static-site:render-controller');
+        $command = $this->application->find('braincrafted:cocur:render-controller');
         $commandTester = new CommandTester($command);
         $commandTester->execute([ 'command' => $command->getName(), 'controller' => 'foobar' ]);
 
@@ -92,16 +92,16 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::__construct()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::configure()
-     * @covers Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand::execute()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderControllerCommand::__construct()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderControllerCommand::configure()
+     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderControllerCommand::execute()
      */
     public function executeShouldOutputErrorIfRouteNotFound()
     {
-        $exception = new \Braincrafted\Bundle\StaticSiteBundle\Exception\RouteNotFoundException(
+        $exception = new \Braincrafted\Bundle\CocurBundle\Exception\RouteNotFoundException(
             'Could not find route for controller "foobar"'
         );
-        $renderer = m::mock('Braincrafted\Bundle\StaticSiteBundle\Renderer\ControllerRenderer');
+        $renderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer');
         $renderer
             ->shouldReceive('render')
             ->with('foobar')
@@ -109,7 +109,7 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
 
         $this->application->add(new RenderControllerCommand($renderer));
 
-        $command = $this->application->find('braincrafted:static-site:render-controller');
+        $command = $this->application->find('braincrafted:cocur:render-controller');
         $commandTester = new CommandTester($command);
         $commandTester->execute([ 'command' => $command->getName(), 'controller' => 'foobar' ]);
 

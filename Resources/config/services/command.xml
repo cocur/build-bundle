@@ -5,47 +5,47 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="braincrafted_static_site.command.render_controller.class">Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand</parameter>
+        <parameter key="braincrafted_cocur.command.render_controller.class">Braincrafted\Bundle\CocurBundle\Command\RenderControllerCommand</parameter>
 
-        <parameter key="braincrafted_static_site.command.render_route.class">Braincrafted\Bundle\StaticSiteBundle\Command\RenderRouteCommand</parameter>
+        <parameter key="braincrafted_cocur.command.render_route.class">Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand</parameter>
 
-        <parameter key="braincrafted_static_site.command.render_routes.class">Braincrafted\Bundle\StaticSiteBundle\Command\RenderRoutesCommand</parameter>
+        <parameter key="braincrafted_cocur.command.render_routes.class">Braincrafted\Bundle\CocurBundle\Command\RenderRoutesCommand</parameter>
 
-        <parameter key="braincrafted_static_site.command.build.class">Braincrafted\Bundle\StaticSiteBundle\Command\BuildCommand</parameter>
+        <parameter key="braincrafted_cocur.command.build.class">Braincrafted\Bundle\CocurBundle\Command\BuildCommand</parameter>
 
-        <parameter key="braincrafted_static_site.command.clean.class">Braincrafted\Bundle\StaticSiteBundle\Command\CleanCommand</parameter>
+        <parameter key="braincrafted_cocur.command.clean.class">Braincrafted\Bundle\CocurBundle\Command\CleanCommand</parameter>
     </parameters>
 
     <services>
 
-        <service id="braincrafted_static_site.command.render_controller" class="%braincrafted_static_site.command.render_controller.class%">
-            <argument type="service" id="braincrafted_static_site.renderer.controller" />
+        <service id="braincrafted_cocur.command.render_controller" class="%braincrafted_cocur.command.render_controller.class%">
+            <argument type="service" id="braincrafted_cocur.renderer.controller" />
             <tag name="console.command" />
         </service>
 
-        <service id="braincrafted_static_site.command.render_route" class="%braincrafted_static_site.command.render_route.class%">
-            <argument type="service" id="braincrafted_static_site.renderer.route" />
+        <service id="braincrafted_cocur.command.render_route" class="%braincrafted_cocur.command.render_route.class%">
+            <argument type="service" id="braincrafted_cocur.renderer.route" />
             <tag name="console.command" />
         </service>
 
-        <service id="braincrafted_static_site.command.render_routes" class="%braincrafted_static_site.command.render_routes.class%">
-            <argument type="service" id="braincrafted_static_site.renderer.routes" />
+        <service id="braincrafted_cocur.command.render_routes" class="%braincrafted_cocur.command.render_routes.class%">
+            <argument type="service" id="braincrafted_cocur.renderer.routes" />
             <tag name="console.command" />
         </service>
 
-        <service id="braincrafted_static_site.command.build" class="%braincrafted_static_site.command.build.class%">
-            <argument type="service" id="braincrafted_static_site.renderer.routes" />
+        <service id="braincrafted_cocur.command.build" class="%braincrafted_cocur.command.build.class%">
+            <argument type="service" id="braincrafted_cocur.renderer.routes" />
             <argument type="collection">
-                <argument key="base_url">%braincrafted_static_site.base_url%</argument>
-                <argument key="build_directory">%braincrafted_static_site.build_directory%</argument>
-                <argument key="enable_assetic">%braincrafted_static_site.enable_assetic%</argument>
+                <argument key="base_url">%braincrafted_cocur.base_url%</argument>
+                <argument key="build_directory">%braincrafted_cocur.build_directory%</argument>
+                <argument key="enable_assetic">%braincrafted_cocur.enable_assetic%</argument>
             </argument>
             <tag name="console.command" />
         </service>
 
-        <service id="braincrafted_static_site.command.clean" class="%braincrafted_static_site.command.clean.class%">
-            <argument type="service" id="braincrafted_static_site.filesystem" />
-            <argument>%braincrafted_static_site.build_directory%</argument>
+        <service id="braincrafted_cocur.command.clean" class="%braincrafted_cocur.command.clean.class%">
+            <argument type="service" id="braincrafted_cocur.filesystem" />
+            <argument>%braincrafted_cocur.build_directory%</argument>
             <tag name="console.command" />
         </service>
 

@@ -14,7 +14,7 @@
     bootstrap                   = "./vendor/autoload.php" >
 
     <testsuites>
-        <testsuite name="BraincraftedStaticSiteBundle Test Suite">
+        <testsuite name="BraincraftedCocurBundle Test Suite">
             <directory>./Tests</directory>
             <directory></directory>
         </testsuite>

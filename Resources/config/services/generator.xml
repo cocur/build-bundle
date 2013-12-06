@@ -6,41 +6,41 @@
 
     <parameters>
 
-        <parameter key="braincrafted_static_site.generator.collection.class">Braincrafted\Bundle\StaticSiteBundle\Generator\GeneratorCollection</parameter>
-        <parameter key="braincrafted_static_site.file_generator.class">Braincrafted\Bundle\StaticSiteBundle\Generator\FileGenerator</parameter>
-        <parameter key="braincrafted_static_site.json_generator.class">Braincrafted\Bundle\StaticSiteBundle\Generator\JsonGenerator</parameter>
-        <parameter key="braincrafted_static_site.csv_generator.class">Braincrafted\Bundle\StaticSiteBundle\Generator\CSVGenerator</parameter>
-        <parameter key="braincrafted_static_site.directory_generator.class">Braincrafted\Bundle\StaticSiteBundle\Generator\DirectoryGenerator</parameter>
-        <parameter key="braincrafted_static_site.yaml_generator.class">Braincrafted\Bundle\StaticSiteBundle\Generator\YamlGenerator</parameter>
-        <parameter key="braincrafted_static_site.front_matter_generator.class">Braincrafted\Bundle\StaticSiteBundle\Generator\FrontMatterGenerator</parameter>
+        <parameter key="braincrafted_cocur.generator.collection.class">Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection</parameter>
+        <parameter key="braincrafted_cocur.file_generator.class">Braincrafted\Bundle\CocurBundle\Generator\FileGenerator</parameter>
+        <parameter key="braincrafted_cocur.json_generator.class">Braincrafted\Bundle\CocurBundle\Generator\JsonGenerator</parameter>
+        <parameter key="braincrafted_cocur.csv_generator.class">Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator</parameter>
+        <parameter key="braincrafted_cocur.directory_generator.class">Braincrafted\Bundle\CocurBundle\Generator\DirectoryGenerator</parameter>
+        <parameter key="braincrafted_cocur.yaml_generator.class">Braincrafted\Bundle\CocurBundle\Generator\YamlGenerator</parameter>
+        <parameter key="braincrafted_cocur.front_matter_generator.class">Braincrafted\Bundle\CocurBundle\Generator\FrontMatterGenerator</parameter>
 
     </parameters>
 
     <services>
 
-        <service id="braincrafted_static_site.generator.collection" class="%braincrafted_static_site.generator.collection.class%" />
+        <service id="braincrafted_cocur.generator.collection" class="%braincrafted_cocur.generator.collection.class%" />
 
-        <service id="braincrafted_static_site.file_generator" class="%braincrafted_static_site.file_generator.class%" abstract="true">
+        <service id="braincrafted_cocur.file_generator" class="%braincrafted_cocur.file_generator.class%" abstract="true">
             <argument />
         </service>
 
-        <service id="braincrafted_static_site.json_generator" class="%braincrafted_static_site.json_generator.class%" abstract="true">
+        <service id="braincrafted_cocur.json_generator" class="%braincrafted_cocur.json_generator.class%" abstract="true">
             <argument />
         </service>
 
-        <service id="braincrafted_static_site.csv_generator" class="%braincrafted_static_site.csv_generator.class%" abstract="true">
+        <service id="braincrafted_cocur.csv_generator" class="%braincrafted_cocur.csv_generator.class%" abstract="true">
             <argument />
         </service>
 
-        <service id="braincrafted_static_site.directory_generator" class="%braincrafted_static_site.directory_generator.class%" abstract="true">
+        <service id="braincrafted_cocur.directory_generator" class="%braincrafted_cocur.directory_generator.class%" abstract="true">
             <argument />
         </service>
 
-        <service id="braincrafted_static_site.yaml_generator" class="%braincrafted_static_site.yaml_generator.class%" abstract="true">
+        <service id="braincrafted_cocur.yaml_generator" class="%braincrafted_cocur.yaml_generator.class%" abstract="true">
             <argument />
         </service>
 
-        <service id="braincrafted_static_site.front_matter_generator" class="%braincrafted_static_site.front_matter_generator.class%" abstract="true">
+        <service id="braincrafted_cocur.front_matter_generator" class="%braincrafted_cocur.front_matter_generator.class%" abstract="true">
             <argument />
         </service>
 

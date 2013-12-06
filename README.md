@@ -1,9 +1,9 @@
-BraincraftedStaticSiteBundle
-============================
+BraincraftedCocurBundle
+=======================
 
 Static site generator bundle for Symfony2. *Early development release.*
 
-[![Build Status](https://travis-ci.org/braincrafted/static-site-bundle.png?branch=master)](https://travis-ci.org/braincrafted/static-site-bundle)
+[![Build Status](https://travis-ci.org/braincrafted/cocur-bundle.png?branch=master)](https://travis-ci.org/braincrafted/cocur-bundle)
 
 
 Table of Contents
@@ -29,19 +29,19 @@ Motivation
 
 The documentation for [BraincraftedBootstrapBundle](https://github.com/braincrafted/bootstrap-bundle) is a Symfony2
 project, because it is used to test and demonstrate the bundles features. I no longer wanted to maintain (and pay for)
-another Symfony2 project on my server and instead move it to Github Pages. BraincraftedStaticSiteBundle creates static
+another Symfony2 project on my server and instead move it to Github Pages. BraincraftedCocurBundle creates static
 HTML pages from Symfony2 controllers.
 
 
 Installation
 ------------
 
-You can install BraincraftedStaticSiteBundle using [Composer](http://getcomposer.org). Add to your `composer.json`:
+You can install BraincraftedCocurBundle using [Composer](http://getcomposer.org). Add to your `composer.json`:
 
 ```json
 {
     "require": {
-        "braincrafted/static-site-bundle": "dev-master"
+        "braincrafted/cocur-bundle": "dev-master"
     }
 }
 ```
@@ -57,7 +57,7 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             // ...
-            new Braincrafted\Bundle\StaticSiteBundle\BraincraftedStaticSiteBundle(),
+            new Braincrafted\Bundle\CocurBundle\BraincraftedCocurBundle(),
         );
 
         // ...
@@ -84,7 +84,7 @@ The default configuration looks like this:
 
 ```yaml
 # app/config/config.yml
-braincrafted_static_site:
+braincrafted_cocur:
     build_directory: "%kernel.root_dir%/../build/site"
     base_url: ''
     index_name: index.html
@@ -121,11 +121,11 @@ parameter from a file called `data.txt`.
 ```yaml
 # app/config/config.yml
 
-braincrafted_static_site:
+braincrafted_cocur:
     generators:
         page:
             route: acme_demo_page
-            generator: braincrafted_static_site.file_generator
+            generator: braincrafted_cocur.file_generator
             options:
                 filename: "%kernel.root_dir%/../data.txt"
                 parameter: page
@@ -137,7 +137,7 @@ We require now the `data.txt` file that contains one parameter per line.
     about
     contact
 
-StaticSiteBundle will render the following pages:
+CocurBundle will render the following pages:
 
 - `/p/products`
 - `/p/about`
@@ -158,11 +158,11 @@ every file in a directory.
 ```yaml
 # app/config/config.yml
 
-braincrafted_static_site:
+braincrafted_cocur:
     generators:
         article:
             route: acme_demo_article
-            generator: braincrafted_static_site.directory_generator
+            generator: braincrafted_cocur.directory_generator
             options:
                 directory_name: "%kernel.root_dir%/../articles"
                 parameter: slug
@@ -172,12 +172,12 @@ The directory `articles/` contains the following files:
 
     articles/
         ⊢ 2013-12-03-bootstrap-bundle-2-0.md
-        ⊢ 2013-12-04-static-site-bundle-0-1.md
+        ⊢ 2013-12-04-cocur-bundle-0-1.md
 
-StaticSiteBundle will render the following pages:
+CocurBundle will render the following pages:
 
 - `article/2013-12-03-bootstrap-bundle-2-0`
-- `article/2013-12-04-static-site-bundle-0-1`
+- `article/2013-12-04-cocur-bundle-0-1`
 
 #### JSON Generator
 
@@ -197,11 +197,11 @@ Let's consider a route `acme_demo_categorypage` with the path `/page/{category}/
 ```yaml
 # app/config/config.yml
 
-braincrafted_static_site:
+braincrafted_cocur:
     generators:
         categorypage:
             route: acme_demo_categorypage
-            generator: braincrafted_static_site.json_generator
+            generator: braincrafted_cocur.json_generator
             options:
                 filename: "%kernel.root_dir%/../data.json"
 ```
@@ -216,7 +216,7 @@ property:
 ]
 ```
 
-StaticSiteBundle will render the following pages:
+CocurBundle will render the following pages:
 
 - `/pages/foo/bar`
 - `/pages/foo/baz`
@@ -242,11 +242,11 @@ Now we want to render the route `acme_demo_person` with the pattern `/person/{na
 ```yaml
 # app/config/config.yml
 
-braincrafted_static_site:
+braincrafted_cocur:
     generators:
         person:
             route: acme_demo_person
-            generator: braincrafted_static_site.csv_generator
+            generator: braincrafted_cocur.csv_generator
             options:
                 filename: "%kernel.root_dir%/../persons.csv"
 ```
@@ -259,7 +259,7 @@ The CSV file has to contain three columns and a header row containing `name`, `a
 "Daniela", "22", "Vienna"
 ```
 
-StaticSiteBundle will render the following pages:
+CocurBundle will render the following pages:
 
 - `/person/Florian/27/Vienna`
 - `/person/Daniela/22/Vienna`
@@ -282,11 +282,11 @@ file `persons.yaml`.
 ```yaml
 # app/config/config.yml
 
-braincrafted_static_site:
+braincrafted_cocur:
     generators:
         person:
             route: acme_demo_person
-            generator: braincrafted_static_site.yaml_generator
+            generator: braincrafted_cocur.yaml_generator
             options:
                 filename: "%kernel.root_dir%/../persons.yml"
 ```
@@ -304,7 +304,7 @@ The YAML file `persons.yml` has to contain a list element for every person with 
     city: Vienna
 ```
 
-StaticSiteBundle will render the following pages:
+CocurBundle will render the following pages:
 
 - `/person/Florian/27/Vienna`
 - `/person/Daniela/22/Vienna`
@@ -327,11 +327,11 @@ the page for every file in a directory.
 ```yaml
 # app/config/config.yml
 
-braincrafted_static_site:
+braincrafted_cocur:
     generators:
         article:
             route: acme_demo_article
-            generator: braincrafted_static_site.front_matter_generator
+            generator: braincrafted_cocur.front_matter_generator
             options:
                 directory_name: "%kernel.root_dir%/../articles"
 ```
@@ -346,7 +346,7 @@ slug: bootstrap-bundle-2-0
 This is the rest of the file. Just some text.
 ```
 
-StaticSiteBundle will render the following page:
+CocurBundle will render the following page:
 
 - `article/dev/bootstrap-bundle-2-0`
 
@@ -354,24 +354,24 @@ StaticSiteBundle will render the following page:
 Usage
 -----
 
-The build command is the main command offered by BraincraftedStaticSiteBundle. It renders all pages and dumps the assets
+The build command is the main command offered by BraincraftedCocurBundle. It renders all pages and dumps the assets
 into the build directory.
 
 ```bash
-$ php app/console braincrafted:static-site:build
+$ php app/console braincrafted:cocur:build
 ```
 
 The bundle also contains a set of different commands to build pages. First of all, it is possible to build a single page
 based on the name of a controller and an action:
 
 ```bash
-$ php app/console braincrafted:static-site:render-controller AcmeDemoBundle:Default:index
+$ php app/console braincrafted:cocur:render-controller AcmeDemoBundle:Default:index
 ```
 
 It is also possible to build a page based on the name of its route:
 
 ```bash
-$ php app/console braincrafted:static-site:render-route acme_demo_default_index
+$ php app/console braincrafted:cocur:render-route acme_demo_default_index
 ```
 
 You can also render all routes. This command is used internally by the `build` command to render the site, however,
@@ -379,23 +379,23 @@ assets are not dumped into the build directory by the `render-routes` command. I
 with `_`) are excluded:
 
 ```bash
-$ php app/console braincrafted:static-site:render-routes
+$ php app/console braincrafted:cocur:render-routes
 ```
 
-The HTML code will be saved in the directory configured with `braincrafted_static_site.build_directory`.
+The HTML code will be saved in the directory configured with `braincrafted_cocur.build_directory`.
 
-_**Note:** BraincraftedStaticSiteBundle can handle actions with parameters when a generator is configured for these
+_**Note:** BraincraftedCocurBundle can handle actions with parameters when a generator is configured for these
 routes._
 
-When you call one of these commands BraincraftedStaticSiteBundle uses the Symfony2 kernel to simulate a request to a
+When you call one of these commands BraincraftedCocurBundle uses the Symfony2 kernel to simulate a request to a
 page. The kernel is booted in the same environment as the command. If you want to build the pages for production, you
 need to build them in the <code>prod</code> environment.
 
 ```bash
-$ php app/console braincrafted:static-site:build -e prod
+$ php app/console braincrafted:cocur:build -e prod
 ```
 
-If <code>braincrafted:static-site:build</code> is called in the prod environment the cache is cleared before the
+If <code>braincrafted:cocur:build</code> is called in the prod environment the cache is cleared before the
 rendering.
 
 
