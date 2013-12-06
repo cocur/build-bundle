@@ -36,15 +36,19 @@ class BuildCommand extends Command
     /** @var string */
     private $buildDirectory;
 
+    /** @var string */
+    private $baseUrl;
+
     /**
      * Constructor.
      *
      * @param string $buildDirectory
      */
-    public function __construct(RoutesRenderer $renderer, $buildDirectory)
+    public function __construct(RoutesRenderer $renderer, $buildDirectory, $baseUrl)
     {
         $this->renderer       = $renderer;
         $this->buildDirectory = $buildDirectory;
+        $this->baseUrl        = $baseUrl;
 
         parent::__construct();
     }
@@ -74,7 +78,7 @@ class BuildCommand extends Command
         }
 
         $counter = $this->renderer->render();
-        $output->writeln(sprintf("Rendered <info>%s</info> routes.\n", $counter));
+        $output->writeln(sprintf('Rendered <info>%s</info> routes.', $counter));
 
         $this->executeAsseticDump($input, $output);
     }
@@ -88,15 +92,12 @@ class BuildCommand extends Command
     protected function executeCacheClear(InputInterface $input, OutputInterface $output)
     {
         $command = $this->getApplication()->find('cache:clear');
-        $arguments = array(
-            '--env' => 'prod',
-            ''
-        );
-        $input = new ArrayInput($arguments);
-        $returnCode = $command->run($input, $output);
+        $arguments = [ '', '--env' => $input->getOption('env') ];
+
+        $returnCode = $this->executeCommand($command, $arguments, clone $output);
 
         if (0 === $returnCode) {
-            $output->writeln("<info>Cleared cache.</info>\n");
+            $output->writeln('<comment>Cleared cache.</comment>');
         } else {
             $output->writeln("<error>Error clearing cache.</error>\n");
         }
@@ -111,17 +112,45 @@ class BuildCommand extends Command
     protected function executeAsseticDump(InputInterface $input, OutputInterface $output)
     {
         $command = $this->getApplication()->find('assetic:dump');
-        $arguments = array(
-            'write_to' => $this->buildDirectory.$input->getOption('base-url'),
-            '--env'    => $input->getOption('env')
-        );
-        $input = new ArrayInput($arguments);
-        $returnCode = $command->run($input, $output);
+        $arguments = [
+            'write_to'  => $this->buildDirectory.$this->getBaseUrl($input),
+            '--env'     => $input->getOption('env'),
+        ];
+
+        $returnCode = $this->executeCommand($command, $arguments, clone $output);
 
         if (0 === $returnCode) {
-            $output->writeln('<info>Dumped assets into build directory.</info>');
+            $output->writeln('<comment>Dumped assets into build directory.</comment>');
         } else {
             $output->writeln('<error>Erroring dumping assets into build directory.</error>');
         }
+    }
+
+    /**
+     * @param Command         $command
+     * @param array           $arguments
+     * @param OutputInterface $output
+     *
+     * @return integer Exit code
+     */
+    protected function executeCommand(Command $command, array $arguments, OutputInterface $output)
+    {
+        $output = clone $output;
+        if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
+            $output->setVerbosity($output->getVerbosity());
+        } else {
+            $output->setVerbosity(OutputInterface::VERBOSITY_QUIET);
+        }
+
+        return $command->run(new ArrayInput($arguments), $output);
+    }
+
+    protected function getBaseUrl(InputInterface $input)
+    {
+        if ($input->getOption('base-url')) {
+            return $input->getOption('base-url');
+        }
+
+        return $this->baseUrl;
     }
 }
