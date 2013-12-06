@@ -42,7 +42,7 @@ class BraincraftedStaticSiteExtension extends Extension
             $container,
             new FileLocator(__DIR__.'/../Resources/config/services')
         );
-        foreach ([ 'command', 'generator', 'renderer', 'writer' ] as $key) {
+        foreach ([ 'command', 'generator', 'renderer', 'services', 'writer' ] as $key) {
             $loader->load($key.'.xml');
         }
 
@@ -54,6 +54,12 @@ class BraincraftedStaticSiteExtension extends Extension
         }
     }
 
+    /**
+     * @param ContainerBuilder $container
+     * @param array            $generators
+     *
+     * @return void
+     */
     protected function buildGenerators(ContainerBuilder $container, array $generators)
     {
         $collection = $container->getDefinition('braincrafted_static_site.generator.collection');

@@ -33,14 +33,19 @@ use Braincrafted\Bundle\StaticSiteBundle\Renderer\RoutesRenderer;
  */
 class CleanCommand extends Command
 {
+    /** @var Filesystem */
+    private $filesystem;
+
     /** @var string */
     private $buildDirectory;
 
     /**
-     * @param string $buildDirectory
+     * @param Filesystem $filesystem
+     * @param string     $buildDirectory
      */
-    public function __construct($buildDirectory)
+    public function __construct(Filesystem $filesystem, $buildDirectory)
     {
+        $this->filesystem     = $filesystem;
         $this->buildDirectory = $buildDirectory;
 
         parent::__construct();
@@ -61,7 +66,6 @@ class CleanCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $count = $this->cleanDirectory(
-            new Filesystem,
             (new Finder)->in($this->buildDirectory),
             $output
         );
@@ -76,13 +80,12 @@ class CleanCommand extends Command
     /**
      * Iteratores over all given files and deletes them.
      *
-     * @param Filesystem      $filesystem
      * @param Finder          $finder
      * @param OutputInterface $output
      *
      * @return integer Number of deleted files
      */
-    protected function cleanDirectory(Filesystem $filesystem, Finder $finder, OutputInterface $output)
+    protected function cleanDirectory(Finder $finder, OutputInterface $output)
     {
         $count = 0;
         $files = [];
@@ -97,7 +100,7 @@ class CleanCommand extends Command
             if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
                 $output->writeln(sprintf('Delete: <comment>%s</comment>', $file));
             }
-            $filesystem->remove($file);
+            $this->filesystem->remove($file);
             $count += 1;
         }
 
