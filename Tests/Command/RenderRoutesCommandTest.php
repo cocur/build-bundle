@@ -30,16 +30,12 @@ use Braincrafted\Bundle\StaticSiteBundle\Command\RenderRoutesCommand;
  */
 class RenderRoutesCommandTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var Application */
+    private $application;
+
     public function setUp()
     {
-        $this->kernel = m::mock('Symfony\Component\HttpKernel\KernelInterface');
-        $this->kernel->shouldReceive('getName')->andReturn('app');
-        $this->kernel->shouldReceive('getEnvironment')->andReturn('prod');
-        $this->kernel->shouldReceive('isDebug')->andReturn(false);
-    }
-
-    public function tearDown()
-    {
+        $this->application = new Application($this->getMockKernel());
     }
 
     /**
@@ -55,11 +51,9 @@ class RenderRoutesCommandTest extends \PHPUnit_Framework_TestCase
         $renderer->shouldReceive('setBaseUrl')->with('/base')->once();
         $renderer->shouldReceive('render')->andReturn(3)->once();
 
-        // mock the Kernel or create one depending on your needs
-        $application = new Application($this->kernel);
-        $application->add(new RenderRoutesCommand($renderer));
+        $this->application->add(new RenderRoutesCommand($renderer));
 
-        $command = $application->find('braincrafted:static-site:render-routes');
+        $command = $this->application->find('braincrafted:static-site:render-routes');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command'    => $command->getName(),
@@ -67,5 +61,18 @@ class RenderRoutesCommandTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertRegExp('/Rendered 3 routes\./', $commandTester->getDisplay());
+    }
+
+    /**
+     * @return Symfony\Component\HttpKernel\KernelInterface
+     */
+    protected function getMockKernel()
+    {
+        $kernel = m::mock('Symfony\Component\HttpKernel\KernelInterface');
+        $kernel->shouldReceive('getName')->andReturn('app');
+        $kernel->shouldReceive('getEnvironment')->andReturn('prod');
+        $kernel->shouldReceive('isDebug')->andReturn(false);
+
+        return $kernel;
     }
 }

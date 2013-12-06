@@ -30,16 +30,12 @@ use Braincrafted\Bundle\StaticSiteBundle\Command\RenderControllerCommand;
  */
 class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var Application */
+    private $application;
+
     public function setUp()
     {
-        $this->kernel = m::mock('Symfony\Component\HttpKernel\KernelInterface');
-        $this->kernel->shouldReceive('getName')->andReturn('app');
-        $this->kernel->shouldReceive('getEnvironment')->andReturn('prod');
-        $this->kernel->shouldReceive('isDebug')->andReturn(false);
-    }
-
-    public function tearDown()
-    {
+        $this->application = new Application($this->getMockKernel());
     }
 
     /**
@@ -55,11 +51,9 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
         $renderer->shouldReceive('setBaseUrl')->with('/base')->once();
         $renderer->shouldReceive('render')->with('foobar')->once();
 
-        // mock the Kernel or create one depending on your needs
-        $application = new Application($this->kernel);
-        $application->add(new RenderControllerCommand($renderer));
+        $this->application->add(new RenderControllerCommand($renderer));
 
-        $command = $application->find('braincrafted:static-site:render-controller');
+        $command = $this->application->find('braincrafted:static-site:render-controller');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command'    => $command->getName(),
@@ -86,11 +80,9 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
             ->with('foobar')
             ->andThrow($exception);
 
-        // mock the Kernel or create one depending on your needs
-        $application = new Application($this->kernel);
-        $application->add(new RenderControllerCommand($renderer));
+        $this->application->add(new RenderControllerCommand($renderer));
 
-        $command = $application->find('braincrafted:static-site:render-controller');
+        $command = $this->application->find('braincrafted:static-site:render-controller');
         $commandTester = new CommandTester($command);
         $commandTester->execute([ 'command' => $command->getName(), 'controller' => 'foobar' ]);
 
@@ -115,14 +107,25 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
             ->with('foobar')
             ->andThrow($exception);
 
-        // mock the Kernel or create one depending on your needs
-        $application = new Application($this->kernel);
-        $application->add(new RenderControllerCommand($renderer));
+        $this->application->add(new RenderControllerCommand($renderer));
 
-        $command = $application->find('braincrafted:static-site:render-controller');
+        $command = $this->application->find('braincrafted:static-site:render-controller');
         $commandTester = new CommandTester($command);
         $commandTester->execute([ 'command' => $command->getName(), 'controller' => 'foobar' ]);
 
         $this->assertRegExp('/Could not find route for controller "foobar"/', $commandTester->getDisplay());
+    }
+
+    /**
+     * @return Symfony\Component\HttpKernel\KernelInterface
+     */
+    protected function getMockKernel()
+    {
+        $kernel = m::mock('Symfony\Component\HttpKernel\KernelInterface');
+        $kernel->shouldReceive('getName')->andReturn('app');
+        $kernel->shouldReceive('getEnvironment')->andReturn('prod');
+        $kernel->shouldReceive('isDebug')->andReturn(false);
+
+        return $kernel;
     }
 }
