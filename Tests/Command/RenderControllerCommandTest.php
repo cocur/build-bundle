@@ -53,7 +53,7 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
 
         $this->application->add(new RenderControllerCommand($renderer));
 
-        $command = $this->application->find('braincrafted:cocur:render-controller');
+        $command = $this->application->find('cocur:render-controller');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command'    => $command->getName(),
@@ -82,7 +82,7 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
 
         $this->application->add(new RenderControllerCommand($renderer));
 
-        $command = $this->application->find('braincrafted:cocur:render-controller');
+        $command = $this->application->find('cocur:render-controller');
         $commandTester = new CommandTester($command);
         $commandTester->execute([ 'command' => $command->getName(), 'controller' => 'foobar' ]);
 
@@ -109,7 +109,7 @@ class RenderControllerCommandTest extends \PHPUnit_Framework_TestCase
 
         $this->application->add(new RenderControllerCommand($renderer));
 
-        $command = $this->application->find('braincrafted:cocur:render-controller');
+        $command = $this->application->find('cocur:render-controller');
         $commandTester = new CommandTester($command);
         $commandTester->execute([ 'command' => $command->getName(), 'controller' => 'foobar' ]);
 

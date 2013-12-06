@@ -53,7 +53,7 @@ class RenderRoutesCommandTest extends \PHPUnit_Framework_TestCase
 
         $this->application->add(new RenderRoutesCommand($renderer));
 
-        $command = $this->application->find('braincrafted:cocur:render-routes');
+        $command = $this->application->find('cocur:render-routes');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command'    => $command->getName(),

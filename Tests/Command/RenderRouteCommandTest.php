@@ -53,7 +53,7 @@ class RenderRouteCommandTest extends \PHPUnit_Framework_TestCase
 
         $this->application->add(new RenderRouteCommand($renderer));
 
-        $command = $this->application->find('braincrafted:cocur:render-route');
+        $command = $this->application->find('cocur:render-route');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command'    => $command->getName(),
@@ -82,7 +82,7 @@ class RenderRouteCommandTest extends \PHPUnit_Framework_TestCase
 
         $this->application->add(new RenderRouteCommand($renderer));
 
-        $command = $this->application->find('braincrafted:cocur:render-route');
+        $command = $this->application->find('cocur:render-route');
         $commandTester = new CommandTester($command);
         $commandTester->execute([ 'command' => $command->getName(), 'route' => 'foobar' ]);
 

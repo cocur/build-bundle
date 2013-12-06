@@ -72,7 +72,7 @@ class CleanCommandTest extends \PHPUnit_Framework_TestCase
         $this->filesystem->shouldReceive('remove')->with(sprintf('%s/bar/foo2.txt', $this->buildDir->url()))->once();
         $this->filesystem->shouldReceive('remove')->with(sprintf('%s/bar', $this->buildDir->url()))->once();
 
-        $command = $this->application->find('braincrafted:cocur:clean');
+        $command = $this->application->find('cocur:clean');
         $commandTester = new CommandTester($command);
         $commandTester->execute([ 'command' => $command->getName() ]);
 
@@ -96,7 +96,7 @@ class CleanCommandTest extends \PHPUnit_Framework_TestCase
         $this->filesystem->shouldReceive('remove')->with(sprintf('%s/bar/foo2.txt', $this->buildDir->url()))->once();
         $this->filesystem->shouldReceive('remove')->with(sprintf('%s/bar', $this->buildDir->url()))->once();
 
-        $command = $this->application->find('braincrafted:cocur:clean');
+        $command = $this->application->find('cocur:clean');
         $commandTester = new CommandTester($command);
         $commandTester->execute([ 'command' => $command->getName() ], [ 'verbosity' => 2 ]);
 

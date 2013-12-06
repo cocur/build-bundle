@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * BraincraftedStaticSiteExtension
+ * BraincraftedCocurExtension
  *
  * @package    BraincraftedCocurBundle
  * @subpackage DependencyInjection
@@ -28,7 +28,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * @codeCoverageIgnore
  */
-class BraincraftedStaticSiteExtension extends Extension
+class BraincraftedCocurExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -50,10 +50,7 @@ class BraincraftedStaticSiteExtension extends Extension
         $container->setParameter('braincrafted_cocur.index_name', $config['index_name']);
         $container->setParameter('braincrafted_cocur.base_url', $config['base_url']);
         $container->setParameter('braincrafted_cocur.routes', $config['routes']);
-        $container->setParameter(
-            'braincrafted_cocur.enable_assetic',
-            $this->getEnableAssetic($config, $container)
-        );
+        $container->setParameter('braincrafted_cocur.enable_assetic', $this->getEnableAssetic($config, $container));
 
         $this->buildGenerators($container, $config['generators']);
     }
