@@ -6,34 +6,34 @@
 
     <parameters>
 
-        <parameter key="braincrafted_cocur.renderer.controller.class">Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer</parameter>
+        <parameter key="cocur_build.renderer.controller.class">Cocur\Bundle\BuildBundle\Renderer\ControllerRenderer</parameter>
 
-        <parameter key="braincrafted_cocur.renderer.route.class">Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer</parameter>
+        <parameter key="cocur_build.renderer.route.class">Cocur\Bundle\BuildBundle\Renderer\RouteRenderer</parameter>
 
-        <parameter key="braincrafted_cocur.renderer.routes.class">Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer</parameter>
+        <parameter key="cocur_build.renderer.routes.class">Cocur\Bundle\BuildBundle\Renderer\RoutesRenderer</parameter>
 
     </parameters>
 
     <services>
 
-        <service id="braincrafted_cocur.renderer.controller" class="%braincrafted_cocur.renderer.controller.class%">
-            <argument type="service" id="braincrafted_cocur.renderer.route" />
+        <service id="cocur_build.renderer.controller" class="%cocur_build.renderer.controller.class%">
+            <argument type="service" id="cocur_build.renderer.route" />
             <argument type="service" id="controller_name_converter" />
             <argument type="service" id="router" />
         </service>
 
-        <service id="braincrafted_cocur.renderer.route" class="%braincrafted_cocur.renderer.route.class%">
+        <service id="cocur_build.renderer.route" class="%cocur_build.renderer.route.class%">
             <argument type="service" id="kernel" />
             <argument type="service" id="router" />
-            <argument type="service" id="braincrafted_cocur.writer.filesystem" />
-            <argument type="service" id="braincrafted_cocur.generator.collection" />
-            <argument>%braincrafted_cocur.base_url%</argument>
+            <argument type="service" id="cocur_build.writer.filesystem" />
+            <argument type="service" id="cocur_build.generator.collection" />
+            <argument>%cocur_build.base_url%</argument>
         </service>
 
-        <service id="braincrafted_cocur.renderer.routes" class="%braincrafted_cocur.renderer.routes.class%">
-            <argument type="service" id="braincrafted_cocur.renderer.route" />
+        <service id="cocur_build.renderer.routes" class="%cocur_build.renderer.routes.class%">
+            <argument type="service" id="cocur_build.renderer.route" />
             <argument type="service" id="router" />
-            <argument>%braincrafted_cocur.routes%</argument>
+            <argument>%cocur_build.routes%</argument>
         </service>
 
     </services>

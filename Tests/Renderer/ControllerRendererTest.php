@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,17 +9,17 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Tests\Renderer;
+namespace Cocur\Bundle\BuildBundle\Tests\Renderer;
 
 use \Mockery as m;
 
-use Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer;
+use Cocur\Bundle\BuildBundle\Renderer\ControllerRenderer;
 
 /**
  * ControllerRendererTest
  *
  * @category   Test
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Renderer
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -31,7 +31,7 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
     /** @var ControllerRenderer */
     private $renderer;
 
-    /** @var Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer */
+    /** @var Cocur\Bundle\BuildBundle\Renderer\RouteRenderer */
     private $routeRenderer;
 
     /** @var Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser */
@@ -42,7 +42,7 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->routeRenderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer');
+        $this->routeRenderer = m::mock('Cocur\Bundle\BuildBundle\Renderer\RouteRenderer');
         $this->nameParser = m::mock('Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser');
         $this->router = m::mock('Symfony\Component\Routing\Router');
 
@@ -52,7 +52,7 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::setBaseUrl()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\ControllerRenderer::setBaseUrl()
      */
     public function setBaseUrlShouldSetBaseUrl()
     {
@@ -69,9 +69,9 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::render()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::getControllerName()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::getRoute()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\ControllerRenderer::render()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\ControllerRenderer::getControllerName()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\ControllerRenderer::getRoute()
      */
     public function renderShouldRenderController()
     {
@@ -102,10 +102,10 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::render()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::getControllerName()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\ControllerRenderer::render()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\ControllerRenderer::getControllerName()
      *
-     * @expectedException Braincrafted\Bundle\CocurBundle\Exception\ControllerNotFoundException
+     * @expectedException Cocur\Bundle\BuildBundle\Exception\ControllerNotFoundException
      */
     public function renderShouldThrowExceptionIfControllerNotFound()
     {
@@ -119,11 +119,11 @@ class ControllerRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::render()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::getControllerName()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer::getRoute()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\ControllerRenderer::render()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\ControllerRenderer::getControllerName()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\ControllerRenderer::getRoute()
      *
-     * @expectedException Braincrafted\Bundle\CocurBundle\Exception\RouteNotFoundException
+     * @expectedException Cocur\Bundle\BuildBundle\Exception\RouteNotFoundException
      */
     public function renderShouldThrowExceptionIfRouteNotFound()
     {

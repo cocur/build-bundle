@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,19 +9,19 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Tests\Command;
+namespace Cocur\Bundle\BuildBundle\Tests\Command;
 
 use \Mockery as m;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
-use Braincrafted\Bundle\CocurBundle\Command\RenderRoutesCommand;
+use Cocur\Bundle\BuildBundle\Command\RenderRoutesCommand;
 
 /**
  * RenderRoutesCommandTest
  *
  * @category   Test
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Command
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -41,13 +41,13 @@ class RenderRoutesCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRoutesCommand::__construct()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRoutesCommand::configure()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRoutesCommand::execute()
+     * @covers Cocur\Bundle\BuildBundle\Command\RenderRoutesCommand::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Command\RenderRoutesCommand::configure()
+     * @covers Cocur\Bundle\BuildBundle\Command\RenderRoutesCommand::execute()
      */
     public function executeShouldRunCommand()
     {
-        $renderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer');
+        $renderer = m::mock('Cocur\Bundle\BuildBundle\Renderer\RoutesRenderer');
         $renderer->shouldReceive('setBaseUrl')->with('/base')->once();
         $renderer->shouldReceive('render')->andReturn(3)->once();
 

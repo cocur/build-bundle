@@ -1,6 +1,6 @@
 {
-    "name":         "braincrafted/cocur-bundle",
-    "description":  "BraincraftedCocurBundle",
+    "name":         "cocur/build-bundle",
+    "description":  "CocurBuildBundle",
     "keywords":     [ "static site" ],
     "type":         "symfony-bundle",
     "license":      "MIT",
@@ -23,7 +23,7 @@
         "symfony/assetic-bundle": "~2.3"
     },
     "autoload": {
-        "psr-0": { "Braincrafted\\Bundle\\CocurBundle": "" }
+        "psr-0": { "Cocur\\Bundle\\BuildBundle": "" }
     },
-    "target-dir": "Braincrafted/Bundle/CocurBundle"
+    "target-dir": "Cocur/Bundle/BuildBundle"
 }

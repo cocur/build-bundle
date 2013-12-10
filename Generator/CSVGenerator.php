@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Generator;
+namespace Cocur\Bundle\BuildBundle\Generator;
 
-use Braincrafted\Bundle\CocurBundle\Exception\FileNotFoundException;
+use Cocur\Bundle\BuildBundle\Exception\FileNotFoundException;
 use Braincrafted\Json\Json;
 
 /**
@@ -30,7 +30,7 @@ use Braincrafted\Json\Json;
  * - `escape` (default value: `\`)
  * - `parameters` (default value: `null`)
  *
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Generator
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer

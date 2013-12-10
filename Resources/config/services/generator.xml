@@ -6,41 +6,41 @@
 
     <parameters>
 
-        <parameter key="braincrafted_cocur.generator.collection.class">Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection</parameter>
-        <parameter key="braincrafted_cocur.file_generator.class">Braincrafted\Bundle\CocurBundle\Generator\FileGenerator</parameter>
-        <parameter key="braincrafted_cocur.json_generator.class">Braincrafted\Bundle\CocurBundle\Generator\JsonGenerator</parameter>
-        <parameter key="braincrafted_cocur.csv_generator.class">Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator</parameter>
-        <parameter key="braincrafted_cocur.directory_generator.class">Braincrafted\Bundle\CocurBundle\Generator\DirectoryGenerator</parameter>
-        <parameter key="braincrafted_cocur.yaml_generator.class">Braincrafted\Bundle\CocurBundle\Generator\YamlGenerator</parameter>
-        <parameter key="braincrafted_cocur.front_matter_generator.class">Braincrafted\Bundle\CocurBundle\Generator\FrontMatterGenerator</parameter>
+        <parameter key="cocur_build.generator.collection.class">Cocur\Bundle\BuildBundle\Generator\GeneratorCollection</parameter>
+        <parameter key="cocur_build.file_generator.class">Cocur\Bundle\BuildBundle\Generator\FileGenerator</parameter>
+        <parameter key="cocur_build.json_generator.class">Cocur\Bundle\BuildBundle\Generator\JsonGenerator</parameter>
+        <parameter key="cocur_build.csv_generator.class">Cocur\Bundle\BuildBundle\Generator\CSVGenerator</parameter>
+        <parameter key="cocur_build.directory_generator.class">Cocur\Bundle\BuildBundle\Generator\DirectoryGenerator</parameter>
+        <parameter key="cocur_build.yaml_generator.class">Cocur\Bundle\BuildBundle\Generator\YamlGenerator</parameter>
+        <parameter key="cocur_build.front_matter_generator.class">Cocur\Bundle\BuildBundle\Generator\FrontMatterGenerator</parameter>
 
     </parameters>
 
     <services>
 
-        <service id="braincrafted_cocur.generator.collection" class="%braincrafted_cocur.generator.collection.class%" />
+        <service id="cocur_build.generator.collection" class="%cocur_build.generator.collection.class%" />
 
-        <service id="braincrafted_cocur.file_generator" class="%braincrafted_cocur.file_generator.class%" abstract="true">
+        <service id="cocur_build.file_generator" class="%cocur_build.file_generator.class%" abstract="true">
             <argument />
         </service>
 
-        <service id="braincrafted_cocur.json_generator" class="%braincrafted_cocur.json_generator.class%" abstract="true">
+        <service id="cocur_build.json_generator" class="%cocur_build.json_generator.class%" abstract="true">
             <argument />
         </service>
 
-        <service id="braincrafted_cocur.csv_generator" class="%braincrafted_cocur.csv_generator.class%" abstract="true">
+        <service id="cocur_build.csv_generator" class="%cocur_build.csv_generator.class%" abstract="true">
             <argument />
         </service>
 
-        <service id="braincrafted_cocur.directory_generator" class="%braincrafted_cocur.directory_generator.class%" abstract="true">
+        <service id="cocur_build.directory_generator" class="%cocur_build.directory_generator.class%" abstract="true">
             <argument />
         </service>
 
-        <service id="braincrafted_cocur.yaml_generator" class="%braincrafted_cocur.yaml_generator.class%" abstract="true">
+        <service id="cocur_build.yaml_generator" class="%cocur_build.yaml_generator.class%" abstract="true">
             <argument />
         </service>
 
-        <service id="braincrafted_cocur.front_matter_generator" class="%braincrafted_cocur.front_matter_generator.class%" abstract="true">
+        <service id="cocur_build.front_matter_generator" class="%cocur_build.front_matter_generator.class%" abstract="true">
             <argument />
         </service>
 

@@ -5,14 +5,14 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="braincrafted_cocur.writer.filesystem.class">Braincrafted\Bundle\CocurBundle\Writer\FilesystemWriter</parameter>
+        <parameter key="cocur_buildd.writer.filesystem.class">Cocur\Bundle\BuildBundle\Writer\FilesystemWriter</parameter>
     </parameters>
 
     <services>
-        <service id="braincrafted_cocur.writer.filesystem" class="%braincrafted_cocur.writer.filesystem.class%">
+        <service id="cocur_buildd.writer.filesystem" class="%cocur_buildd.writer.filesystem.class%">
             <argument type="service" id="filesystem" />
-            <argument>%braincrafted_cocur.build_directory%</argument>
-            <argument>%braincrafted_cocur.index_name%</argument>
+            <argument>%cocur_buildd.build_directory%</argument>
+            <argument>%cocur_buildd.index_name%</argument>
         </service>
     </services>
 

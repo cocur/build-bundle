@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,11 +9,11 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Generator;
+namespace Cocur\Bundle\BuildBundle\Generator;
 
 use Symfony\Component\Finder\Finder;
 
-use Braincrafted\Bundle\CocurBundle\Exception\FileNotFoundException;
+use Cocur\Bundle\BuildBundle\Exception\FileNotFoundException;
 
 /**
  * DirectoryGenerator.
@@ -25,7 +25,7 @@ use Braincrafted\Bundle\CocurBundle\Exception\FileNotFoundException;
  * - `filename`
  * - `parameter`
  *
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Generator
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer

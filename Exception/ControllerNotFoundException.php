@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -8,12 +8,12 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Exception;
+namespace Cocur\Bundle\BuildBundle\Exception;
 
 /**
  * ControllerNotFoundException
  *
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Exception
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer

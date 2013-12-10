@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,19 +9,19 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Tests\Command;
+namespace Cocur\Bundle\BuildBundle\Tests\Command;
 
 use \Mockery as m;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
-use Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand;
+use Cocur\Bundle\BuildBundle\Command\RenderRouteCommand;
 
 /**
  * RenderRouteCommandTest
  *
  * @category   Test
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Command
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -41,13 +41,13 @@ class RenderRouteCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand::__construct()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand::configure()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand::execute()
+     * @covers Cocur\Bundle\BuildBundle\Command\RenderRouteCommand::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Command\RenderRouteCommand::configure()
+     * @covers Cocur\Bundle\BuildBundle\Command\RenderRouteCommand::execute()
      */
     public function executeShouldRunCommand()
     {
-        $renderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer');
+        $renderer = m::mock('Cocur\Bundle\BuildBundle\Renderer\RouteRenderer');
         $renderer->shouldReceive('setBaseUrl')->with('/base')->once();
         $renderer->shouldReceive('renderByName')->with('foobar')->once();
 
@@ -65,16 +65,16 @@ class RenderRouteCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand::__construct()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand::configure()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand::execute()
+     * @covers Cocur\Bundle\BuildBundle\Command\RenderRouteCommand::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Command\RenderRouteCommand::configure()
+     * @covers Cocur\Bundle\BuildBundle\Command\RenderRouteCommand::execute()
      */
     public function executeShouldOutputErrorIfRouteNotFound()
     {
-        $exception = new \Braincrafted\Bundle\CocurBundle\Exception\RouteNotFoundException(
+        $exception = new \Cocur\Bundle\BuildBundle\Exception\RouteNotFoundException(
             'There is no route "foobar"'
         );
-        $renderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer');
+        $renderer = m::mock('Cocur\Bundle\BuildBundle\Renderer\RouteRenderer');
         $renderer
             ->shouldReceive('renderByName')
             ->with('foobar')

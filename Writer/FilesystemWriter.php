@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -8,14 +8,14 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Writer;
+namespace Cocur\Bundle\BuildBundle\Writer;
 
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * FilesystemWriter writes pages to the filesystem.
  *
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Writer
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer

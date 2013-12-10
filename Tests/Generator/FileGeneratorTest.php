@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Tests\Generator;
+namespace Cocur\Bundle\BuildBundle\Tests\Generator;
 
-use Braincrafted\Bundle\CocurBundle\Generator\FileGenerator;
+use Cocur\Bundle\BuildBundle\Generator\FileGenerator;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;
 use org\bovigo\vfs\vfsStreamDirectory;
@@ -20,7 +20,7 @@ use org\bovigo\vfs\vfsStreamDirectory;
  * FileGeneratorTest
  *
  * @category   Test
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Generator
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -41,9 +41,9 @@ class FileGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FileGenerator::__construct()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FileGenerator::getFilename()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FileGenerator::getParameter()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FileGenerator::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FileGenerator::getFilename()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FileGenerator::getParameter()
      */
     public function constructorShouldSetFilenameAndParameter()
     {
@@ -55,7 +55,7 @@ class FileGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FileGenerator::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FileGenerator::__construct()
      *
      * @expectedException \InvalidArgumentException
      */
@@ -67,7 +67,7 @@ class FileGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FileGenerator::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FileGenerator::__construct()
      *
      * @expectedException \InvalidArgumentException
      */
@@ -79,7 +79,7 @@ class FileGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FileGenerator::generate()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FileGenerator::generate()
      */
     public function generateShouldReturnListOfParameters()
     {
@@ -98,9 +98,9 @@ class FileGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FileGenerator::generate()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FileGenerator::generate()
      *
-     * @expectedException Braincrafted\Bundle\CocurBundle\Exception\FileNotFoundException
+     * @expectedException Cocur\Bundle\BuildBundle\Exception\FileNotFoundException
      */
     public function generateShouldThrowExceptionIfFileNotFound()
     {

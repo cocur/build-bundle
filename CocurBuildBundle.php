@@ -1,6 +1,7 @@
 <?php
+
 /**
- * This file is part of BraincraftedCocurBundleBraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -8,18 +9,19 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle;
+namespace Cocur\Bundle\BuildBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * BraincraftedCocurBundle
+ * CocurBuildBundle
  *
- * @package   BraincraftedCocurBundle
+ * @package   CocurBuildBundle
  * @author    Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright 2013 Florian Eckerstorfer
  * @license   http://opensource.org/licenses/MIT The MIT License
+ * @link      http://cocur.florian.ec
  */
-class BraincraftedCocurBundle extends Bundle
+class CocurBuildBundle extends Bundle
 {
 }

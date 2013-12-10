@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Tests\Command;
+namespace Cocur\Bundle\BuildBundle\Tests\Command;
 
 use \Mockery as m;
 use org\bovigo\vfs\vfsStream;
@@ -20,13 +20,13 @@ use Symfony\Bundle\AsseticBundle\Command\DumpCommand as AsseticDumpCommand;;
 use Symfony\Bundle\FrameworkBundle\Command\AssetsInstallCommand;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
-use Braincrafted\Bundle\CocurBundle\Command\BuildCommand;
+use Cocur\Bundle\BuildBundle\Command\BuildCommand;
 
 /**
  * BuildCommandTest
  *
  * @category   Test
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Command
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -62,23 +62,23 @@ class BuildCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function constructorShouldThrowExceptionIfNoBuildDirectory()
     {
-        new BuildCommand(m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer'), []);
+        new BuildCommand(m::mock('Cocur\Bundle\BuildBundle\Renderer\RoutesRenderer'), []);
     }
 
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::__construct()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::configure()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::execute()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::executeAssetsInstall()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::executeAsseticDump()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::executeCommand()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::getBaseUrl()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::configure()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::execute()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::executeAssetsInstall()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::executeAsseticDump()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::executeCommand()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::getBaseUrl()
      */
     public function executeShouldRunCommand()
     {
-        $renderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer');
+        $renderer = m::mock('Cocur\Bundle\BuildBundle\Renderer\RoutesRenderer');
         $renderer->shouldReceive('render')->once()->andReturn(1);
 
         $assetsInstallCommand = new AssetsInstallCommand();
@@ -100,17 +100,17 @@ class BuildCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::__construct()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::configure()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::execute()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::executeAssetsInstall()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::executeAsseticDump()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::executeCommand()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::getBaseUrl()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::configure()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::execute()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::executeAssetsInstall()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::executeAsseticDump()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::executeCommand()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::getBaseUrl()
      */
     public function executeShouldRunCommandWithHighVerbosity()
     {
-        $renderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer');
+        $renderer = m::mock('Cocur\Bundle\BuildBundle\Renderer\RoutesRenderer');
         $renderer->shouldReceive('render')->once()->andReturn(1);
 
         $assetsInstallCommand = new AssetsInstallCommand();
@@ -132,19 +132,19 @@ class BuildCommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::__construct()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::configure()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::execute()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::executeAssetsInstall()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::executeAsseticDump()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::executeCommand()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\BuildCommand::getBaseUrl()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::configure()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::execute()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::executeAssetsInstall()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::executeAsseticDump()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::executeCommand()
+     * @covers Cocur\Bundle\BuildBundle\Command\BuildCommand::getBaseUrl()
      */
     public function executeShouldRunCommandWithBaseUrl()
     {
         $this->buildDir->addChild(vfsStream::newDirectory('subdir'));
 
-        $renderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer');
+        $renderer = m::mock('Cocur\Bundle\BuildBundle\Renderer\RoutesRenderer');
         $renderer->shouldReceive('render')->once()->andReturn(1);
         $renderer->shouldReceive('setBaseUrl')->with('/subdir')->once();
 

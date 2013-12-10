@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Tests\Writer;
+namespace Cocur\Bundle\BuildBundle\Tests\Writer;
 
 use \Mockery as m;
 use org\bovigo\vfs\vfsStream;
@@ -17,13 +17,13 @@ use org\bovigo\vfs\vfsStreamWrapper;
 use org\bovigo\vfs\vfsStreamDirectory;
 use Symfony\Component\Filesystem\Filesystem;
 
-use Braincrafted\Bundle\CocurBundle\Writer\FilesystemWriter;
+use Cocur\Bundle\BuildBundle\Writer\FilesystemWriter;
 
 /**
  * FilesystemWriterTest
  *
  * @category   Tests
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Writer
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -59,8 +59,8 @@ class FilesystemWriterTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Writer\FilesystemWriter::write()
-     * @covers Braincrafted\Bundle\CocurBundle\Writer\FilesystemWriter::getRealName()
+     * @covers Cocur\Bundle\BuildBundle\Writer\FilesystemWriter::write()
+     * @covers Cocur\Bundle\BuildBundle\Writer\FilesystemWriter::getRealName()
      */
     public function writeShouldWriteFileToDisk()
     {
@@ -74,8 +74,8 @@ class FilesystemWriterTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Writer\FilesystemWriter::write()
-     * @covers Braincrafted\Bundle\CocurBundle\Writer\FilesystemWriter::getRealName()
+     * @covers Cocur\Bundle\BuildBundle\Writer\FilesystemWriter::write()
+     * @covers Cocur\Bundle\BuildBundle\Writer\FilesystemWriter::getRealName()
      */
     public function writeShouldWriteIfFileIsInDirectory()
     {

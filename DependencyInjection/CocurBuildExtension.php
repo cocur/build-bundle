@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -8,7 +8,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\DependencyInjection;
+namespace Cocur\Bundle\BuildBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\Loader;
 /**
  * BraincraftedCocurExtension
  *
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage DependencyInjection
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -46,11 +46,11 @@ class BraincraftedCocurExtension extends Extension
             $loader->load($key.'.xml');
         }
 
-        $container->setParameter('braincrafted_cocur.build_directory', $config['build_directory']);
-        $container->setParameter('braincrafted_cocur.index_name', $config['index_name']);
-        $container->setParameter('braincrafted_cocur.base_url', $config['base_url']);
-        $container->setParameter('braincrafted_cocur.routes', $config['routes']);
-        $container->setParameter('braincrafted_cocur.enable_assetic', $this->getEnableAssetic($config, $container));
+        $container->setParameter('cocur_build.build_directory', $config['build_directory']);
+        $container->setParameter('cocur_build.index_name', $config['index_name']);
+        $container->setParameter('cocur_build.base_url', $config['base_url']);
+        $container->setParameter('cocur_build.routes', $config['routes']);
+        $container->setParameter('cocur_build.enable_assetic', $this->getEnableAssetic($config, $container));
 
         $this->buildGenerators($container, $config['generators']);
     }
@@ -63,7 +63,7 @@ class BraincraftedCocurExtension extends Extension
      */
     protected function buildGenerators(ContainerBuilder $container, array $generators)
     {
-        $collection = $container->getDefinition('braincrafted_cocur.generator.collection');
+        $collection = $container->getDefinition('cocur_build.generator.collection');
         foreach ($generators as $name => $config) {
             $id = sprintf('%s.%s', $config['generator'], $name);
             $container

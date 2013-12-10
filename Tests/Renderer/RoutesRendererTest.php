@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,17 +9,17 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Tests\Renderer;
+namespace Cocur\Bundle\BuildBundle\Tests\Renderer;
 
 use \Mockery as m;
 
-use Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer;
+use Cocur\Bundle\BuildBundle\Renderer\RoutesRenderer;
 
 /**
  * RoutesRendererTest
  *
  * @category   Test
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Renderer
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -31,7 +31,7 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
     /** @var RoutesRenderer */
     private $renderer;
 
-    /** @var Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer */
+    /** @var Cocur\Bundle\BuildBundle\Renderer\RouteRenderer */
     private $routeRenderer;
 
     /** @var Symfony\Component\Routing\Router */
@@ -39,7 +39,7 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->routeRenderer = m::mock('Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer');
+        $this->routeRenderer = m::mock('Cocur\Bundle\BuildBundle\Renderer\RouteRenderer');
         $this->router = m::mock('Symfony\Component\Routing\Router');
 
         $this->renderer = new RoutesRenderer($this->routeRenderer, $this->router);
@@ -48,7 +48,7 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer::setBaseUrl()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RoutesRenderer::setBaseUrl()
      */
     public function setBaseUrlShouldPropagateBaseUrlToRouteRenderer()
     {
@@ -65,8 +65,8 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer::render()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer::getRoutes()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RoutesRenderer::render()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RoutesRenderer::getRoutes()
      */
     public function renderShouldRenderRoutes()
     {
@@ -101,8 +101,8 @@ class RoutesRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer::render()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RoutesRenderer::getRoutes()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RoutesRenderer::render()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RoutesRenderer::getRoutes()
      */
     public function renderShouldRenderRoutesThatArePassedToTheConstructor()
     {

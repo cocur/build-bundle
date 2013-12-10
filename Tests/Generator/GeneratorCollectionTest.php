@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,16 +9,16 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Tests\Generator;
+namespace Cocur\Bundle\BuildBundle\Tests\Generator;
 
 use \Mockery as m;
-use Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection;
+use Cocur\Bundle\BuildBundle\Generator\GeneratorCollection;
 
 /**
  * GeneratorCollectionTest
  *
  * @category   Test
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Generator
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -35,13 +35,13 @@ class GeneratorCollectionTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection::add()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection::get()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection::has()
+     * @covers Cocur\Bundle\BuildBundle\Generator\GeneratorCollection::add()
+     * @covers Cocur\Bundle\BuildBundle\Generator\GeneratorCollection::get()
+     * @covers Cocur\Bundle\BuildBundle\Generator\GeneratorCollection::has()
      */
     public function addShouldAddGeneratorToCollection()
     {
-        $generator = m::mock('Braincrafted\Bundle\CocurBundle\Generator\GeneratorInterface');
+        $generator = m::mock('Cocur\Bundle\BuildBundle\Generator\GeneratorInterface');
         $this->collection->add($generator, 'foo');
         $this->assertTrue($this->collection->has('foo'));
         $this->assertEquals($generator, $this->collection->get('foo'));
@@ -50,7 +50,7 @@ class GeneratorCollectionTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection::get()
+     * @covers Cocur\Bundle\BuildBundle\Generator\GeneratorCollection::get()
      */
     public function getShouldReturnNullIfGeneratorNotFound()
     {

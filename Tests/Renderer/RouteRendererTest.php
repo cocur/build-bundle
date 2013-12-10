@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,17 +9,17 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Tests\Renderer;
+namespace Cocur\Bundle\BuildBundle\Tests\Renderer;
 
 use \Mockery as m;
 
-use Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer;
+use Cocur\Bundle\BuildBundle\Renderer\RouteRenderer;
 
 /**
  * RouteRendererTest
  *
  * @category   Test
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Renderer
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -37,7 +37,7 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
     /** @var Symfony\Component\Routing\Router */
     private $router;
 
-    /** @var Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection */
+    /** @var Cocur\Bundle\BuildBundle\Generator\GeneratorCollection */
     private $generatorCollection;
 
     /** @var string */
@@ -52,8 +52,8 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
         $this->kernel->shouldReceive('getRootDir')->andReturn('/');
         $this->router = m::mock('Symfony\Component\Routing\Router');
         $this->router->shouldReceive('getContext')->andReturn($context);
-        $this->writer = m::mock('Braincrafted\Bundle\CocurBundle\Writer\WriterInterface');
-        $this->generatorCollection = m::mock('Braincrafted\Bundle\CocurBundle\Generator\GeneratorCollection');
+        $this->writer = m::mock('Cocur\Bundle\BuildBundle\Writer\WriterInterface');
+        $this->generatorCollection = m::mock('Cocur\Bundle\BuildBundle\Generator\GeneratorCollection');
 
         $this->renderer = new RouteRenderer($this->kernel, $this->router, $this->writer, $this->generatorCollection);
     }
@@ -61,8 +61,8 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::setBaseUrl()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::getBaseUrl()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::setBaseUrl()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::getBaseUrl()
      */
     public function setBaseUrlShouldSetBaseUrl()
     {
@@ -78,9 +78,9 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::render()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::renderWithParameters()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::buildRequest()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::render()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::renderWithParameters()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::buildRequest()
      */
     public function renderShouldRenderRoute()
     {
@@ -110,13 +110,13 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::render()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::renderWithParameters()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::buildRequest()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::render()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::renderWithParameters()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::buildRequest()
      */
     public function renderShouldRenderRouteWithGenerator()
     {
-        $generator = m::mock('Braincrafted\Bundle\CocurBundle\Generator\GeneratorInterface');
+        $generator = m::mock('Cocur\Bundle\BuildBundle\Generator\GeneratorInterface');
         $generator->shouldReceive('generate')->once()->andReturn([ [ 'var' => 'foo' ], [ 'var' => 'bar' ] ]);
 
         $this->generatorCollection->shouldReceive('has')->with('index')->once()->andReturn(true);
@@ -145,11 +145,11 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::renderByName()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::render()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::renderWithParameters()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::buildRequest()
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::getRoute()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::renderByName()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::render()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::renderWithParameters()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::buildRequest()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::getRoute()
      */
     public function renderByNameShouldRenderRouteByName()
     {
@@ -181,9 +181,9 @@ class RouteRendererTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Renderer\RouteRenderer::renderByName()
+     * @covers Cocur\Bundle\BuildBundle\Renderer\RouteRenderer::renderByName()
      *
-     * @expectedException Braincrafted\Bundle\CocurBundle\Exception\RouteNotFoundException
+     * @expectedException Cocur\Bundle\BuildBundle\Exception\RouteNotFoundException
      */
     public function renderByNameShouldThrowExceptionIfRouteNotFound()
     {

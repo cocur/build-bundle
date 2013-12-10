@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Tests\Generator;
+namespace Cocur\Bundle\BuildBundle\Tests\Generator;
 
-use Braincrafted\Bundle\CocurBundle\Generator\FrontMatterGenerator;
+use Cocur\Bundle\BuildBundle\Generator\FrontMatterGenerator;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;
 use org\bovigo\vfs\vfsStreamDirectory;
@@ -20,7 +20,7 @@ use org\bovigo\vfs\vfsStreamDirectory;
  * FrontMatterGeneratorTest
  *
  * @category   Test
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Generator
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -41,9 +41,9 @@ class FrontMatterGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FrontMatterGenerator::__construct()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FrontMatterGenerator::getDirectoryName()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FrontMatterGenerator::getParameters()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FrontMatterGenerator::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FrontMatterGenerator::getDirectoryName()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FrontMatterGenerator::getParameters()
      */
     public function constructorShouldSetFilenameAndParameter()
     {
@@ -55,7 +55,7 @@ class FrontMatterGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FrontMatterGenerator::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FrontMatterGenerator::__construct()
      *
      * @expectedException \InvalidArgumentException
      */
@@ -67,8 +67,8 @@ class FrontMatterGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FrontMatterGenerator::generate()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FrontMatterGenerator::getFrontMatter()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FrontMatterGenerator::generate()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FrontMatterGenerator::getFrontMatter()
      */
     public function generateShouldReturnListOfParameters()
     {
@@ -98,8 +98,8 @@ class FrontMatterGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FrontMatterGenerator::generate()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FrontMatterGenerator::getFrontMatter()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FrontMatterGenerator::generate()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FrontMatterGenerator::getFrontMatter()
      */
     public function generateShouldReturnListOfParametersThatAreConfigured()
     {
@@ -129,9 +129,9 @@ class FrontMatterGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\FrontMatterGenerator::generate()
+     * @covers Cocur\Bundle\BuildBundle\Generator\FrontMatterGenerator::generate()
      *
-     * @expectedException Braincrafted\Bundle\CocurBundle\Exception\FileNotFoundException
+     * @expectedException Cocur\Bundle\BuildBundle\Exception\FileNotFoundException
      */
     public function generateShouldThrowExceptionIfFileNotFound()
     {

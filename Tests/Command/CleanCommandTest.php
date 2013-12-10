@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Tests\Command;
+namespace Cocur\Bundle\BuildBundle\Tests\Command;
 
 use \Mockery as m;
 use org\bovigo\vfs\vfsStream;
@@ -18,13 +18,13 @@ use org\bovigo\vfs\vfsStreamDirectory;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
-use Braincrafted\Bundle\CocurBundle\Command\CleanCommand;
+use Cocur\Bundle\BuildBundle\Command\CleanCommand;
 
 /**
  * CleanCommandTest
  *
  * @category   Test
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Command
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -56,10 +56,10 @@ class CleanCommandTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::__construct()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::configure()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::execute()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::cleanDirectory()
+     * @covers Cocur\Bundle\BuildBundle\Command\CleanCommand::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Command\CleanCommand::configure()
+     * @covers Cocur\Bundle\BuildBundle\Command\CleanCommand::execute()
+     * @covers Cocur\Bundle\BuildBundle\Command\CleanCommand::cleanDirectory()
      */
     public function executeShouldRunCommand()
     {
@@ -81,10 +81,10 @@ class CleanCommandTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::__construct()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::configure()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::execute()
-     * @covers Braincrafted\Bundle\CocurBundle\Command\CleanCommand::cleanDirectory()
+     * @covers Cocur\Bundle\BuildBundle\Command\CleanCommand::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Command\CleanCommand::configure()
+     * @covers Cocur\Bundle\BuildBundle\Command\CleanCommand::execute()
+     * @covers Cocur\Bundle\BuildBundle\Command\CleanCommand::cleanDirectory()
      */
     public function executeShouldOutputDetailedInformationInVerboseMode()
     {

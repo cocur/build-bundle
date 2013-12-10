@@ -1,6 +1,6 @@
 <?php
 
-namespace Braincrafted\Bundle\CocurBundle\Exception;
+namespace Cocur\Bundle\BuildBundle\Exception;
 
 /**
 * FileNotFoundException

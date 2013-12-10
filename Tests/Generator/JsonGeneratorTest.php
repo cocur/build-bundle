@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Tests\Generator;
+namespace Cocur\Bundle\BuildBundle\Tests\Generator;
 
-use Braincrafted\Bundle\CocurBundle\Generator\JsonGenerator;
+use Cocur\Bundle\BuildBundle\Generator\JsonGenerator;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;
 use org\bovigo\vfs\vfsStreamDirectory;
@@ -20,7 +20,7 @@ use org\bovigo\vfs\vfsStreamDirectory;
  * JsonGeneratorTest
  *
  * @category   Test
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Generator
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -41,9 +41,9 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\JsonGenerator::__construct()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\JsonGenerator::getFilename()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\JsonGenerator::getParameters()
+     * @covers Cocur\Bundle\BuildBundle\Generator\JsonGenerator::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Generator\JsonGenerator::getFilename()
+     * @covers Cocur\Bundle\BuildBundle\Generator\JsonGenerator::getParameters()
      */
     public function constructorShouldSetFilename()
     {
@@ -55,7 +55,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\JsonGenerator::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Generator\JsonGenerator::__construct()
      *
      * @expectedException \InvalidArgumentException
      */
@@ -67,7 +67,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\JsonGenerator::generate()
+     * @covers Cocur\Bundle\BuildBundle\Generator\JsonGenerator::generate()
      */
     public function generateShouldReturnListOfParameters()
     {
@@ -90,7 +90,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\JsonGenerator::generate()
+     * @covers Cocur\Bundle\BuildBundle\Generator\JsonGenerator::generate()
      */
     public function generateShouldReturnListOfParametersThatMatchParameters()
     {
@@ -115,9 +115,9 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\JsonGenerator::generate()
+     * @covers Cocur\Bundle\BuildBundle\Generator\JsonGenerator::generate()
      *
-     * @expectedException Braincrafted\Bundle\CocurBundle\Exception\FileNotFoundException
+     * @expectedException Cocur\Bundle\BuildBundle\Exception\FileNotFoundException
      */
     public function generateShouldThrowExceptionIfFileNotFound()
     {

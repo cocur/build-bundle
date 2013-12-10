@@ -5,47 +5,47 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="braincrafted_cocur.command.render_controller.class">Braincrafted\Bundle\CocurBundle\Command\RenderControllerCommand</parameter>
+        <parameter key="cocur_build.command.render_controller.class">Cocur\Bundle\BuildBundle\Command\RenderControllerCommand</parameter>
 
-        <parameter key="braincrafted_cocur.command.render_route.class">Braincrafted\Bundle\CocurBundle\Command\RenderRouteCommand</parameter>
+        <parameter key="cocur_build.command.render_route.class">Cocur\Bundle\BuildBundle\Command\RenderRouteCommand</parameter>
 
-        <parameter key="braincrafted_cocur.command.render_routes.class">Braincrafted\Bundle\CocurBundle\Command\RenderRoutesCommand</parameter>
+        <parameter key="cocur_build.command.render_routes.class">Cocur\Bundle\BuildBundle\Command\RenderRoutesCommand</parameter>
 
-        <parameter key="braincrafted_cocur.command.build.class">Braincrafted\Bundle\CocurBundle\Command\BuildCommand</parameter>
+        <parameter key="cocur_build.command.build.class">Cocur\Bundle\BuildBundle\Command\BuildCommand</parameter>
 
-        <parameter key="braincrafted_cocur.command.clean.class">Braincrafted\Bundle\CocurBundle\Command\CleanCommand</parameter>
+        <parameter key="cocur_build.command.clean.class">Cocur\Bundle\BuildBundle\Command\CleanCommand</parameter>
     </parameters>
 
     <services>
 
-        <service id="braincrafted_cocur.command.render_controller" class="%braincrafted_cocur.command.render_controller.class%">
-            <argument type="service" id="braincrafted_cocur.renderer.controller" />
+        <service id="cocur_build.command.render_controller" class="%cocur_build.command.render_controller.class%">
+            <argument type="service" id="cocur_build.renderer.controller" />
             <tag name="console.command" />
         </service>
 
-        <service id="braincrafted_cocur.command.render_route" class="%braincrafted_cocur.command.render_route.class%">
-            <argument type="service" id="braincrafted_cocur.renderer.route" />
+        <service id="cocur_build.command.render_route" class="%cocur_build.command.render_route.class%">
+            <argument type="service" id="cocur_build.renderer.route" />
             <tag name="console.command" />
         </service>
 
-        <service id="braincrafted_cocur.command.render_routes" class="%braincrafted_cocur.command.render_routes.class%">
-            <argument type="service" id="braincrafted_cocur.renderer.routes" />
+        <service id="cocur_build.command.render_routes" class="%cocur_build.command.render_routes.class%">
+            <argument type="service" id="cocur_build.renderer.routes" />
             <tag name="console.command" />
         </service>
 
-        <service id="braincrafted_cocur.command.build" class="%braincrafted_cocur.command.build.class%">
-            <argument type="service" id="braincrafted_cocur.renderer.routes" />
+        <service id="cocur_build.command.build" class="%cocur_build.command.build.class%">
+            <argument type="service" id="cocur_build.renderer.routes" />
             <argument type="collection">
-                <argument key="base_url">%braincrafted_cocur.base_url%</argument>
-                <argument key="build_directory">%braincrafted_cocur.build_directory%</argument>
-                <argument key="enable_assetic">%braincrafted_cocur.enable_assetic%</argument>
+                <argument key="base_url">%cocur_build.base_url%</argument>
+                <argument key="build_directory">%cocur_build.build_directory%</argument>
+                <argument key="enable_assetic">%cocur_build.enable_assetic%</argument>
             </argument>
             <tag name="console.command" />
         </service>
 
-        <service id="braincrafted_cocur.command.clean" class="%braincrafted_cocur.command.clean.class%">
-            <argument type="service" id="braincrafted_cocur.filesystem" />
-            <argument>%braincrafted_cocur.build_directory%</argument>
+        <service id="cocur_build.command.clean" class="%cocur_build.command.clean.class%">
+            <argument type="service" id="cocur_build.filesystem" />
+            <argument>%cocur_build.build_directory%</argument>
             <tag name="console.command" />
         </service>
 

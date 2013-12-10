@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Tests\Generator;
+namespace Cocur\Bundle\BuildBundle\Tests\Generator;
 
-use Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator;
+use Cocur\Bundle\BuildBundle\Generator\CSVGenerator;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;
 use org\bovigo\vfs\vfsStreamDirectory;
@@ -20,7 +20,7 @@ use org\bovigo\vfs\vfsStreamDirectory;
  * CSVGeneratorTest
  *
  * @category   Test
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Generator
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
@@ -41,12 +41,12 @@ class CSVGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator::__construct()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator::getFilename()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator::getDelimiter()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator::getEnclosure()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator::getEscape()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator::getParameters()
+     * @covers Cocur\Bundle\BuildBundle\Generator\CSVGenerator::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Generator\CSVGenerator::getFilename()
+     * @covers Cocur\Bundle\BuildBundle\Generator\CSVGenerator::getDelimiter()
+     * @covers Cocur\Bundle\BuildBundle\Generator\CSVGenerator::getEnclosure()
+     * @covers Cocur\Bundle\BuildBundle\Generator\CSVGenerator::getEscape()
+     * @covers Cocur\Bundle\BuildBundle\Generator\CSVGenerator::getParameters()
      */
     public function constructorShouldSetFilename()
     {
@@ -68,7 +68,7 @@ class CSVGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator::__construct()
+     * @covers Cocur\Bundle\BuildBundle\Generator\CSVGenerator::__construct()
      *
      * @expectedException \InvalidArgumentException
      */
@@ -80,8 +80,8 @@ class CSVGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator::generate()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator::getCsv()
+     * @covers Cocur\Bundle\BuildBundle\Generator\CSVGenerator::generate()
+     * @covers Cocur\Bundle\BuildBundle\Generator\CSVGenerator::getCsv()
      */
     public function generateShouldReturnListOfParameters()
     {
@@ -101,8 +101,8 @@ class CSVGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator::generate()
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator::getCsv()
+     * @covers Cocur\Bundle\BuildBundle\Generator\CSVGenerator::generate()
+     * @covers Cocur\Bundle\BuildBundle\Generator\CSVGenerator::getCsv()
      */
     public function generateShouldReturnListOfParametersThatMatchParameters()
     {
@@ -124,9 +124,9 @@ class CSVGeneratorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers Braincrafted\Bundle\CocurBundle\Generator\CSVGenerator::generate()
+     * @covers Cocur\Bundle\BuildBundle\Generator\CSVGenerator::generate()
      *
-     * @expectedException Braincrafted\Bundle\CocurBundle\Exception\FileNotFoundException
+     * @expectedException Cocur\Bundle\BuildBundle\Exception\FileNotFoundException
      */
     public function generateShouldThrowExceptionIfFileNotFound()
     {

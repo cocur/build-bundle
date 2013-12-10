@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of BraincraftedCocurBundle.
+ * This file is part of CocurBuildBundle.
  *
  * (c) 2013 Florian Eckerstorfer <florian@eckerstorfer.co>
  *
@@ -8,7 +8,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Braincrafted\Bundle\CocurBundle\Command;
+namespace Cocur\Bundle\BuildBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,14 +16,14 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Braincrafted\Bundle\CocurBundle\Renderer\ControllerRenderer;
-use Braincrafted\Bundle\CocurBundle\Exception\ControllerNotFoundException;
-use Braincrafted\Bundle\CocurBundle\Exception\RouteNotFoundException;
+use Cocur\Bundle\BuildBundle\Renderer\ControllerRenderer;
+use Cocur\Bundle\BuildBundle\Exception\ControllerNotFoundException;
+use Cocur\Bundle\BuildBundle\Exception\RouteNotFoundException;
 
 /**
  * RenderControllerCommand
  *
- * @package    BraincraftedCocurBundle
+ * @package    CocurBuildBundle
  * @subpackage Command
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co
  * @copyright  2013 Florian Eckerstorfer
