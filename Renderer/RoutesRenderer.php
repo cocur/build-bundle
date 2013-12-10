@@ -95,7 +95,10 @@ class RoutesRenderer
 
         $routes = [];
         foreach ($this->routes as $name) {
-            $routes[$name] = $this->router->getRouteCollection()->get($name);
+            $route = $this->router->getRouteCollection()->get($name);
+            if (null !== $route) {
+                $routes[$name] = $route;
+            }
         }
 
         return $routes;

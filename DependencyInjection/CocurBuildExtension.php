@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * BraincraftedCocurExtension
+ * CocurBuildExtension
  *
  * @package    CocurBuildBundle
  * @subpackage DependencyInjection
@@ -28,7 +28,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * @codeCoverageIgnore
  */
-class BraincraftedCocurExtension extends Extension
+class CocurBuildExtension extends Extension
 {
     /**
      * {@inheritDoc}
