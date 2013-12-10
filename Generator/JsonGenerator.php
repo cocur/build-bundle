@@ -97,7 +97,6 @@ class JsonGenerator implements GeneratorInterface
         }
 
         $json = Json::decode(file_get_contents($this->filename), true);
-        $parameters = [];
 
         for ($i = 0; $i < count($json); $i++) {
             $json[$i] = $this->filterByKey($json[$i], function ($key, $value) {
