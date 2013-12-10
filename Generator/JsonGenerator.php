@@ -96,24 +96,35 @@ class JsonGenerator implements GeneratorInterface
             throw new FileNotFoundException(sprintf('The file "%s" does not exist.', $this->filename));
         }
 
-        $content = file_get_contents($this->filename);
-        if (false === $content) {
-            throw new \RuntimeException(sprintf('Could not open file "%s".', $this->filename));
-        }
-
-        $json = Json::decode($content, true);
+        $json = Json::decode(file_get_contents($this->filename), true);
         $parameters = [];
 
         for ($i = 0; $i < count($json); $i++) {
-            $parameter = [];
-            foreach ($json[$i] as $key => $value) {
-                if (null === $this->parameters || true === in_array($key, $this->parameters)) {
-                    $parameter[$key] = $value;
-                }
-            }
-            $parameters[] = $parameter;
+            $json[$i] = $this->filterByKey($json[$i], function ($key, $value) {
+                return null === $this->parameters || true === in_array($key, $this->parameters);
+            });
         }
 
-        return $parameters;
+        return array_filter($json, function ($value) {
+            return count($value) > 0;
+        });
+    }
+
+    /**
+     * @param array    $array
+     * @param callable $callback
+     *
+     * @return array
+     */
+    protected function filterByKey(array $array, callable $callback)
+    {
+        $newArray = [];
+        foreach ($array as $key => $value) {
+            if (true === $callback($key, $value)) {
+                $newArray[$key] = $value;
+            }
+        }
+
+        return $newArray;
     }
 }

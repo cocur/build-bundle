@@ -68,6 +68,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
      * @test
      *
      * @covers Cocur\Bundle\BuildBundle\Generator\JsonGenerator::generate()
+     * @covers Cocur\Bundle\BuildBundle\Generator\JsonGenerator::filterByKey()
      */
     public function generateShouldReturnListOfParameters()
     {
@@ -91,6 +92,7 @@ class JsonGeneratorTest extends \PHPUnit_Framework_TestCase
      * @test
      *
      * @covers Cocur\Bundle\BuildBundle\Generator\JsonGenerator::generate()
+     * @covers Cocur\Bundle\BuildBundle\Generator\JsonGenerator::filterByKey()
      */
     public function generateShouldReturnListOfParametersThatMatchParameters()
     {
