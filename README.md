@@ -395,3 +395,7 @@ License
 
 This bundle is licensed under the [MIT license](http://opensource.org/licenses/MIT). For more information see the
 LICENSE file.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/cocur/build-bundle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
